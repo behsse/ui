@@ -1,0 +1,26 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+build
+
+# cli
+dist
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# turbo
+.turbo
+
+# ide
+.idea
+.fleet
+.vscode

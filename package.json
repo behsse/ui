@@ -1,0 +1,13 @@
+{
+	"scripts": {
+		"build": "turbo run build"
+	},
+	"devDependencies": {
+		"vite": "^7.1.12",
+		"vite-tsconfig-paths": "^5.1.4",
+		"vitest": "^4.0.2"
+	},
+	"dependencies": {
+		"typescript": "^5.9.3"
+	}
+}
