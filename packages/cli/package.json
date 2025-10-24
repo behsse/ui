@@ -1,13 +1,24 @@
 {
-  "name": "behsseui",
+  "name": "behsse-ui",
   "version": "0.0.1",
   "description": "CLI pour ajouter des composants behsseui dans vos projets",
   "type": "module",
+  "author": "Behsse",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/behsse/ui.git"
+  },
+  "homepage": "https://github.com/behsse/ui#readme",
+  "bugs": {
+    "url": "https://github.com/behsse/ui/issues"
+  },
   "bin": {
-    "behsseui": "./dist/index.js"
+    "behsse-ui": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup",
