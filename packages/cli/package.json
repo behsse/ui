@@ -1,6 +1,6 @@
 {
   "name": "behsse-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CLI pour ajouter des composants behsseui dans vos projets",
   "type": "module",
   "author": "Behsse",
@@ -35,7 +35,9 @@
     "prompts": "^2.4.2",
     "chalk": "^5.3.0",
     "ora": "^8.1.1",
-    "fs-extra": "^11.2.0"
+    "fs-extra": "^11.2.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.5"
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
