@@ -1,6 +1,6 @@
 {
   "name": "behsseui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "CLI to add behsseui components to your projects",
   "type": "module",
   "author": "Behsse",
