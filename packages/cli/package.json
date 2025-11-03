@@ -1,6 +1,6 @@
 {
-  "name": "behsseui",
-  "version": "0.0.2",
+  "name": "behsse-ui",
+  "version": "0.0.3",
   "description": "CLI to add behsseui components to your projects",
   "type": "module",
   "author": "Behsse",
@@ -14,7 +14,7 @@
     "url": "https://github.com/behsse/ui/issues"
   },
   "bin": {
-    "behsse-ui": "./dist/index.js"
+    "behsseui": "./dist/index.js"
   },
   "files": [
     "dist",

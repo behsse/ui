@@ -3,7 +3,12 @@
 	"version": "0.2.0",
 	"description": "Add behsseui components to your projects",
 	"scripts": {
-		"build": "turbo run build"
+		"build": "turbo run build",
+		"cli:build": "cd packages/cli && pnpm build",
+		"cli:publish": "pnpm cli:build && cd packages/cli && npm publish",
+		"cli:publish:patch": "cd packages/cli && npm version patch && cd ../.. && pnpm cli:publish",
+		"cli:publish:minor": "cd packages/cli && npm version minor && cd ../.. && pnpm cli:publish",
+		"cli:publish:major": "cd packages/cli && npm version major && cd ../.. && pnpm cli:publish"
 	},
 	"devDependencies": {
 		"vite": "^7.1.12",
