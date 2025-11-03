@@ -1,4 +1,7 @@
 {
+	"name": "behsseui",
+	"version": "0.2.0",
+	"description": "Add behsseui components to your projects",
 	"scripts": {
 		"build": "turbo run build"
 	},
