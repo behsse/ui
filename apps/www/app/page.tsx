@@ -1,11 +1,10 @@
-import {Button} from "../../../packages/components/Button"
+import { Button } from "./components/Button";
 
 export default function Home() {
   return (
     <>
-      <Button>Button</Button>
       <Button asChild>
-        <a href="https://google.com">aaaa</a>
+        <a href="/components-list">Components list</a>
       </Button>
     </>
   );
