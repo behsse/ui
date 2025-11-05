@@ -5,10 +5,10 @@
 	"scripts": {
 		"build": "turbo run build",
 		"cli:build": "cd packages/cli && pnpm build",
-		"cli:publish": "pnpm cli:build && cd packages/cli && npm publish",
-		"cli:publish:patch": "cd packages/cli && npm version patch && cd ../.. && pnpm cli:publish",
-		"cli:publish:minor": "cd packages/cli && npm version minor && cd ../.. && pnpm cli:publish",
-		"cli:publish:major": "cd packages/cli && npm version major && cd ../.. && pnpm cli:publish"
+		"cli:publish": "cd packages/cli && pnpm build && npm publish",
+		"cli:publish:patch": "cd packages/cli && npm version patch && pnpm build && npm publish",
+		"cli:publish:minor": "cd packages/cli && npm version minor && pnpm build && npm publish",
+		"cli:publish:major": "cd packages/cli && npm version major && pnpm build && npm publish"
 	},
 	"devDependencies": {
 		"vite": "^7.1.12",

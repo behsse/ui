@@ -4,6 +4,7 @@ import chalk from "chalk";
 import ora from "ora";
 import { existsSync, mkdirSync, writeFileSync, readFileSync, unlinkSync } from "fs";
 import { join, dirname } from "path";
+import { execSync } from "child_process";
 import {
   detectPackageManager,
   installDependencies,
@@ -23,7 +24,8 @@ import {
   findViteConfig,
   findTailwindConfig,
 } from "../utils/framework.js";
-import { addTailwindToViteConfig } from "../utils/vite-config.js";
+import { addTailwindToViteConfig, addAliasToViteConfig } from "../utils/vite-config.js";
+import { configureTsconfigForAlias } from "../utils/tsconfig.js";
 
 const REQUIRED_DEPENDENCIES = [
   "class-variance-authority",
@@ -87,9 +89,11 @@ async function setupTailwindForVite(
   const viteConfigPath = findViteConfig();
   if (viteConfigPath) {
     spinner.text = `Modification de ${viteConfigPath}...`;
-    const success = addTailwindToViteConfig(viteConfigPath);
-    if (success) {
-      spinner.text = `✓ ${viteConfigPath} modifié`;
+
+    // Ajouter Tailwind
+    const tailwindSuccess = addTailwindToViteConfig(viteConfigPath);
+    if (tailwindSuccess) {
+      spinner.text = `✓ ${viteConfigPath} modifié avec Tailwind`;
     } else {
       console.log(
         chalk.yellow(
@@ -102,10 +106,67 @@ async function setupTailwindForVite(
         )
       );
     }
+
+    // Ajouter l'alias @ pour les imports
+    spinner.text = `Configuration de l'alias @ dans ${viteConfigPath}...`;
+    const aliasSuccess = addAliasToViteConfig(viteConfigPath);
+    if (aliasSuccess) {
+      spinner.text = `✓ Alias @ configuré dans ${viteConfigPath}`;
+    } else {
+      console.log(
+        chalk.yellow(
+          `\n⚠️  Impossible de configurer l'alias @ automatiquement.`
+        )
+      );
+      console.log(
+        chalk.dim(
+          `Ajoutez manuellement dans vite.config.ts:\nresolve: {\n  alias: {\n    "@": path.resolve(__dirname, "."),\n  },\n}`
+        )
+      );
+    }
   } else {
     console.log(
       chalk.yellow("\n⚠️  Fichier vite.config non trouvé. Créez-le d'abord.")
     );
+  }
+
+  // Configurer tsconfig.json pour l'alias @
+  spinner.text = "Configuration de tsconfig.json...";
+  const tsconfigPath = join(process.cwd(), "tsconfig.json");
+  const tsconfigAppPath = join(process.cwd(), "tsconfig.app.json");
+
+  // Configurer tsconfig.json (racine)
+  const mainConfigured = configureTsconfigForAlias(tsconfigPath, false);
+
+  // Configurer tsconfig.app.json (utilisé par Vite pour l'application)
+  const appConfigured = configureTsconfigForAlias(tsconfigAppPath, true);
+
+  if (mainConfigured || appConfigured) {
+    spinner.text = "✓ tsconfig.json configuré avec alias @";
+  } else {
+    console.log(
+      chalk.yellow("\n⚠️  Erreur lors de la configuration de tsconfig.json")
+    );
+  }
+
+  // Installer @types/node si pas déjà présent
+  spinner.text = "Vérification de @types/node...";
+  try {
+    const packageJsonPath = join(process.cwd(), "package.json");
+    if (existsSync(packageJsonPath)) {
+      const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf-8"));
+      const hasTypesNode =
+        packageJson.dependencies?.["@types/node"] ||
+        packageJson.devDependencies?.["@types/node"];
+
+      if (!hasTypesNode) {
+        spinner.text = "Installation de @types/node...";
+        installDependencies(["@types/node"], packageManager, true);
+        spinner.text = "✓ @types/node installé";
+      }
+    }
+  } catch (error) {
+    // Ignorer l'erreur si @types/node ne peut pas être installé
   }
 }
 
@@ -147,6 +208,261 @@ function updateGlobalCss(cssPath: string, spinner: any): void {
   // Créer le nouveau fichier avec le template
   writeFileSecurely(cssPath, cssTemplate, spinner);
   spinner.text = `✓ ${cssPath} créé avec Tailwind v4`;
+}
+
+/**
+ * Crée un nouveau projet Next.js avec TypeScript
+ */
+async function createNextJsProject(projectName: string): Promise<string> {
+  const spinner = ora("Création du projet Next.js...").start();
+
+  try {
+    spinner.text = `Création du projet Next.js: ${projectName}...`;
+
+    // Créer le projet avec create-next-app en mode non-interactif avec TypeScript
+    // --yes accepte tous les paramètres par défaut sans poser de questions
+    execSync(
+      `npx create-next-app@latest ${projectName} --typescript --tailwind --eslint --app --no-src-dir --turbopack --import-alias "@/*" --no-git --yes`,
+      { stdio: "inherit" }
+    );
+
+    spinner.succeed(chalk.green(`✓ Projet Next.js "${projectName}" créé avec succès`));
+
+    // Retourner le chemin du projet
+    return join(process.cwd(), projectName);
+  } catch (error) {
+    spinner.fail(chalk.red("Erreur lors de la création du projet Next.js"));
+    throw error;
+  }
+}
+
+/**
+ * Crée un nouveau projet Vite avec TypeScript et React
+ */
+async function createViteProject(projectName: string): Promise<string> {
+  const spinner = ora("Création du projet Vite...").start();
+
+  try {
+    spinner.text = `Création du projet Vite: ${projectName}...`;
+
+    // Créer le projet avec create-vite en utilisant le template react-ts
+    // Utiliser echo pour répondre automatiquement "n" (no) pour ne pas lancer le serveur de dev
+    const isWindows = process.platform === "win32";
+    const command = isWindows
+      ? `echo n | npm create vite@latest ${projectName} -- --template react-ts`
+      : `echo "n" | npm create vite@latest ${projectName} -- --template react-ts`;
+
+    execSync(command, { stdio: "inherit" });
+
+    spinner.text = "Installation des dépendances du projet Vite...";
+
+    // Se déplacer dans le projet pour installer les dépendances
+    const projectPath = join(process.cwd(), projectName);
+    const packageManager = detectPackageManager();
+
+    // Installer les dépendances de base
+    if (packageManager === "npm") {
+      execSync("npm install", { cwd: projectPath, stdio: "inherit" });
+    } else if (packageManager === "pnpm") {
+      execSync("pnpm install", { cwd: projectPath, stdio: "inherit" });
+    } else {
+      execSync("yarn install", { cwd: projectPath, stdio: "inherit" });
+    }
+
+    // Installer @types/node pour supporter path et __dirname
+    spinner.text = "Installation de @types/node...";
+    if (packageManager === "npm") {
+      execSync("npm install -D @types/node", { cwd: projectPath, stdio: "inherit" });
+    } else if (packageManager === "pnpm") {
+      execSync("pnpm add -D @types/node", { cwd: projectPath, stdio: "inherit" });
+    } else {
+      execSync("yarn add -D @types/node", { cwd: projectPath, stdio: "inherit" });
+    }
+
+    // Configurer tsconfig.json pour l'alias @
+    spinner.text = "Configuration de tsconfig.json...";
+    const tsconfigPath = join(projectPath, "tsconfig.json");
+    const tsconfigAppPath = join(projectPath, "tsconfig.app.json");
+
+    // Configurer tsconfig.json (racine)
+    configureTsconfigForAlias(tsconfigPath, false);
+
+    // Configurer tsconfig.app.json (utilisé par Vite pour l'application)
+    configureTsconfigForAlias(tsconfigAppPath, true);
+
+    spinner.text = "✓ tsconfig.json configuré";
+
+    spinner.succeed(chalk.green(`✓ Projet Vite "${projectName}" créé avec succès`));
+
+    // Retourner le chemin du projet
+    return projectPath;
+  } catch (error) {
+    spinner.fail(chalk.red("Erreur lors de la création du projet Vite"));
+    throw error;
+  }
+}
+
+/**
+ * Crée un nouveau projet (Next.js ou Vite) et initialise behsseui
+ */
+async function createProjectWithBehsseui(
+  framework: "nextjs" | "vite"
+): Promise<void> {
+  console.log(
+    chalk.bold.cyan(
+      `\n✨ Création d'un projet ${framework === "nextjs" ? "Next.js" : "Vite"} avec behsseui\n`
+    )
+  );
+
+  // Demander le nom du projet
+  const { projectName } = await prompts({
+    type: "text",
+    name: "projectName",
+    message: "Nom du projet ?",
+    initial: "my-app",
+    validate: (value) => {
+      if (!value || value.trim() === "") {
+        return "Le nom du projet ne peut pas être vide";
+      }
+      if (existsSync(join(process.cwd(), value))) {
+        return `Le dossier "${value}" existe déjà`;
+      }
+      return true;
+    },
+  });
+
+  if (!projectName) {
+    console.log(chalk.red("\n❌ Création annulée."));
+    process.exit(0);
+  }
+
+  let projectPath: string;
+
+  try {
+    // Créer le projet selon le framework choisi
+    if (framework === "nextjs") {
+      projectPath = await createNextJsProject(projectName);
+    } else {
+      projectPath = await createViteProject(projectName);
+    }
+
+    // Se déplacer dans le dossier du projet
+    process.chdir(projectPath);
+
+    console.log(chalk.dim(`\n📂 Dossier courant: ${projectPath}\n`));
+
+    // Initialiser behsseui dans le nouveau projet avec mode automatique
+    await initProjectAuto(framework);
+
+    // Message de succès final
+    console.log(
+      chalk.bold.green(
+        `\n🎉 Projet ${framework === "nextjs" ? "Next.js" : "Vite"} avec behsseui créé avec succès!\n`
+      )
+    );
+    console.log(chalk.dim("Pour démarrer:"));
+    console.log(chalk.cyan(`  cd ${projectName}`));
+    console.log(
+      chalk.cyan(
+        `  ${detectPackageManager()} ${framework === "nextjs" ? "dev" : "dev"}`
+      )
+    );
+    console.log();
+  } catch (error) {
+    console.error(
+      chalk.red(
+        `\n❌ Erreur lors de la création du projet ${framework === "nextjs" ? "Next.js" : "Vite"}`
+      )
+    );
+    console.error(error);
+    process.exit(1);
+  }
+}
+
+/**
+ * Initialise behsseui dans un nouveau projet créé automatiquement
+ * (mode non-interactif avec valeurs par défaut)
+ */
+async function initProjectAuto(framework: "nextjs" | "vite"): Promise<void> {
+  console.log(chalk.bold.cyan("\n✨ Initialisation de behsseui\n"));
+
+  const packageManager = detectPackageManager();
+  console.log(
+    chalk.dim(`📦 Package manager: ${chalk.bold(packageManager)}\n`)
+  );
+
+  const componentsDir = "./ui";
+  const tailwindCss =
+    framework === "nextjs" ? "./app/globals.css" : "./src/index.css";
+
+  const spinner = ora("Configuration du projet...").start();
+
+  try {
+    // Créer le dossier des composants
+    spinner.text = `Création du dossier ${componentsDir}...`;
+    ensureDirectory(componentsDir);
+
+    // Créer le fichier de configuration
+    spinner.text = "Création du fichier de configuration...";
+    const config = createDefaultConfig(componentsDir);
+    config.tailwind.css = tailwindCss;
+    delete config.tailwind.config;
+    writeConfig(config);
+
+    // Installer les dépendances requises
+    spinner.text = "Installation des dépendances...";
+    try {
+      installDependencies(REQUIRED_DEPENDENCIES, packageManager, true);
+    } catch (error) {
+      spinner.warn(
+        chalk.yellow(
+          "Erreur lors de l'installation automatique des dépendances"
+        )
+      );
+    }
+
+    // Configurer Tailwind CSS v4
+    if (framework === "vite") {
+      await setupTailwindForVite(spinner, packageManager);
+    } else if (framework === "nextjs") {
+      await setupTailwindForNextJs(spinner, packageManager);
+    }
+
+    // Mettre à jour le CSS global avec le template behsseui
+    updateGlobalCss(tailwindCss, spinner);
+
+    // Créer le dossier lib/ et le fichier utils.ts pour cn() helper
+    spinner.text = "Création du helper cn() dans lib/...";
+    ensureDirectory("./lib");
+    const utilsTemplate = readTemplate("utils.ts.template");
+    const utilsPath = "./lib/utils.ts";
+    writeFileSecurely(utilsPath, utilsTemplate, spinner);
+
+    spinner.succeed(chalk.green("✅ Projet initialisé avec succès !\n"));
+
+    // Afficher les prochaines étapes
+    console.log(chalk.bold("📋 Prochaines étapes:\n"));
+    console.log(
+      chalk.dim("1."),
+      "Utilisez le helper cn():",
+      chalk.gray(`import { cn } from "./lib/utils"`)
+    );
+    console.log(
+      chalk.dim("2."),
+      "Ajoutez des composants:",
+      chalk.cyan(`${packageManager} behsseui add Button`)
+    );
+    console.log(
+      chalk.dim("3."),
+      "Importez dans votre code:",
+      chalk.gray(`import { Button } from "${componentsDir}/Button"`)
+    );
+    console.log();
+  } catch (error) {
+    spinner.fail(chalk.red("❌ Erreur lors de l'initialisation"));
+    console.error(error);
+    process.exit(1);
+  }
 }
 
 async function initProject() {
@@ -440,4 +756,31 @@ async function initProject() {
 export const init = new Command()
   .name("init")
   .description("Initialiser behsseui dans votre projet")
-  .action(initProject);
+  .option("--nextjs", "Créer un nouveau projet Next.js avec behsseui")
+  .option("--vite", "Créer un nouveau projet Vite avec behsseui")
+  .action(async (options: { nextjs?: boolean; vite?: boolean }) => {
+    // Vérifier qu'une seule option est sélectionnée
+    if (options.nextjs && options.vite) {
+      console.log(
+        chalk.red(
+          "\n❌ Erreur: Vous ne pouvez pas utiliser --nextjs et --vite en même temps"
+        )
+      );
+      process.exit(1);
+    }
+
+    // Si --nextjs est spécifié, créer un projet Next.js
+    if (options.nextjs) {
+      await createProjectWithBehsseui("nextjs");
+      return;
+    }
+
+    // Si --vite est spécifié, créer un projet Vite
+    if (options.vite) {
+      await createProjectWithBehsseui("vite");
+      return;
+    }
+
+    // Sinon, initialiser behsseui dans le projet existant
+    await initProject();
+  });
