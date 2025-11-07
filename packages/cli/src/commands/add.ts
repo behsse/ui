@@ -8,7 +8,7 @@ import { isProjectInitialized, readConfig } from "../utils/config.js";
 
 // URL du registry des composants (GitHub raw)
 const REGISTRY_URL =
-  "https://raw.githubusercontent.com/behsse/ui/main/packages/components";
+  "https://raw.githubusercontent.com/behsse/ui/main/apps/www/ui/components";
 
 // Mapping des composants disponibles et leurs dépendances
 const COMPONENTS_MAP: Record<

@@ -1,5 +1,4 @@
-import { Button } from '@/app/components/Button'
-import React from 'react'
+import { Button } from '@/ui/components/Button'
 
 const page = () => {
     return (
