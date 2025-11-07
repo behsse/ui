@@ -455,7 +455,7 @@ async function initProjectAuto(framework: "nextjs" | "vite"): Promise<void> {
     console.log(
       chalk.dim("3."),
       "Importez dans votre code:",
-      chalk.gray(`import { Button } from "${componentsDir}/Button"`)
+      chalk.gray(`import { Button } from "@/${componentsDir.replace("./", "")}/components/Button"`)
     );
     console.log();
   } catch (error) {
@@ -721,7 +721,7 @@ async function initProject() {
     console.log(
       chalk.dim("3."),
       "Importez dans votre code:",
-      chalk.gray(`import { Button } from "${answers.componentsDir}/Button"`)
+      chalk.gray(`import { Button } from "@/${answers.componentsDir.replace("./", "")}/components/Button"`)
     );
     console.log(
       chalk.dim("4."),

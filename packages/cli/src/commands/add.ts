@@ -72,14 +72,17 @@ async function addComponent(componentName: string) {
 
     const componentConfig = COMPONENTS_MAP[componentName];
     const config = readConfig();
-    const targetDir = join(process.cwd(), config.componentsDir);
+    const baseDir = join(process.cwd(), config.componentsDir);
 
-    // Créer le dossier principal si nécessaire
-    if (!existsSync(targetDir)) {
-      mkdirSync(targetDir, { recursive: true });
+    // Créer le sous-dossier components/ pour les composants principaux
+    const componentsDir = join(baseDir, "components");
+
+    // Créer le dossier components/ si nécessaire
+    if (!existsSync(componentsDir)) {
+      mkdirSync(componentsDir, { recursive: true });
     }
 
-    // Télécharger les dépendances d'abord
+    // Télécharger les dépendances d'abord (elles vont dans componentsDir avec leurs sous-dossiers)
     if (componentConfig.dependencies && componentConfig.dependencies.length > 0) {
       spinner.text = `Téléchargement des dépendances...`;
 
@@ -87,10 +90,10 @@ async function addComponent(componentName: string) {
         const depUrl = `${REGISTRY_URL}/${dep.file}`;
         const depContent = await downloadFile(depUrl);
 
-        // Créer le sous-dossier si spécifié
+        // Les dépendances avec subdir vont dans componentsDir/subdir (ex: ui/components/internals/)
         const depTargetDir = dep.subdir
-          ? join(targetDir, dep.subdir)
-          : targetDir;
+          ? join(componentsDir, dep.subdir)
+          : componentsDir;
 
         if (!existsSync(depTargetDir)) {
           mkdirSync(depTargetDir, { recursive: true });
@@ -108,13 +111,13 @@ async function addComponent(componentName: string) {
     spinner.text = `Téléchargement de ${componentName}...`;
     const componentContent = await downloadFile(componentUrl);
 
-    // Écrire le composant principal
-    const targetComponentPath = join(targetDir, componentConfig.file);
+    // Écrire le composant principal dans components/
+    const targetComponentPath = join(componentsDir, componentConfig.file);
     writeFileSync(targetComponentPath, componentContent, "utf-8");
 
     spinner.succeed(
       chalk.green(
-        `✅ Composant ${componentName} ajouté avec succès dans ${config.componentsDir}/`
+        `✅ Composant ${componentName} ajouté avec succès dans ${config.componentsDir}/components/`
       )
     );
 
@@ -123,7 +126,7 @@ async function addComponent(componentName: string) {
     );
     console.log(
       chalk.gray(
-        `import { ${componentName} } from "${config.componentsDir}/${componentConfig.file.replace(".tsx", "")}";`
+        `import { ${componentName} } from "@/${config.componentsDir.replace("./", "")}/components/${componentConfig.file.replace(".tsx", "")}";`
       )
     );
     console.log();
