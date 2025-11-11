@@ -1,4 +1,5 @@
 import { Button } from "../ui/components/Button";
+import ThemeColor from "./components/ThemeColor";
 
 export default function Home() {
   return (
