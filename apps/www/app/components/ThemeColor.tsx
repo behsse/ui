@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerBody, DrawerClose } from "./Drawer"
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem } from './Dropdown'
 import { Button } from '@/ui/components/Button'
-import X from "@/ui/icons/X"
+import Close from "@/ui/icons/Close"
 
 // Configuration des thèmes avec leurs couleurs
 // Ces valeurs correspondent aux variables CSS dans global.css
@@ -89,7 +89,7 @@ const ThemeColor = () => {
                 <DrawerHeader className='flex items-center justify-between'>
                     <DrawerTitle>Theme Customizer</DrawerTitle>
                     <DrawerClose asChild>
-                        <Button variant="ghost" size="icon"><X/></Button>
+                        <Button variant="ghost" size="icon"><Close/></Button>
                     </DrawerClose>
                 </DrawerHeader>
                 <DrawerBody className="h-full">

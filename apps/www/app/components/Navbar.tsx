@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Logo } from "./Logo"
 import ThemeColor from "./ThemeColor"
 import { Github } from "@/ui/icons/Github"
+import { CommandMenu } from "./CommandMenu"
 
 export const Navbar = () => {
 
@@ -18,8 +19,8 @@ export const Navbar = () => {
     return (
         <div className="border-b border-b-border border-dashed w-full">
             <div className="flex items-center justify-between w-full 3xl:max-w-[1550px] 3xl:mx-auto py-3 3xl:px-20 px-8">
-                <nav className="flex items-center">
-                    <Link href="/" className="pr-6">
+                <nav className="flex items-center gap-4">
+                    <Link href="/" className="pr-2">
                         <Logo className="w-6 h-6"/>
                     </Link>
                     <ul className="flex items-center">
@@ -33,6 +34,7 @@ export const Navbar = () => {
                     </ul>
                 </nav>
                 <div className="flex items-center gap-2">
+                    <CommandMenu />
                     <Button asChild variant="outline" size="icon">
                         <Link href="https://github.com/behsse/ui" target="_blank">
                             <Github className="w-4 h-4"/>

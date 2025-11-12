@@ -1,10 +1,10 @@
 import { cn } from '@/lib/utils'
 
-interface XIconProps {
+interface CloseIconProps {
     className?: string
 }
 
-const X = ({ className }: XIconProps) => {
+const Close = ({ className }: CloseIconProps) => {
     return (
         <svg
             viewBox="0 0 24 24"
@@ -18,4 +18,4 @@ const X = ({ className }: XIconProps) => {
     )
 }
 
-export default X
+export default Close
