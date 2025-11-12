@@ -141,12 +141,13 @@ export function CommandMenu() {
       <Button
         variant="outline"
         onClick={() => setOpen(true)}
-        className="relative w-full justify-start text-sm sm:pr-12 md:w-40 lg:w-64"
+        className="flex gap-4"
       >
-        <Search className="mr-2 h-4 w-4 " />
-        <span className="inline-flex">Search documentation ...</span>
-        <kbd className="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
-          <span className="text-xs">⌘</span>K
+        <Search className="h-4 w-4 " />
+        <span className="font-normal">Search documentation ...</span>
+        <kbd className="pointer-events-none  right-1.5 top-2 h-5 select-none flex items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium opacity-100 sm:flex">
+          <span>⌘</span>
+          <p>K</p>
         </kbd>
       </Button>
 
