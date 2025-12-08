@@ -1,0 +1,110 @@
+// Syntax highlighting for TypeScript/TSX code
+
+// Scrollbar customization - cache uniquement la scrollbar verticale
+:global(.scrollbar-vertical-hide) {
+  // Firefox - cache uniquement la scrollbar verticale
+  scrollbar-width: none;
+  scrollbar-gutter: stable;
+
+  // Chrome, Safari, Opera - cache la scrollbar verticale
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 8px; // Garde la scrollbar horizontale visible
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 4px;
+
+    &:hover {
+      background-color: rgba(155, 155, 155, 0.7);
+    }
+  }
+
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+// Au hover, affiche la scrollbar verticale avec le même style
+:global(.scrollbar-vertical-hide:hover),
+:global(.scrollbar-default) {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+
+  &::-webkit-scrollbar {
+    display: block;
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 4px;
+
+    &:hover {
+      background-color: rgba(155, 155, 155, 0.7);
+    }
+  }
+}
+
+.code {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  line-height: 1.6;
+  color: var(--foreground); // Uses Tailwind foreground variable (auto dark/light)
+
+  // CLI commands - plain foreground color
+  .cli-command { color: var(--foreground); }
+
+  // Dark mode - VSCode Dark+ colors
+  .keyword { color: #569cd6; }
+  .string { color: #ce9178; }
+  .comment { color: #6a9955; font-style: italic; }
+  .number { color: #b5cea8; }
+  .function { color: #dcdcaa; }
+  .type { color: #4ec9b0; }
+  .operator { color: var(--muted-foreground); }
+  .punctuation { color: var(--muted-foreground); }
+  .variable { color: #9cdcfe; }
+  .property { color: #9cdcfe; }
+  .jsx-tag { color: #4ec9b0; } // React components (PascalCase)
+  .html-tag { color: #569cd6; } // HTML tags (lowercase) - same as keywords
+  .jsx-attribute { color: #9cdcfe; }
+  .jsx-text { color: var(--foreground); } // Text content inside JSX tags
+  .import-export { color: #c586c0; }
+  .class-name { color: #4ec9b0; }
+  .brace { color: #ffd700; } // Yellow/gold for import braces { }
+  .import-name { color: #9cdcfe; } // Light blue for imported names
+  .type-keyword { color: #c586c0; } // Pink/purple for "type" keyword
+}
+
+// Light mode - VSCode Light+ colors
+:global(.light) .code {
+  .keyword { color: #0000ff; }
+  .string { color: #a31515; }
+  .comment { color: #008000; }
+  .number { color: #098658; }
+  .function { color: #795e26; }
+  .type { color: #267f99; }
+  .operator { color: var(--muted-foreground); }
+  .punctuation { color: var(--muted-foreground); }
+  .variable { color: #001080; }
+  .property { color: #001080; }
+  .jsx-tag { color: #800000; } // React components (PascalCase)
+  .html-tag { color: #0000ff; } // HTML tags (lowercase) - same as keywords
+  .jsx-attribute { color: #ff0000; }
+  .jsx-text { color: var(--foreground); } // Text content inside JSX tags
+  .import-export { color: #af00db; }
+  .class-name { color: #267f99; }
+  .brace { color: #ffa500; } // Orange for import braces { }
+  .import-name { color: #001080; } // Dark blue for imported names
+  .type-keyword { color: #af00db; } // Purple for "type" keyword
+}

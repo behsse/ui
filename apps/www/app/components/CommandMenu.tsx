@@ -145,7 +145,7 @@ export function CommandMenu() {
       >
         <Search className="h-4 w-4 " />
         <span className="font-normal">Search documentation ...</span>
-        <kbd className="pointer-events-none  right-1.5 top-2 h-5 select-none flex items-center gap-1 rounded border bg-muted px-1.5 font-mono text-xs font-medium opacity-100 sm:flex">
+        <kbd className="pointer-events-none  right-1.5 top-2 h-5 select-none flex items-center gap-1 rounded border bg-muted px-1.5 font-medium opacity-100 sm:flex">
           <span>⌘</span>
           <p>K</p>
         </kbd>
@@ -194,7 +194,7 @@ export function CommandMenu() {
                       {group}
                     </div>
                     <div className="space-y-1">
-                      {pages.map((page, index) => {
+                      {pages.map((page) => {
                         const globalIndex = filteredPages.indexOf(page)
                         const isSelected = globalIndex === selectedIndex
 

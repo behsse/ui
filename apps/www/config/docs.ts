@@ -1,3 +1,5 @@
+import { components } from "@/data/components"
+
 export interface NavItem {
   title: string
   href?: string
@@ -19,6 +21,15 @@ interface DocsConfig {
   sidebarNav: SidebarNavItem[]
 }
 
+// Générer dynamiquement la liste des composants depuis components.ts
+const componentNavItems: NavItemWithChildren[] = Object.keys(components)
+  .sort((a, b) => components[a].name.localeCompare(components[b].name))
+  .map((slug) => ({
+    title: components[slug].name,
+    href: `/docs/components/${slug}`,
+    items: [],
+  }))
+
 export const docsConfig: DocsConfig = {
   mainNav: [
     {
@@ -27,7 +38,7 @@ export const docsConfig: DocsConfig = {
     },
     {
       title: "Components",
-      href: "/components-list",
+      href: "/docs/components",
     },
     {
       title: "Examples",
@@ -40,7 +51,7 @@ export const docsConfig: DocsConfig = {
       items: [
         {
           title: "Introduction",
-          href: "/docs",
+          href: "/docs/intro",
           items: [],
         },
         {
@@ -49,31 +60,25 @@ export const docsConfig: DocsConfig = {
           items: [],
         },
         {
-          title: "CLI",
-          href: "/docs/cli",
+          title: "Components",
+          href: "/docs/components",
+          items: [],
+        },
+        {
+          title: "Figma",
+          href: "/docs/figma",
+          items: [],
+        },
+        {
+          title: "Changelog",
+          href: "/docs/changelog",
           items: [],
         },
       ],
     },
     {
       title: "Components",
-      items: [
-        {
-          title: "Button",
-          href: "/docs/components/button",
-          items: [],
-        },
-        {
-          title: "Drawer",
-          href: "/docs/components/drawer",
-          items: [],
-        },
-        {
-          title: "Dropdown",
-          href: "/docs/components/dropdown",
-          items: [],
-        },
-      ],
+      items: componentNavItems,
     },
   ],
 }

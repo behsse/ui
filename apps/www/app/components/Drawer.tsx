@@ -109,12 +109,9 @@ export function DrawerContent({ children, className, side = "right" }: DrawerCon
         setIsVisible(true)
         animationTimeoutRef.current = null
       }, 10) // Délai minimal pour permettre au DOM de se mettre à jour
-
-      document.body.style.overflow = "hidden"
     } else if (shouldRender) {
       // Commence l'animation de fermeture seulement si le drawer était monté
       setIsVisible(false)
-      document.body.style.overflow = ""
       // Démonte après l'animation
       animationTimeoutRef.current = setTimeout(() => {
         setShouldRender(false)

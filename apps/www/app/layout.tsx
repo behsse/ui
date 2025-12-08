@@ -26,12 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased w-full`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased w-full h-full overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
           <Navbar />
-          <main className="3xl:max-w-[1550px] 3xl:mx-auto border-x border-x-border border-dashed py-10 3xl:px-20 px-8">
+          <div className="pt-32 lg:pt-28 border-x border-x-border border-dashed w-full 3xl:max-w-[1550px] 3xl:mx-auto min-h-screen">
             {children}
-          </main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
