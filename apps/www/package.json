@@ -12,8 +12,7 @@
     "next": "16.0.0",
     "next-themes": "^0.4.6",
     "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "sass": "^1.94.1"
+    "react-dom": "19.2.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.16",
@@ -26,6 +25,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "postcss": "^8.5.6",
+    "sass": "^1.94.1",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.16",
     "typescript": "^5.1.0"
