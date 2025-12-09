@@ -2,6 +2,7 @@
 	"name": "behsseui",
 	"version": "0.2.0",
 	"description": "Add behsseui components to your projects",
+	"packageManager": "pnpm@9.13.0",
 	"scripts": {
 		"build": "turbo run build",
 		"cli:build": "cd packages/cli && pnpm build",
@@ -11,6 +12,7 @@
 		"cli:publish:major": "cd packages/cli && npm version major && pnpm build && npm publish"
 	},
 	"devDependencies": {
+		"turbo": "^2.6.3",
 		"vite": "^7.1.12",
 		"vite-tsconfig-paths": "^5.1.4",
 		"vitest": "^4.0.2"

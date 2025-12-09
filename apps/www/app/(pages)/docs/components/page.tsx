@@ -1,6 +1,5 @@
 import Link from "next/link"
 import { components } from "@/data/components"
-import File from "@/ui/icons/File"
 
 export const metadata = {
   title: "Components - behsseui",
