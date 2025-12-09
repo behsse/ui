@@ -32,7 +32,7 @@ const InstallationPage = () => {
                     <h3 className="text-2xl font-bold">With your framework</h3>
                     <p className="text-muted-foreground">Start by selecting your preferred framework. Then, follow the instructions to initialize behsseui in your project.</p>
                 </div>
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
                     {
                         frameworkTab.map((framework) => (
                             <FrameworkCard key={framework.id} href={framework.href} logo={framework.logo} name={framework.name} description={framework.description}/>
@@ -256,7 +256,7 @@ const InstallationPage = () => {
                 </div>
                 <div className="grid gap-2 pb-14">
                     <h4 className="text-lg">Create behsseui.json files</h4>
-                    <p>Create a behsseui.json file in the root of your project.</p>
+                    <p className="text-muted-foreground">Create a behsseui.json file in the root of your project.</p>
                     <CommandCode
                         fileName="behsseui.json"
                         rawCode={`

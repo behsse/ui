@@ -1,13 +1,5 @@
-import React from 'react'
+import { redirect } from 'next/navigation'
 
-const page = () => {
-    return (
-        <div className='flex justify-between'>
-            <nav>
-                
-            </nav>
-        </div>
-    )
+export default function DocsPage() {
+    redirect('/docs/intro')
 }
-
-export default page

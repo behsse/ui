@@ -8,7 +8,7 @@ import { CommandMenu } from "./CommandMenu"
 export const Navbar = () => {
 
     const navLink = [
-        {name: "Docs", href: "/docs"},
+        {name: "Docs", href: "/docs/intro"},
         {name: "Components", href: "/docs/components"},
         {name: "Slices", href: ""},
         {name: "Icons", href: ""},
