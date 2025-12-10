@@ -54,7 +54,7 @@ export default function DocsLayout({
 
   return (
     <div>
-      <div className="container max-w-screen-2xl mx-auto h-full px-4 sm:px-6 lg:px-8">
+      <div className="w-full 3xl:max-w-[1550px] 3xl:mx-auto h-full 3xl:px-20 px-8">
         <div className="flex items-start gap-6 lg:gap-10">
           {/* Sidebar gauche - Navigation */}
           <aside className="hidden md:block md:w-[220px] lg:w-[200px] xl:w-[280px] shrink-0 sticky top-32 lg:top-28 overflow-y-auto">
