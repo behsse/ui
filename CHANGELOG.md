@@ -4,6 +4,27 @@ Latest updates and announcements from the project.
 
 ---
 
+## v0.1.0
+**December 10, 2025**
+
+We are excited to announce the launch of the official **documentation site** and the stable release of the Core CLI. You can now scaffold your project and install your first component.
+
+### 📚 Documentation
+- **Official Site:** The documentation is now live! It covers installation, CLI usage, and component customization.
+- **Framework Support:** Guides available for **Next.js** and **Vite** integration.
+
+### 🛠️ CLI Features
+- **Project Initialization:** The `init` command now fully supports automatic dependency detection and Tailwind CSS configuration.
+- **Add Components:** The `add` command is stable and ready to inject code into your project.
+- **Icon Architecture:** The underlying system for managing and installing icons is now in place (library population starting soon).
+
+### 🧩 Components
+- **Button:** The first component is available! It serves as the foundation for the design system, featuring multiple variants and sizes.
+
+### 🔜 Coming Soon
+- **Icon Library:** A comprehensive set of SVG icons is being prepared.
+- **Slices:** Pre-built sections (Hero, Navbar, etc.) to build pages faster.
+
 ## v0.0.2
 **October 29, 2025**
 
