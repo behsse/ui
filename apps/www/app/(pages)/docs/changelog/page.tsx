@@ -101,20 +101,51 @@ function parseChangelog(content: string) {
   return versions
 }
 
-const sectionColors: Record<string, { text: string, border: string }> = {
-  'New Features': { text: 'text-green-600 dark:text-green-400', border: 'border-green-600 dark:border-green-400' },
-  'Added': { text: 'text-green-600 dark:text-green-400', border: 'border-green-600 dark:border-green-400' },
-  'Improvements': { text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-600 dark:border-blue-400' },
-  'Changed': { text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-600 dark:border-blue-400' },
-  'Fixed': { text: 'text-orange-600 dark:text-orange-400', border: 'border-orange-600 dark:border-orange-400' },
-  'Removed': { text: 'text-red-600 dark:text-red-400', border: 'border-red-600 dark:border-red-400' },
-  'Dependencies': { text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-600 dark:border-purple-400' },
-  'Security': { text: 'text-yellow-600 dark:text-yellow-400', border: 'border-yellow-600 dark:border-yellow-400' },
+function getSectionColors(sectionName: string): { text: string, border: string } {
+  const name = sectionName.toLowerCase()
+
+  // Détection basée sur des mots-clés
+  if (name.includes('feature') || name.includes('added') || name.includes('new')) {
+    return { text: 'text-green-600 dark:text-green-400', border: 'border-green-600 dark:border-green-400' }
+  }
+  if (name.includes('improvement') || name.includes('changed') || name.includes('enhanced')) {
+    return { text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-600 dark:border-blue-400' }
+  }
+  if (name.includes('fixed') || name.includes('fix') || name.includes('bug')) {
+    return { text: 'text-orange-600 dark:text-orange-400', border: 'border-orange-600 dark:border-orange-400' }
+  }
+  if (name.includes('removed') || name.includes('deprecated')) {
+    return { text: 'text-red-600 dark:text-red-400', border: 'border-red-600 dark:border-red-400' }
+  }
+  if (name.includes('dependencies') || name.includes('dependency')) {
+    return { text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-600 dark:border-purple-400' }
+  }
+  if (name.includes('security')) {
+    return { text: 'text-yellow-600 dark:text-yellow-400', border: 'border-yellow-600 dark:border-yellow-400' }
+  }
+  if (name.includes('documentation') || name.includes('docs')) {
+    return { text: 'text-cyan-600 dark:text-cyan-400', border: 'border-cyan-600 dark:border-cyan-400' }
+  }
+  if (name.includes('component')) {
+    return { text: 'text-pink-600 dark:text-pink-400', border: 'border-pink-600 dark:border-pink-400' }
+  }
+  if (name.includes('coming soon') || name.includes('upcoming')) {
+    return { text: 'text-indigo-600 dark:text-indigo-400', border: 'border-indigo-600 dark:border-indigo-400' }
+  }
+  if (name.includes('cli')) {
+    return { text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-600 dark:border-amber-400' }
+  }
+
+  // Couleur par défaut
+  return { text: 'text-foreground', border: 'border-border' }
 }
 
 function formatContent(content: string) {
   // Remplacer les backticks par des <code>
-  return content.replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-muted">$1</code>')
+  let formatted = content.replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-muted">$1</code>')
+  // Remplacer les ** par du gras
+  formatted = formatted.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  return formatted
 }
 
 async function ChangelogContent() {
@@ -146,7 +177,7 @@ async function ChangelogContent() {
 
           <div className="grid gap-6">
             {Object.entries(version.sections).map(([sectionName, items]: [string, any]) => {
-              const colors = sectionColors[sectionName] || { text: 'text-foreground', border: 'border-border' }
+              const colors = getSectionColors(sectionName)
 
               return (
                 <div key={sectionName} className="grid gap-3">
