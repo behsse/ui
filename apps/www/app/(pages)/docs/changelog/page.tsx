@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 async function getChangelog() {
   try {
     const response = await fetch(
-      'https://raw.githubusercontent.com/behsse/ui/main/packages/cli/CHANGELOG.md',
+      'https://raw.githubusercontent.com/behsse/ui/main/CHANGELOG.md',
       {
         cache: 'no-store', // Pour toujours avoir la dernière version
         next: { revalidate: 3600 } // Revalider toutes les heures
@@ -26,21 +26,32 @@ function parseChangelog(content: string) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim()
 
-    // Détecter une version (## [X.X.X] - DATE)
-    if (line.startsWith('## [') && line.includes(']')) {
+    // Détecter une version (## vX.X.X)
+    if (line.startsWith('## v')) {
       if (currentVersion) versions.push(currentVersion)
 
-      const versionMatch = line.match(/## \[(.*?)\] - (.*)/)
+      const versionMatch = line.match(/## v(.*)/)
+      // La date est sur la ligne suivante avec le format **DATE**
+      let date = ''
+      if (i + 1 < lines.length) {
+        const nextLine = lines[i + 1].trim()
+        const dateMatch = nextLine.match(/\*\*(.*?)\*\*/)
+        if (dateMatch) {
+          date = dateMatch[1]
+        }
+      }
+
       currentVersion = {
         version: versionMatch?.[1] || '',
-        date: versionMatch?.[2] || '',
+        date: date,
         sections: {}
       }
       currentSection = null
     }
-    // Détecter une section (### Added, ### Changed, etc.)
+    // Détecter une section (### 🚀 New Features, ### 💅 Improvements, etc.)
     else if (line.startsWith('### ')) {
-      currentSection = line.replace('### ', '')
+      // Enlever les emojis et nettoyer le texte
+      currentSection = line.replace(/^### /, '').replace(/^[^\w\s]+\s*/, '').trim()
       if (currentVersion && currentSection) {
         currentVersion.sections[currentSection] = []
       }
@@ -68,7 +79,9 @@ function parseChangelog(content: string) {
 }
 
 const sectionColors: Record<string, { text: string, border: string }> = {
+  'New Features': { text: 'text-green-600 dark:text-green-400', border: 'border-green-600 dark:border-green-400' },
   'Added': { text: 'text-green-600 dark:text-green-400', border: 'border-green-600 dark:border-green-400' },
+  'Improvements': { text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-600 dark:border-blue-400' },
   'Changed': { text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-600 dark:border-blue-400' },
   'Fixed': { text: 'text-orange-600 dark:text-orange-400', border: 'border-orange-600 dark:border-orange-400' },
   'Removed': { text: 'text-red-600 dark:text-red-400', border: 'border-red-600 dark:border-red-400' },

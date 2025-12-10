@@ -1,49 +1,49 @@
 # Changelog
 
-Dernières mises à jour et annonces du projet.
+Latest updates and announcements from the project.
 
 ---
 
 ## v0.0.2
-**29 Octobre 2025**
+**October 29, 2025**
 
-Une mise à jour majeure pour l'expérience développeur (DX). Nous avons introduit un système de configuration complet et rendu l'initialisation beaucoup plus intelligente.
+A major update for the Developer Experience (DX). We introduced a complete configuration system and made the initialization process much smarter.
 
-### 🚀 Nouveautés
+### 🚀 New Features
 
-- **Commande `init` intelligente :**
-  Lancement rapide de votre projet avec une seule commande.
-  - Détection automatique du gestionnaire de paquets (npm, pnpm, yarn, bun).
-  - Installation automatique des dépendances clés (`class-variance-authority`, `clsx`, `tailwind-merge`).
-  - Configuration optionnelle de Tailwind CSS si non détecté.
-  - Création du fichier `cn()` helper automatiquement.
+- **Smart `init` command:**
+  Jumpstart your project with a single command.
+  - Automatic package manager detection (npm, pnpm, yarn, bun).
+  - Automatic installation of key dependencies (`class-variance-authority`, `clsx`, `tailwind-merge`).
+  - Optional Tailwind CSS configuration if not detected.
+  - Automatic creation of the `cn()` helper file.
 
-- **Fichier `behsseui.json` :**
-  Nous sauvegardons désormais vos préférences de configuration pour ne pas vous les redemander à chaque commande.
-  - Stockage des chemins (components, utils, ui).
-  - Validation de la configuration avant l'ajout de composants.
+- **`behsseui.json` file:**
+  We now save your configuration preferences so we don't have to ask for them with every command.
+  - Path storage (components, utils, ui).
+  - Configuration validation before adding components.
 
-- **Architecture Modulaire :**
-  Refonte interne du CLI pour séparer proprement la logique des commandes (`src/commands/`) et les utilitaires.
+- **Modular Architecture:**
+  Internal CLI overhaul to cleanly separate command logic (`src/commands/`) from utilities.
 
-### 💅 Améliorations
+### 💅 Improvements
 
-- **Commande `add` sécurisée :** Le CLI vérifie maintenant que le projet est bien initialisé (présence du fichier de config) avant de tenter d'ajouter un composant.
-- Refactoring global pour une meilleure maintenabilité du code source.
+- **Secure `add` command:** The CLI now verifies that the project is properly initialized (config file present) before attempting to add a component.
+- Global refactoring for better source code maintainability.
 
-### 📦 Dépendances
+### 📦 Dependencies
 
-- Ajout de `clsx` et `tailwind-merge` pour la gestion conditionnelle des classes CSS et la résolution des conflits Tailwind.
+- Added `clsx` and `tailwind-merge` for conditional CSS class management and smart Tailwind conflict resolution.
 
 ---
 
 ## v0.0.1
-**24 Octobre 2025**
+**October 24, 2025**
 
-Lancement initial du projet **BehsseUI CLI**.
+Initial launch of the **BehsseUI CLI** project.
 
-### 🚀 Nouveautés
+### 🚀 New Features
 
-- **Lancement du CLI :** Première version fonctionnelle.
-- **Commande `add` :** Possibilité de télécharger des composants depuis le registre GitHub.
-- **Nouveau Composant :** Support initial du composant `Button`.
+- **CLI Launch:** First functional version.
+- **`add` command:** Ability to download components from the GitHub registry.
+- **New Component:** Initial support for the `Button` component.
