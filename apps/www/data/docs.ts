@@ -11,6 +11,17 @@ interface DocPage {
 }
 
 export const docPages: Record<string, DocPage> = {
+  intro: {
+    title: "Introduction",
+    desc: "Bienvenue dans la documentation de behsseui",
+    toc: [
+      { id: "introduction", text: "Introduction", level: 2 },
+      { id: "key-features", text: "Key features", level: 2 },
+      { id: "pre-requisite", text: "Pre-requisite knowledge", level: 2 },
+      { id: "next-steps", text: "Next steps", level: 2 },
+      { id: "why-cli", text: "Why the CLI approach ?", level: 2 },
+    ]
+  },
   introduction: {
     title: "Introduction",
     desc: "Bienvenue dans la documentation de behsseui",

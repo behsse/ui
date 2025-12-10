@@ -35,7 +35,7 @@ const page = () => {
   ]
   return (
     <main className='grid gap-16 pb-20'>
-      <div className="grid gap-4" id="installation">            
+      <div className="grid gap-4" id="introduction">
         <h1 className='text-4xl font-bold'>Introduction</h1>
         <p className="text-muted-foreground">Welcome to the behsseui documentation. This section will help you understand our philosophy, set up the CLI and start integrating modern components into your projects.</p>
         <h2 className='font-bold'>This is not a traditional component library.</h2>
@@ -49,7 +49,7 @@ const page = () => {
           </ul>
         </div>
       </div>
-      <div className="grid gap-10" id="wyf">
+      <div className="grid gap-10" id="key-features">
         <div className="grid gap-4">
           <h3 className="text-2xl font-bold">Key features</h3>
           <p className="text-muted-foreground">Our ecosystem is built to accelerate tour development without sacrifing design quality.</p>
@@ -78,7 +78,7 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="grid gap-10" id="wyf">
+      <div className="grid gap-10" id="pre-requisite">
         <div className="grid gap-4">
           <h3 className="text-2xl font-bold">Pre-requisite knowledge</h3>
           <p className="text-muted-foreground">Our documentation assumes some familiarity with modern web development. Before getting started, it will help if you are comfortable with :</p>
@@ -91,7 +91,7 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="grid gap-10" id="wyf">
+      <div className="grid gap-10" id="next-steps">
         <div className="grid gap-4">
           <h3 className="text-2xl font-bold">Next steps</h3>
           <p className="text-muted-foreground">Ready to build ? Follow the guide to get started.</p>
@@ -130,7 +130,7 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="grid gap-10" id="wyf">
+      <div className="grid gap-10" id="why-cli">
         <div className="grid gap-4">
           <h3 className="text-2xl font-bold">Why the CLI approach ?</h3>
           <p className="text-muted-foreground">We embrace an "Open Code" approach. When you use a traditional library, you are often constrained by its API. If you want to change the internal behavior of a component, you often end up writing complex workarounds.</p>

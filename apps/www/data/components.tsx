@@ -32,13 +32,16 @@ interface Component {
   toc?: TOCItem[]
 }
 
+// Fonction pour générer les previews (évite les problèmes de HMR)
+const getButtonPreview = () => (
+  <div className="rounded-md bg-primary text-primary-foreground text-sm font-medium w-2/4 h-1/3"></div>
+)
+
 export const components: Record<string, Component> = {
   button: {
     name : "Button",
     desc : "Buttons allow the user to take actions or make choices.",
-    minimalPreview: (
-      <div className="rounded-md bg-primary text-primary-foreground text-sm font-medium w-2/4 h-1/3"></div>
-    ),
+    minimalPreview: getButtonPreview(),
     commands : [
       {
         id: 1,
