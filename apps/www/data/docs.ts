@@ -76,5 +76,14 @@ export const docPages: Record<string, DocPage> = {
       { id: "get-started", text: "How to get started", level: 2 },
       { id: "for-developers", text: "For Developers", level: 2 },
     ]
+  },
+  changelog: {
+    title: "Changelog",
+    desc: "All notable changes to behsseui",
+    toc: [
+      { id: "changelog", text: "Changelog", level: 2 },
+      { id: "v0.0.2", text: "Version 0.0.2", level: 2 },
+      { id: "v0.0.1", text: "Version 0.0.1", level: 2 },
+    ]
   }
 }

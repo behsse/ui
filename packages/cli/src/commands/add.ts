@@ -6,9 +6,11 @@ import ora from "ora";
 import https from "https";
 import { isProjectInitialized, readConfig } from "../utils/config.js";
 
-// URL du registry des composants (GitHub raw)
-const REGISTRY_URL =
+// URL du registry (GitHub raw)
+const COMPONENTS_REGISTRY_URL =
   "https://raw.githubusercontent.com/behsse/ui/main/apps/www/ui/components";
+const ICONS_REGISTRY_URL =
+  "https://raw.githubusercontent.com/behsse/ui/main/apps/www/ui/icons";
 
 // Mapping des composants disponibles et leurs dépendances
 const COMPONENTS_MAP: Record<
@@ -22,6 +24,15 @@ const COMPONENTS_MAP: Record<
     ],
   },
   // Ajoutez d'autres composants ici au fur et à mesure
+};
+
+// Mapping des icônes disponibles
+const ICONS_MAP: Record<string, { file: string }> = {
+  Close: { file: "Close.tsx" },
+  Github: { file: "Github.tsx" },
+  Search: { file: "Search.tsx" },
+  File: { file: "File.tsx" },
+  // Ajoutez d'autres icônes ici au fur et à mesure
 };
 
 // Fonction pour télécharger un fichier depuis une URL
@@ -87,7 +98,7 @@ async function addComponent(componentName: string) {
       spinner.text = `Téléchargement des dépendances...`;
 
       for (const dep of componentConfig.dependencies) {
-        const depUrl = `${REGISTRY_URL}/${dep.file}`;
+        const depUrl = `${COMPONENTS_REGISTRY_URL}/${dep.file}`;
         const depContent = await downloadFile(depUrl);
 
         // Les dépendances avec subdir vont dans componentsDir/subdir (ex: ui/components/internals/)
@@ -107,7 +118,7 @@ async function addComponent(componentName: string) {
     }
 
     // Télécharger le composant principal
-    const componentUrl = `${REGISTRY_URL}/${componentConfig.file}`;
+    const componentUrl = `${COMPONENTS_REGISTRY_URL}/${componentConfig.file}`;
     spinner.text = `Téléchargement de ${componentName}...`;
     const componentContent = await downloadFile(componentUrl);
 
@@ -137,8 +148,92 @@ async function addComponent(componentName: string) {
   }
 }
 
+async function addIcon(iconName: string) {
+  // Vérifier si le projet est initialisé
+  if (!isProjectInitialized()) {
+    console.log(
+      chalk.red(
+        "\n❌ Le projet n'est pas initialisé. Exécutez d'abord 'behsseui init'.\n"
+      )
+    );
+    process.exit(1);
+  }
+
+  const spinner = ora(`Téléchargement de l'icône ${iconName}...`).start();
+
+  try {
+    // Vérifier si l'icône existe
+    if (!ICONS_MAP[iconName]) {
+      spinner.fail(chalk.red(`L'icône "${iconName}" n'existe pas.`));
+      console.log(
+        chalk.yellow("\nIcônes disponibles:"),
+        Object.keys(ICONS_MAP).join(", ")
+      );
+      process.exit(1);
+    }
+
+    const iconConfig = ICONS_MAP[iconName];
+    const config = readConfig();
+    const baseDir = join(process.cwd(), config.componentsDir);
+
+    // Créer le dossier icons/ pour les icônes
+    const iconsDir = join(baseDir, "icons");
+
+    // Créer le dossier icons/ si nécessaire
+    if (!existsSync(iconsDir)) {
+      mkdirSync(iconsDir, { recursive: true });
+    }
+
+    // Télécharger l'icône
+    const iconUrl = `${ICONS_REGISTRY_URL}/${iconConfig.file}`;
+    spinner.text = `Téléchargement de ${iconName}...`;
+    const iconContent = await downloadFile(iconUrl);
+
+    // Écrire l'icône dans icons/
+    const targetIconPath = join(iconsDir, iconConfig.file);
+    writeFileSync(targetIconPath, iconContent, "utf-8");
+
+    spinner.succeed(
+      chalk.green(
+        `✅ Icône ${iconName} ajoutée avec succès dans ${config.componentsDir}/icons/`
+      )
+    );
+
+    console.log(
+      chalk.cyan("\n📦 Vous pouvez maintenant l'importer dans votre projet:")
+    );
+    console.log(
+      chalk.gray(
+        `import ${iconName} from "@/${config.componentsDir.replace("./", "")}/icons/${iconConfig.file.replace(".tsx", "")}";`
+      )
+    );
+    console.log();
+  } catch (error) {
+    spinner.fail(chalk.red("❌ Erreur lors de l'installation de l'icône"));
+    console.error(error);
+    process.exit(1);
+  }
+}
+
 export const add = new Command()
   .name("add")
-  .description("Ajouter un composant à votre projet")
-  .argument("<component>", "Nom du composant à ajouter")
-  .action(addComponent);
+  .description("Ajouter un composant ou une icône à votre projet")
+  .argument("<type>", "Type: nom du composant ou 'i' pour icône")
+  .argument("[name]", "Nom de l'icône (si type = 'i')")
+  .action((type: string, name?: string) => {
+    // Si le premier argument est "i", c'est une icône
+    if (type === "i") {
+      if (!name) {
+        console.log(
+          chalk.red(
+            "\n❌ Veuillez spécifier le nom de l'icône. Exemple: behsseui add i Close\n"
+          )
+        );
+        process.exit(1);
+      }
+      addIcon(name);
+    } else {
+      // Sinon, c'est un composant
+      addComponent(type);
+    }
+  });
