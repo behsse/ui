@@ -65,5 +65,16 @@ export const docPages: Record<string, DocPage> = {
       {id : "create", text: "Create project", level: 2},
       {id : "add", text: "Add components", level: 2},
     ]
+  },
+  figma: {
+    title: "Figma",
+    desc: "Design with behsseui in Figma",
+    toc: [
+      { id: "design-in-figma", text: "Design in Figma", level: 2 },
+      { id: "why-figma", text: "Why use our Figma Kit?", level: 2 },
+      { id: "whats-included", text: "What's included?", level: 2 },
+      { id: "get-started", text: "How to get started", level: 2 },
+      { id: "for-developers", text: "For Developers", level: 2 },
+    ]
   }
 }
