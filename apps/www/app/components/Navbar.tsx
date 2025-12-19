@@ -11,7 +11,7 @@ export const Navbar = () => {
         {name: "Docs", href: "/docs/intro"},
         {name: "Components", href: "/docs/components"},
         {name: "Slices", href: ""},
-        {name: "Icons", href: ""},
+        {name: "Icons", href: "/icons"},
         {name: "Theme", href: ""},
         {name: "Colors", href: ""},
     ];

@@ -78,10 +78,11 @@ export function DrawerTrigger({ children, className, asChild }: DrawerTriggerPro
 type DrawerContentProps = {
   children: ReactNode
   className?: string
-  side?: "left" | "right"
+  side?: "left" | "right" | "top" | "bottom"
+  overlay?: boolean
 }
 
-export function DrawerContent({ children, className, side = "right" }: DrawerContentProps) {
+export function DrawerContent({ children, className, side = "right", overlay = false }: DrawerContentProps) {
   const { open, setOpen } = useDrawer()
   const [shouldRender, setShouldRender] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
@@ -104,11 +105,14 @@ export function DrawerContent({ children, className, side = "right" }: DrawerCon
       setIsVisible(false)
       setShouldRender(true)
 
-      // Utilise un timeout court au lieu de RAF pour plus de fiabilité
-      animationTimeoutRef.current = setTimeout(() => {
-        setIsVisible(true)
-        animationTimeoutRef.current = null
-      }, 10) // Délai minimal pour permettre au DOM de se mettre à jour
+      // Utilise requestAnimationFrame suivi d'un petit timeout pour garantir que le DOM est prêt
+      rafRef.current = requestAnimationFrame(() => {
+        animationTimeoutRef.current = setTimeout(() => {
+          setIsVisible(true)
+          animationTimeoutRef.current = null
+        }, 20) // Augmenté à 20ms pour plus de fiabilité
+        rafRef.current = null
+      })
     } else if (shouldRender) {
       // Commence l'animation de fermeture seulement si le drawer était monté
       setIsVisible(false)
@@ -130,22 +134,48 @@ export function DrawerContent({ children, className, side = "right" }: DrawerCon
         rafRef.current = null
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open])
+  }, [open, shouldRender])
 
   // Ne rien rendre si pas monté
   if (!shouldRender) return null
 
-  const translateClass = side === "right"
-    ? isVisible ? "translate-x-0" : "translate-x-full"
-    : isVisible ? "translate-x-0" : "-translate-x-full"
+  // Classes pour les différentes directions
+  const getTranslateClass = () => {
+    switch (side) {
+      case "right":
+        return isVisible ? "translate-x-0" : "translate-x-full"
+      case "left":
+        return isVisible ? "translate-x-0" : "-translate-x-full"
+      case "bottom":
+        return isVisible ? "translate-y-0" : "translate-y-full"
+      case "top":
+        return isVisible ? "translate-y-0" : "-translate-y-full"
+    }
+  }
+
+  const getPositionClasses = () => {
+    switch (side) {
+      case "right":
+        return "top-0 right-0 h-full w-full sm:w-96 border-l shadow-[-8px_0_24px_-8px_rgba(0,0,0,0.2)]"
+      case "left":
+        return "top-0 left-0 h-full w-full sm:w-96 border-r shadow-[8px_0_24px_-8px_rgba(0,0,0,0.2)]"
+      case "bottom":
+        return "bottom-0 left-0 w-full h-auto max-h-[80vh] border-t shadow-[0_-8px_24px_-8px_rgba(0,0,0,0.2)]"
+      case "top":
+        return "top-0 left-0 w-full h-auto max-h-[80vh] border-b shadow-[0_8px_24px_-8px_rgba(0,0,0,0.2)]"
+    }
+  }
 
   return (
     <>
-      {/* Overlay invisible pour fermer en cliquant à l'extérieur */}
+      {/* Overlay pour fermer en cliquant à l'extérieur et assombrir le fond */}
       {open && (
         <div
-          className="fixed inset-0 z-40"
+          className={cn(
+            "fixed inset-0 z-40 transition-opacity duration-500",
+            overlay ? "bg-black/50" : "bg-transparent",
+            isVisible ? "opacity-100" : "opacity-0"
+          )}
           onClick={() => setOpen(false)}
         />
       )}
@@ -153,9 +183,9 @@ export function DrawerContent({ children, className, side = "right" }: DrawerCon
       {/* Drawer panel */}
       <div
         className={cn(
-          "fixed top-0 z-50 h-full w-full border-l border-border sm:w-96 bg-background transition-transform duration-500 ease-in-out",
-          side === "right" ? "right-0 shadow-[-8px_0_24px_-8px_rgba(0,0,0,0.2)]" : "left-0 shadow-[8px_0_24px_-8px_rgba(0,0,0,0.2)]",
-          translateClass,
+          "fixed z-50 bg-background transition-transform duration-500 ease-in-out border-border",
+          getPositionClasses(),
+          getTranslateClass(),
           className
         )}
       >

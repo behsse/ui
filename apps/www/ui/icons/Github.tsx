@@ -6,7 +6,7 @@ interface GithubIconProps {
 
 export const Github = ({ className }: GithubIconProps) => {
     return (
-        <svg 
+        <svg
             viewBox="0 0 24 24"
             className={cn(
                 "fill-foreground transition-colors w-2.5 aspect-square",
@@ -17,3 +17,6 @@ export const Github = ({ className }: GithubIconProps) => {
         </svg>
     )
 }
+
+// Metadata de l'icon
+export const iconVersion = "1.0.0"
