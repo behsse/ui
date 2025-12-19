@@ -4,6 +4,36 @@ Latest updates and announcements from the project.
 
 ---
 
+## v0.2.0
+**December 19, 2025**
+
+We are thrilled to introduce the full **Icon System** integration. Following our initial launch, this update bridges the gap between the documentation and the CLI, allowing you to browse, search, and install icons directly into your application.
+
+### 📚 Documentation
+- **Icon Library:** A brand new Icons page is now live! You can search, filter, and preview the growing collection of SVG icons.
+- **Interactive Features:** Easily copy icon names or installation commands directly from the UI.
+- **Usage Guides:** Updated documentation on how to import and customize icons within your components.
+
+### 🛠️ CLI Features
+- **Icon Installation:** The `add` command has been upgraded. You can now add specific icons directly to your project (e.g., `pnpm dlx behsseui@latest add -i Github`).
+- **Streamlined Logic:** The CLI intelligently handles icon dependencies to ensure they are placed correctly in your project structure.
+
+### 🎨 Icons & Assets
+**New Icons Added:** The library has been populated with the first set of essential system icons:
+- Check
+- Close
+- Copy
+- File
+- Github
+- Search
+- Terminal
+
+### 🔜 Coming Soon
+- **More Icons:** We are actively working on expanding the icon set with common UI elements (arrows, social media, user actions).
+- **Slices:** Pre-built sections (Hero, Navbar, etc.) to build pages faster are still in development.
+
+---
+
 ## v0.1.0
 **December 10, 2025**
 
