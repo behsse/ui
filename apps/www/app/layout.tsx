@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased w-full h-full overflow-x-hidden`}>
         <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
           <Navbar />
-          <div className="pt-32 lg:pt-28 border-x border-x-border border-dashed w-full 3xl:max-w-[1550px] 3xl:mx-auto min-h-screen">
+          <div className="pt-26 lg:pt-20 border-x border-x-border border-dashed w-full 3xl:max-w-[1550px] 3xl:mx-auto min-h-screen">
             {children}
           </div>
         </ThemeProvider>

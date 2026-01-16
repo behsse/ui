@@ -1,28 +1,17 @@
-import { Button } from "../ui/components/Button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./components/Accordion";
-import CommandCode from "./components/CommandCode";
-import ThemeColor from "./components/ThemeColor";
+import {Footer} from "./components/Footer";
+import { CodePreview } from "./components/homepage/CodePreview";
+import { CTASection } from "./components/homepage/CTASection";
+import { Feature } from "./components/homepage/Feature";
+import Header from "./components/homepage/Header";
 
 export default function Home() {
   return (
-    <div className="px-8">
-      <Button asChild>
-        <a href="/components-list">Components list</a>
-      </Button>
-      <Accordion type="single" defaultValue="item-1">
-        <AccordionItem value="item-1" defaultOpen>
-          <AccordionTrigger>Section 1</AccordionTrigger>
-          <AccordionContent>
-            Contenu de la section 1
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2" defaultOpen>
-          <AccordionTrigger>Section 2</AccordionTrigger>
-          <AccordionContent>
-            Contenu de la section 2
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </div>
+    <main className="min-h-screen">
+      <Header />
+      <Feature />
+      <CodePreview />
+      <CTASection />
+      <Footer />
+    </main>
   );
 }

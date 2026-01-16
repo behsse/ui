@@ -22,14 +22,14 @@ const InstallationPage = () => {
         },
     ]
     return (
-        <main className='grid gap-16'>
-            <div className="grid gap-2" id="installation">            
-                <h2 className='text-4xl font-bold'>Installation</h2>
+        <main className='grid gap-10 sm:gap-16'>
+            <div className="grid gap-2" id="installation">
+                <h2 className='text-3xl sm:text-4xl font-bold'>Installation</h2>
                 <p className="text-muted-foreground">How to install behsse UI in your web project. It's fast, flexible, and reliable. Start by choosing your framework. Then simply follow the instructions to use behsse UI.</p>
             </div>
-            <div className="grid gap-10" id="wyf">
+            <div className="grid gap-6 sm:gap-10" id="wyf">
                 <div className="grid gap-2">
-                    <h3 className="text-2xl font-bold">With your framework</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold">With your framework</h3>
                     <p className="text-muted-foreground">Start by selecting your preferred framework. Then, follow the instructions to initialize behsseui in your project.</p>
                 </div>
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
@@ -40,9 +40,9 @@ const InstallationPage = () => {
                     }
                 </div>
             </div>
-            <div className="grid gap-10" id="manual">
+            <div className="grid gap-6 sm:gap-10" id="manual">
                 <div className="grid gap-2">
-                    <h3 className="text-2xl font-bold">Manual</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold">Manual</h3>
                     <p className="text-muted-foreground">Initialize behsseui in an existing project to take advantage of all its features.</p>
                 </div>
                 <div className="grid gap-6">

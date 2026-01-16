@@ -101,6 +101,12 @@ export function DrawerContent({ children, className, side = "right", overlay = f
     }
 
     if (open) {
+      // Bloquer le scroll du body quand le drawer est ouvert (seulement sur mobile/tablet < 1024px)
+      const isMobile = window.innerWidth < 1024
+      if (isMobile) {
+        document.body.style.overflow = "hidden"
+      }
+
       // Force l'état invisible d'abord, puis monte le composant
       setIsVisible(false)
       setShouldRender(true)
@@ -114,6 +120,9 @@ export function DrawerContent({ children, className, side = "right", overlay = f
         rafRef.current = null
       })
     } else if (shouldRender) {
+      // Réactiver le scroll du body quand le drawer se ferme
+      document.body.style.overflow = ""
+
       // Commence l'animation de fermeture seulement si le drawer était monté
       setIsVisible(false)
       // Démonte après l'animation

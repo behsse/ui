@@ -34,9 +34,9 @@ const page = () => {
     },
   ]
   return (
-    <main className='grid gap-16 pb-20'>
+    <main className='grid gap-10 sm:gap-16 pb-20'>
       <div className="grid gap-4" id="introduction">
-        <h1 className='text-4xl font-bold'>Introduction</h1>
+        <h1 className='text-3xl sm:text-4xl font-bold'>Introduction</h1>
         <p className="text-muted-foreground">Welcome to the behsseui documentation. This section will help you understand our philosophy, set up the CLI and start integrating modern components into your projects.</p>
         <h2 className='font-bold'>This is not a traditional component library.</h2>
         <p className="text-muted-foreground">behsseui is not an npm package that you install and keep as a "black box" dependency. It is a collection for beautiful designed components, icons ans UI sections (Slices) that you copy directly into your project.</p>
@@ -49,9 +49,9 @@ const page = () => {
           </ul>
         </div>
       </div>
-      <div className="grid gap-10" id="key-features">
+      <div className="grid gap-6 sm:gap-10" id="key-features">
         <div className="grid gap-4">
-          <h3 className="text-2xl font-bold">Key features</h3>
+          <h3 className="text-xl sm:text-2xl font-bold">Key features</h3>
           <p className="text-muted-foreground">Our ecosystem is built to accelerate tour development without sacrifing design quality.</p>
           <div className='pl-6'>
             <ul className='list-decimal grid gap-4'>
@@ -78,9 +78,9 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="grid gap-10" id="pre-requisite">
+      <div className="grid gap-6 sm:gap-10" id="pre-requisite">
         <div className="grid gap-4">
-          <h3 className="text-2xl font-bold">Pre-requisite knowledge</h3>
+          <h3 className="text-xl sm:text-2xl font-bold">Pre-requisite knowledge</h3>
           <p className="text-muted-foreground">Our documentation assumes some familiarity with modern web development. Before getting started, it will help if you are comfortable with :</p>
           <div className='pl-6'>
             <ul className='list-disc grid gap-2'>
@@ -91,9 +91,9 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="grid gap-10" id="next-steps">
+      <div className="grid gap-6 sm:gap-10" id="next-steps">
         <div className="grid gap-4">
-          <h3 className="text-2xl font-bold">Next steps</h3>
+          <h3 className="text-xl sm:text-2xl font-bold">Next steps</h3>
           <p className="text-muted-foreground">Ready to build ? Follow the guide to get started.</p>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
             {
@@ -130,9 +130,9 @@ const page = () => {
           </div>
         </div>
       </div>
-      <div className="grid gap-10" id="why-cli">
+      <div className="grid gap-6 sm:gap-10" id="why-cli">
         <div className="grid gap-4">
-          <h3 className="text-2xl font-bold">Why the CLI approach ?</h3>
+          <h3 className="text-xl sm:text-2xl font-bold">Why the CLI approach ?</h3>
           <p className="text-muted-foreground">We embrace an "Open Code" approach. When you use a traditional library, you are often constrained by its API. If you want to change the internal behavior of a component, you often end up writing complex workarounds.</p>
           <p className="text-muted-foreground">The CLI drops the code directly into your ui folder.</p>
           <div className='pl-6'>

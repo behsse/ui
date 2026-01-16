@@ -21,14 +21,14 @@ export default function ComponentsPage() {
             <span>/</span>
             <span className="text-foreground">Components</span>
           </div>
-          <h1 className="text-4xl font-bold tracking-tight">All components</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">All components</h1>
           <p className="text-muted-foreground">
             {componentsList.length} component{componentsList.length > 1 ? "s" : ""} available
           </p>
         </div>
 
         {/* Liste des composants */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {componentsList.map(([slug, component]) => (
             <Link
               key={slug}
