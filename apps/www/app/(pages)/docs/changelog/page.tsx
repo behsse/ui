@@ -4,10 +4,7 @@ export async function getChangelog() {
   try {
     const response = await fetch(
       'https://raw.githubusercontent.com/behsse/ui/main/CHANGELOG.md',
-      {
-        cache: 'no-store', // Pour toujours avoir la dernière version
-        next: { revalidate: 3600 } // Revalider toutes les heures
-      }
+      { next: { revalidate: 3600 } } // Revalider toutes les heures
     )
     if (!response.ok) throw new Error('Failed to fetch changelog')
     return await response.text()

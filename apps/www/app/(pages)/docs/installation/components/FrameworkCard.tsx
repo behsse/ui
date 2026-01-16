@@ -13,7 +13,7 @@ interface frameworkCardProps {
 
 const FrameworkCard = ({href, logo, name, description, className} : frameworkCardProps) => {
   return (
-    <Link href={href} className="group relative flex flex-col rounded-lg border bg-background overflow-hidden hover:border-foreground/20 transition-all hover:shadow-md p-4 gap-4">
+    <Link href={href} className="group relative flex flex-col rounded-lg border bg-background overflow-hidden hover:border-foreground/20 transition-all hover:shadow-md hover:-translate-y-1 p-4 gap-4">
       {/* En-tête : Logo + Titre - toujours alignés en haut */}
       <div className='flex items-center gap-4 w-full'>
         <Image src={logo} alt={`Logo de ${name}`} width={45} height={45} className="shrink-0"/>

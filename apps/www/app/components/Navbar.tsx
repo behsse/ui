@@ -9,7 +9,7 @@ import ThemeColor from "./ThemeColor"
 import { Github } from "@/ui/icons/Github"
 import { CommandMenu } from "./CommandMenu"
 import Close from "@/ui/icons/Close"
-import { DocsNavContent } from "./LeftNavbar"
+import { docsConfig } from "@/config/docs"
 
 const MenuIcon = ({ className }: { className?: string }) => (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -19,11 +19,32 @@ const MenuIcon = ({ className }: { className?: string }) => (
 
 export const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [isClosing, setIsClosing] = useState(false)
     const pathname = usePathname()
+
+    // Fonction pour fermer le menu avec animation
+    const closeMenu = () => {
+        setIsClosing(true)
+        setTimeout(() => {
+            setMobileMenuOpen(false)
+            setIsClosing(false)
+        }, 300) // Durée de l'animation
+    }
+
+    // Toggle le menu
+    const toggleMenu = () => {
+        if (mobileMenuOpen) {
+            closeMenu()
+        } else {
+            setMobileMenuOpen(true)
+        }
+    }
 
     // Fermer le menu quand on change de page
     useEffect(() => {
-        setMobileMenuOpen(false)
+        if (mobileMenuOpen) {
+            closeMenu()
+        }
     }, [pathname])
 
     // Bloquer le scroll du body quand le menu mobile est ouvert
@@ -37,9 +58,6 @@ export const Navbar = () => {
             document.body.style.overflow = ''
         }
     }, [mobileMenuOpen])
-
-    // Vérifier si on est sur une page docs pour afficher la navigation docs
-    const isDocsPage = pathname.startsWith('/docs')
 
     const navLink = [
         {name: "Docs", href: "/docs/intro"},
@@ -81,52 +99,61 @@ export const Navbar = () => {
                         variant="outline"
                         size="icon"
                         className="lg:hidden"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        onClick={toggleMenu}
                     >
                         {mobileMenuOpen ? <Close className="w-4 h-4"/> : <MenuIcon className="w-4 h-4"/>}
                     </Button>
                 </div>
             </div>
 
-            {/* Mobile/Tablet menu - slide from right */}
+            {/* Mobile/Tablet menu - full width drawer */}
             {mobileMenuOpen && (
             <div
-                className="lg:hidden border-t border-border bg-background h-[calc(100vh-57px)] overflow-y-auto animate-slide-in-right"
+                className={`lg:hidden fixed inset-x-0 top-[57px] h-[calc(100vh-57px)] bg-background border-t border-border z-50 overflow-y-auto ${isClosing ? 'animate-slide-out-right' : 'animate-slide-in-right'}`}
             >
-                <nav className="flex flex-col p-4 gap-1">
-                    {/* Liens principaux */}
-                    {navLink.map((link) => (
+                    <nav className="flex flex-col p-4 gap-1">
+                        {/* Liens principaux */}
+                        {navLink.map((link) => (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                className="px-4 py-3 rounded-md text-sm font-medium hover:bg-accent transition-colors"
+                                onClick={closeMenu}
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
                         <Link
-                            key={link.name}
-                            href={link.href}
-                            className="px-4 py-3 rounded-md text-sm font-medium hover:bg-accent transition-colors"
-                            onClick={() => setMobileMenuOpen(false)}
+                            href="https://github.com/behsse/ui"
+                            target="_blank"
+                            className="px-4 py-3 rounded-md text-sm hover:bg-accent transition-colors flex items-center gap-2 sm:hidden"
+                            onClick={closeMenu}
                         >
-                            {link.name}
+                            <Github className="w-4 h-4"/>
+                            GitHub
                         </Link>
-                    ))}
-                    <Link
-                        href="https://github.com/behsse/ui"
-                        target="_blank"
-                        className="px-4 py-3 rounded-md text-sm hover:bg-accent transition-colors flex items-center gap-2 sm:hidden"
-                        onClick={() => setMobileMenuOpen(false)}
-                    >
-                        <Github className="w-4 h-4"/>
-                        GitHub
-                    </Link>
 
-                    {/* Navigation docs si on est sur une page docs */}
-                    {isDocsPage && (
-                        <>
-                            <div className="my-4 border-t border-border" />
-                            <div className="px-2">
-                                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4">Documentation</p>
-                                <DocsNavContent pathname={pathname} onLinkClick={() => setMobileMenuOpen(false)} />
+                        {/* Navigation docs - toujours visible dans le menu mobile */}
+                        {docsConfig.sidebarNav.map((section) => (
+                            <div key={section.title}>
+                                <div className="my-4 border-t border-border" />
+                                <p className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                                    {section.title}
+                                </p>
+                                {section.items.map((item) => (
+                                    <Link
+                                        key={item.href}
+                                        href={item.href || "#"}
+                                        className="px-4 py-3 rounded-md text-sm font-medium hover:bg-accent transition-colors block"
+                                        onClick={closeMenu}
+                                    >
+                                        {item.title}
+                                    </Link>
+                                ))}
                             </div>
-                        </>
-                    )}
-                </nav>
-            </div>
+                        ))}
+                    </nav>
+                </div>
             )}
         </div>
     )

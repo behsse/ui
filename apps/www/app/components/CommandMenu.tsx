@@ -135,17 +135,38 @@ export function CommandMenu() {
     setSelectedIndex(0)
   }, [search])
 
+  // Bloquer le scroll du body quand la modal est ouverte
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [open])
+
   return (
     <>
-      {/* Bouton de déclenchement */}
+      {/* Bouton de déclenchement - Icon only sur mobile */}
       <Button
         variant="outline"
         onClick={() => setOpen(true)}
-        className="flex gap-4"
+        size="icon"
+        className="flex sm:hidden"
       >
-        <Search className="h-4 w-4 " />
+        <Search className="h-4 w-4" />
+      </Button>
+      {/* Bouton de déclenchement - Complet sur desktop */}
+      <Button
+        variant="outline"
+        onClick={() => setOpen(true)}
+        className="hidden sm:flex gap-4"
+      >
+        <Search className="h-4 w-4" />
         <span className="font-normal">Search documentation ...</span>
-        <kbd className="pointer-events-none  right-1.5 top-2 h-5 select-none flex items-center gap-1 rounded border bg-muted px-1.5 font-medium opacity-100 sm:flex">
+        <kbd className="pointer-events-none right-1.5 top-2 h-5 select-none flex items-center gap-1 rounded border bg-muted px-1.5 font-medium opacity-100">
           <span>⌘</span>
           <p>K</p>
         </kbd>
@@ -154,15 +175,19 @@ export function CommandMenu() {
       {/* Dialog de recherche */}
       {open && (
         <div
-          className="fixed inset-0 z-50 bg-black/20"
+          className="fixed inset-0 z-[100] bg-black/50 p-4 sm:p-0"
           onClick={() => setOpen(false)}
         >
+          {/* Mobile: full height avec marges, Desktop: centré */}
           <div
-            className="fixed left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%] border bg-background shadow-lg rounded-md"
+            className="relative sm:fixed sm:left-[50%] sm:top-[50%] sm:translate-x-[-50%] sm:translate-y-[-50%]
+              w-full h-full sm:h-auto sm:max-w-lg
+              border bg-background shadow-lg rounded-xl sm:rounded-md
+              flex flex-col z-[101]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header avec input de recherche */}
-            <div className="flex items-center border-b px-3">
+            <div className="flex items-center border-b px-3 shrink-0">
               <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
               <input
                 type="text"
@@ -182,7 +207,7 @@ export function CommandMenu() {
             </div>
 
             {/* Résultats */}
-            <div className="max-h-[300px] overflow-y-auto overflow-x-hidden p-2">
+            <div className="flex-1 overflow-y-auto overflow-x-hidden p-2 sm:max-h-[300px]">
               {filteredPages.length === 0 ? (
                 <div className="py-6 text-center text-sm text-muted-foreground">
                   No results found.
@@ -221,8 +246,8 @@ export function CommandMenu() {
               )}
             </div>
 
-            {/* Footer avec les raccourcis */}
-            <div className="flex items-center border-t px-3 py-2 text-xs text-muted-foreground">
+            {/* Footer avec les raccourcis - caché sur mobile */}
+            <div className="hidden sm:flex items-center border-t px-3 py-2 text-xs text-muted-foreground shrink-0">
               <kbd className="inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono font-medium">
                 <span>↑↓</span>
               </kbd>

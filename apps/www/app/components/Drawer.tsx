@@ -181,7 +181,7 @@ export function DrawerContent({ children, className, side = "right", overlay = f
       {open && (
         <div
           className={cn(
-            "fixed inset-0 z-40 transition-opacity duration-500",
+            "fixed inset-0 z-[60] transition-opacity duration-500",
             overlay ? "bg-black/50" : "bg-transparent",
             isVisible ? "opacity-100" : "opacity-0"
           )}
@@ -192,7 +192,7 @@ export function DrawerContent({ children, className, side = "right", overlay = f
       {/* Drawer panel */}
       <div
         className={cn(
-          "fixed z-50 bg-background transition-transform duration-500 ease-in-out border-border",
+          "fixed z-[70] bg-background transition-transform duration-500 ease-in-out border-border",
           getPositionClasses(),
           getTranslateClass(),
           className

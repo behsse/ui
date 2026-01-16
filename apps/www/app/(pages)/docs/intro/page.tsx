@@ -101,7 +101,7 @@ const page = () => {
                 <Link
                   key={nextSteps.id}
                   href={`/${nextSteps.link}`}
-                  className="group relative flex flex-col rounded-lg border bg-background overflow-hidden hover:border-foreground/20 transition-all hover:shadow-md"
+                  className="group relative flex flex-col rounded-lg border bg-background overflow-hidden hover:border-foreground/20 transition-all hover:shadow-md hover:-translate-y-1"
                 >
                   <div className='p-6 grid gap-2'>
                     <p className='text-lg font-bold'>{nextSteps.name}</p>

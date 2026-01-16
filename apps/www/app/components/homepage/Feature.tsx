@@ -82,20 +82,31 @@ export const Feature = () => {
                     <Link
                     key={index}
                     href={feature.href}
-                    className="group relative p-6 rounded-xl border border-border bg-card hover:bg-accent/50 transition-all duration-300 hover:border-primary/20 hover:-translate-y-1"
+                    className="group relative p-6 rounded-xl border border-border bg-card hover:border-foreground/20 transition-all hover:shadow-md hover:-translate-y-1"
                     >
                     <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
                         {feature.icon}
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="text-lg font-semibold mb-2 group-hover:text-foreground transition-colors">
                         {feature.title}
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
                         {feature.description}
                     </p>
-                    <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        >
+                            <path d="M7 7h10v10" />
+                            <path d="M7 17 17 7" />
                         </svg>
                     </div>
                     </Link>

@@ -33,7 +33,7 @@ export default function ComponentsPage() {
             <Link
               key={slug}
               href={`/docs/components/${slug}`}
-              className="group relative flex flex-col rounded-lg border bg-background overflow-hidden hover:border-foreground/20 transition-all hover:shadow-md"
+              className="group relative flex flex-col rounded-lg border bg-background overflow-hidden hover:border-foreground/20 transition-all hover:shadow-md hover:-translate-y-1"
             >
               {/* Aperçu visuel */}
               {component.minimalPreview && (
