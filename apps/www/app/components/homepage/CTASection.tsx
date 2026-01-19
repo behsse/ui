@@ -2,7 +2,7 @@ import { Button } from '@/ui/components/Button'
 
 export const CTASection = () => {
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-6 border-t border-border">
+    <section className="py-16 sm:py-24 px-4 sm:px-6 border-t border-border border-dashed">
       <div className="max-w-4xl mx-auto text-center px-2">
         <h2 className="text-3xl sm:text-4xl font-bold mb-4">
           Ready to build?

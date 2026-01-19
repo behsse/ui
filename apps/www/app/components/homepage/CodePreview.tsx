@@ -1,6 +1,6 @@
 export const CodePreview = () => {
     return (
-        <section className="py-16 sm:py-24 px-4 sm:px-6 border-t border-border">
+        <section className="py-16 sm:py-24 px-4 sm:px-6 border-t border-border border-dashed">
             <div className="max-w-6xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div>

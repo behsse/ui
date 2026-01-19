@@ -1,10 +1,23 @@
+'use client'
+
+import { useState } from 'react'
 import { Button } from '@/ui/components/Button'
 import { Github } from '@/ui/icons/Github'
 import Terminal from '@/ui/icons/Terminal'
+import Copy from '@/ui/icons/Copy'
+import Check from '@/ui/icons/Check'
 import { Logo } from '../Logo'
 import Link from 'next/link'
 
 const Header = () => {
+  const [copied, setCopied] = useState(false)
+  const command = 'npx behsseui init'
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(command)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
   return (
     <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-4 sm:px-6 overflow-hidden">
       {/* Background gradient effects */}
@@ -41,10 +54,10 @@ const Header = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in opacity-0 animation-delay-400">
-          <Button asChild className="h-12 px-8 text-base">
+          <Button asChild className="h-12 px-8 text-base group">
             <Link href="/docs/intro">
               Get Started
-              <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </Link>
@@ -59,10 +72,27 @@ const Header = () => {
 
         {/* CLI Command */}
         <div className="mt-12 animate-fade-in opacity-0 animation-delay-500">
-          <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-3 rounded-lg border border-border bg-card font-mono text-xs sm:text-sm">
+          <div
+            onClick={handleCopy}
+            className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-3 rounded-lg border border-border bg-card font-mono text-xs sm:text-sm cursor-pointer hover:bg-accent transition-colors"
+          >
             <Terminal className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground" />
             <span className="text-muted-foreground">$</span>
-            <span>npx behsseui init</span>
+            <span>{command}</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                handleCopy()
+              }}
+              className="ml-2 p-1 hover:bg-muted rounded transition-colors"
+              aria-label="Copy command"
+            >
+              {copied ? (
+                <Check className="w-3 h-3 sm:w-4 sm:h-4 text-green-500" />
+              ) : (
+                <Copy className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground cursor-pointer" />
+              )}
+            </button>
           </div>
         </div>
       </div>

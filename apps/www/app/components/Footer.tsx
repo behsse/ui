@@ -3,7 +3,7 @@ import { Logo } from './Logo'
 
 export const Footer = () => {
   return (
-    <footer className="py-8 sm:py-12 px-4 sm:px-6 border-t border-border">
+    <footer className="py-8 sm:py-12 px-4 sm:px-6 border-t border-border border-dashed">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
           <div className="flex items-center gap-3">
