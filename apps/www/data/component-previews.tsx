@@ -1,5 +1,5 @@
 import { Button } from "@/ui/components/Button"
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/app/components/Accordion"
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/ui/components/Accordion"
 
 // Previews pour chaque composant (preview principal)
 export const componentPreviews: Record<string, React.ReactNode> = {
@@ -44,6 +44,44 @@ export const componentExamples: Record<string, Record<string, React.ReactNode>> 
       <Button asChild>
         <a href="https://ui.behsse.com">Link</a>
       </Button>
+    ),
+  },
+  accordion: {
+    "Default": (
+      <Accordion type="single" defaultValue="item-1" className="w-full max-w-md">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Section 1</AccordionTrigger>
+          <AccordionContent>Content for section 1</AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Section 2</AccordionTrigger>
+          <AccordionContent>Content for section 2</AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    ),
+    "Multiple": (
+      <Accordion type="multiple" className="w-full max-w-md">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Section 1</AccordionTrigger>
+          <AccordionContent>Content for section 1</AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Section 2</AccordionTrigger>
+          <AccordionContent>Content for section 2</AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    ),
+    "Ghost": (
+      <Accordion type="single" variant="ghost" className="w-full max-w-md">
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Section 1</AccordionTrigger>
+          <AccordionContent>Content for section 1</AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger>Section 2</AccordionTrigger>
+          <AccordionContent>Content for section 2</AccordionContent>
+        </AccordionItem>
+      </Accordion>
     ),
   },
 }

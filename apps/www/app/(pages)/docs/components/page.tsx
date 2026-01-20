@@ -7,7 +7,7 @@ export const metadata = {
 }
 
 export default function ComponentsPage() {
-  const componentsList = Object.entries(components)
+  const componentsList = Object.entries(components).sort(([a], [b]) => a.localeCompare(b))
 
   return (
     <main className="relative lg:gap-10">
