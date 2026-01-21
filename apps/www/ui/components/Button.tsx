@@ -17,12 +17,19 @@ const buttonVariants = cva(
         },
         size: {
           default: "h-9 px-4 py-2 has-[>svg]:px-3",
-          icon: "h-9 aspect-square"
+          small: "h-8 px-3 py-1.5 has-[>svg]:px-2",
+          large: "h-10 px-5 py-2.5 has-[>svg]:px-4",
+          xl: "h-12 px-6 py-3 has-[>svg]:px-5"
+        },
+        iconSize: {
+          default: "h-9 aspect-square",
+          small: "h-8 aspect-square",
+          large: "h-10 aspect-square",
+          xl: "h-12 aspect-square"
         },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default"
+      variant: "default"
     }
   }
 );
@@ -37,7 +44,8 @@ type Props = AsChildProps<
 
 export function Button({
   variant = "default",
-  size = "default",
+  size,
+  iconSize,
   children,
   className,
   asChild,
@@ -45,7 +53,7 @@ export function Button({
 }: Props) {
   const Component = asChild ? Slot : "button";
   return (
-    <Component className={cn(buttonVariants({variant, size,className}))} {...props}>
+    <Component className={cn(buttonVariants({variant, size: iconSize ? undefined : (size ?? "default"), iconSize: iconSize ?? undefined, className}))} {...props}>
       {children}
     </Component>
   );

@@ -153,7 +153,7 @@ export function CommandMenu() {
       <Button
         variant="outline"
         onClick={() => setOpen(true)}
-        size="icon"
+        iconSize="default"
         className="flex sm:hidden"
       >
         <Search className="h-4 w-4" />
@@ -199,7 +199,7 @@ export function CommandMenu() {
               />
               <Button
                 variant="ghost"
-                size="icon"
+                iconSize="default"
                 onClick={() => setOpen(false)}
               >
                 <Close className="h-3 w-3" />

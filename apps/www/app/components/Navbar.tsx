@@ -88,7 +88,7 @@ export const Navbar = () => {
                 </nav>
                 <div className="flex items-center gap-2">
                     <CommandMenu />
-                    <Button asChild variant="outline" size="icon" className="hidden sm:flex">
+                    <Button asChild variant="outline" iconSize="default" className="hidden sm:flex">
                         <Link href="https://github.com/behsse/ui" target="_blank">
                             <Github className="w-4 h-4"/>
                         </Link>
@@ -97,7 +97,7 @@ export const Navbar = () => {
                     {/* Mobile/Tablet menu button */}
                     <Button
                         variant="outline"
-                        size="icon"
+                        iconSize="default"
                         className="lg:hidden"
                         onClick={toggleMenu}
                     >

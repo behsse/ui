@@ -71,7 +71,7 @@ const ThemeColor = () => {
     return (
         <Drawer>
             <DrawerTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="outline" iconSize="default">
                     <div className="flex flex-col gap-1 p-1">
                         <div className="flex gap-1">
                             <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
@@ -89,7 +89,7 @@ const ThemeColor = () => {
                 <DrawerHeader className='flex items-center justify-between'>
                     <DrawerTitle>Theme Customizer</DrawerTitle>
                     <DrawerClose asChild>
-                        <Button variant="ghost" size="icon"><Close/></Button>
+                        <Button variant="ghost" iconSize="default"><Close/></Button>
                     </DrawerClose>
                 </DrawerHeader>
                 <DrawerBody className="h-full">

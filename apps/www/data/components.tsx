@@ -121,6 +121,41 @@ export const components: Record<string, Component> = {
         code: '<Button variant="text">Text</Button>'
       },
       {
+        name: "Small",
+        description: "A smaller button with reduced padding.",
+        code: '<Button size="small">Small</Button>'
+      },
+      {
+        name: "Large",
+        description: "A larger button with increased padding.",
+        code: '<Button size="large">Large</Button>'
+      },
+      {
+        name: "XL",
+        description: "An extra large button.",
+        code: '<Button size="xl">Extra Large</Button>'
+      },
+      {
+        name: "Icon",
+        description: "A square button for icons.",
+        code: '<Button iconSize="default">\n  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>\n</Button>'
+      },
+      {
+        name: "Icon Small",
+        description: "A small square button for icons.",
+        code: '<Button iconSize="small">\n  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>\n</Button>'
+      },
+      {
+        name: "Icon Large",
+        description: "A large square button for icons.",
+        code: '<Button iconSize="large">\n  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>\n</Button>'
+      },
+      {
+        name: "Icon XL",
+        description: "An extra large square button for icons.",
+        code: '<Button iconSize="xl">\n  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>\n</Button>'
+      },
+      {
         name: "AsChild",
         code: '<Button asChild>\n  <a href="https://ui.behsse.com">Link</a>\n</Button>'
       }
@@ -134,6 +169,13 @@ export const components: Record<string, Component> = {
       { id : "destructive", text : "Destructive", level : 3},
       { id : "ghost", text : "Ghost", level : 3},
       { id : "text", text : "Text", level : 3},
+      { id : "small", text : "Small", level : 3},
+      { id : "large", text : "Large", level : 3},
+      { id : "xl", text : "XL", level : 3},
+      { id : "icon", text : "Icon", level : 3},
+      { id : "icon-small", text : "Icon Small", level : 3},
+      { id : "icon-large", text : "Icon Large", level : 3},
+      { id : "icon-xl", text : "Icon XL", level : 3},
       { id : "aschild", text : "AsChild", level : 3},
     ]
   },
