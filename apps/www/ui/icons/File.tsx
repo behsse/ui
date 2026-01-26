@@ -19,3 +19,6 @@ export default function File(props: SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
+
+// Metadata de l'icon
+export const iconVersion = "1.0.0"

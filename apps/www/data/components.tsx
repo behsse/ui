@@ -37,6 +37,20 @@ const getButtonPreview = () => (
   <div className="rounded-md bg-primary text-primary-foreground text-sm font-medium w-2/4 h-1/3"></div>
 )
 
+const getAlertPreview = () => (
+  <div className="w-3/4 border border-border rounded-lg p-3 flex items-start gap-2">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-foreground mt-0.5 shrink-0">
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="16" x2="12" y2="12" />
+      <line x1="12" y1="8" x2="12.01" y2="8" />
+    </svg>
+    <div className="flex-1 space-y-1">
+      <div className="h-2 w-12 bg-foreground/80 rounded"></div>
+      <div className="h-2 w-20 bg-muted-foreground/50 rounded"></div>
+    </div>
+  </div>
+)
+
 const getAccordionPreview = () => (
   <div className="w-3/4 border border-border rounded-lg overflow-hidden">
     <div className="flex items-center justify-between py-2 px-3 border-b border-border">
@@ -261,6 +275,119 @@ export const components: Record<string, Component> = {
       { id: "default", text: "Default", level: 3 },
       { id: "multiple", text: "Multiple", level: 3 },
       { id: "ghost", text: "Ghost", level: 3 },
+    ]
+  },
+  alert: {
+    name: "Alert",
+    desc: "Displays a callout for user attention with contextual feedback messages.",
+    minimalPreview: getAlertPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Alert"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Alert"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Alert"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Alert"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Alert.tsx",
+        path: "ui/components/Alert.tsx",
+      },
+      {
+        file: "Slot.tsx",
+        path: "ui/components/internals/Slot.tsx",
+        description: "For Alert.tsx to work, create an internals folder inside ui/component, then create a Slot.tsx file in it with the following code."
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A default alert for general information.",
+        code: `<Alert>
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
+</Alert>`
+      },
+      {
+        name: "With Icon",
+        description: "An alert with an icon. Place the icon component as the first child of Alert.",
+        code: `import Info from "@/ui/icons/Info"
+
+<Alert>
+  <Info />
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
+</Alert>`
+      },
+      {
+        name: "Destructive",
+        description: "An alert for error or destructive messages.",
+        code: `import AlertCircle from "@/ui/icons/AlertCircle"
+
+<Alert variant="destructive">
+  <AlertCircle />
+  <AlertTitle>Error</AlertTitle>
+  <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+</Alert>`
+      },
+      {
+        name: "Success",
+        description: "An alert for success messages.",
+        code: `import CheckCircle from "@/ui/icons/CheckCircle"
+
+<Alert variant="success">
+  <CheckCircle />
+  <AlertTitle>Success</AlertTitle>
+  <AlertDescription>Your changes have been saved successfully.</AlertDescription>
+</Alert>`
+      },
+      {
+        name: "Warning",
+        description: "An alert for warning messages.",
+        code: `import AlertTriangle from "@/ui/icons/AlertTriangle"
+
+<Alert variant="warning">
+  <AlertTriangle />
+  <AlertTitle>Warning</AlertTitle>
+  <AlertDescription>Your account is about to expire.</AlertDescription>
+</Alert>`
+      },
+      {
+        name: "Info",
+        description: "An alert for informational messages.",
+        code: `import Info from "@/ui/icons/Info"
+
+<Alert variant="info">
+  <Info />
+  <AlertTitle>Info</AlertTitle>
+  <AlertDescription>A new version is available.</AlertDescription>
+</Alert>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "with-icon", text: "With Icon", level: 3 },
+      { id: "destructive", text: "Destructive", level: 3 },
+      { id: "success", text: "Success", level: 3 },
+      { id: "warning", text: "Warning", level: 3 },
+      { id: "info", text: "Info", level: 3 },
     ]
   }
 };

@@ -19,3 +19,6 @@ const Close = ({ className }: CloseIconProps) => {
 }
 
 export default Close
+
+// Metadata de l'icon
+export const iconVersion = "1.0.0"

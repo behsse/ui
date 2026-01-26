@@ -1,79 +1,21 @@
 "use client"
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { Drawer, DrawerContent, DrawerBody, DrawerClose } from '@/app/components/Drawer'
 import { IconSearch } from '@/app/components/IconSearch'
 import Close from '@/ui/icons/Close'
 import CommandCode from '@/app/components/CommandCode'
-
-// Fonction pour récupérer la liste des icons depuis GitHub
-async function fetchIconsList() {
-  try {
-    const response = await fetch(
-      'https://api.github.com/repos/behsse/ui/contents/apps/www/ui/icons',
-      { cache: 'no-store' }
-    )
-    if (!response.ok) throw new Error('Failed to fetch icons list')
-    const files = await response.json()
-
-    // Filtrer uniquement les fichiers .tsx
-    return files
-      .filter((file: any) => file.name.endsWith('.tsx'))
-      .map((file: any) => file.name.replace('.tsx', ''))
-  } catch (error) {
-    console.error('Error fetching icons:', error)
-    return []
-  }
-}
-
-interface Icon {
-  name: string
-  component: any
-  version: string
-}
+import { icons, type Icon } from '@/data/icons'
 
 const IconsPage = () => {
   const [selectedIcon, setSelectedIcon] = useState<Icon | null>(null)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-  const [iconsList, setIconsList] = useState<Icon[]>([])
-  const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
-
-  useEffect(() => {
-    // Charger dynamiquement tous les icons
-    async function loadIcons() {
-      setLoading(true)
-      const iconNames = await fetchIconsList()
-
-      // Importer dynamiquement chaque icon
-      const loadedIcons = await Promise.all(
-        iconNames.map(async (name: string) => {
-          try {
-            const module = await import(`@/ui/icons/${name}`)
-            return {
-              name,
-              component: module.default || module[name],
-              version: module.iconVersion || "1.0.0" // Version par défaut si non spécifiée
-            }
-          } catch (error) {
-            console.error(`Failed to load icon: ${name}`, error)
-            return null
-          }
-        })
-      )
-
-      setIconsList(loadedIcons.filter(icon => icon !== null) as Icon[])
-      setLoading(false)
-    }
-
-    loadIcons()
-  }, [])
 
   const handleIconClick = (icon: Icon) => {
     setSelectedIcon(icon)
     setIsDrawerOpen(true)
   }
-
 
   const handleSearch = (query: string) => {
     setSearchQuery(query)
@@ -81,52 +23,40 @@ const IconsPage = () => {
 
   // Filtrer les icons en fonction de la recherche (lettre par lettre depuis le début)
   const filteredIcons = useMemo(() => {
-    if (!searchQuery.trim()) return iconsList
-    return iconsList.filter(icon =>
+    if (!searchQuery.trim()) return icons
+    return icons.filter(icon =>
       icon.name.toLowerCase().startsWith(searchQuery.toLowerCase())
     )
-  }, [iconsList, searchQuery])
+  }, [searchQuery])
 
   return (
     <div className="space-y-6 sm:space-y-8">
       <div className="space-y-4">
         <h1 className="text-3xl sm:text-4xl font-bold">Icons</h1>
-        {loading ? (
-          <p className="text-muted-foreground">Loading icons...</p>
-        ) : (
-          <IconSearch totalIcons={iconsList.length} onSearch={handleSearch} />
-        )}
+        <IconSearch totalIcons={icons.length} onSearch={handleSearch} />
       </div>
 
-      {loading ? (
-        <div className="flex items-center justify-center py-12">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      {filteredIcons.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-12 text-center">
+          <p className="text-muted-foreground">No icons found matching "{searchQuery}"</p>
         </div>
       ) : (
-        <>
-          {filteredIcons.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <p className="text-muted-foreground">No icons found matching "{searchQuery}"</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2 sm:gap-4">
-              {filteredIcons.map((icon) => {
-                const Icon = icon.component
-                return (
-                  <button
-                    key={icon.name}
-                    onClick={() => handleIconClick(icon)}
-                    className="group relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-lg border border-border bg-card hover:bg-accent hover:border-primary/50 transition-all cursor-pointer aspect-square"
-                  >
-                    <div className="flex items-center justify-center">
-                      <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </div>
-                  </button>
-                )
-              })}
-            </div>
-          )}
-        </>
+        <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-14 xl:grid-cols-16 gap-2 sm:gap-4">
+          {filteredIcons.map((icon) => {
+            const IconComponent = icon.component
+            return (
+              <button
+                key={icon.name}
+                onClick={() => handleIconClick(icon)}
+                className="group relative flex flex-col items-center justify-center p-3 sm:p-3 rounded-lg border border-border bg-card hover:bg-accent hover:border-primary/50 transition-all cursor-pointer aspect-square"
+              >
+                <div className="flex items-center justify-center">
+                  <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" />
+                </div>
+              </button>
+            )
+          })}
+        </div>
       )}
 
       {/* Drawer pour afficher les détails de l'icon */}
@@ -151,7 +81,7 @@ const IconsPage = () => {
                   </div>
 
                   {/* Code à copier */}
-                  <div className="mt-2 sm:mt-4">
+                  <div className="w-full mt-2 sm:mt-4">
                     <CommandCode
                       fileName="CLI"
                       components={[

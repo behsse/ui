@@ -13,3 +13,6 @@ const Terminal = ({className} : TerminalIconProps) => {
 }
 
 export default Terminal
+
+// Metadata de l'icon
+export const iconVersion = "1.0.0"

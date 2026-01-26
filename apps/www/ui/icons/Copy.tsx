@@ -13,3 +13,6 @@ const Copy = ({className} : CopyIconProps) => {
 }
 
 export default Copy
+
+// Metadata de l'icon
+export const iconVersion = "1.0.0"

@@ -16,3 +16,6 @@ const Check = ({className} : CheckIconProps) => {
 }
 
 export default Check
+
+// Metadata de l'icon
+export const iconVersion = "1.0.0"

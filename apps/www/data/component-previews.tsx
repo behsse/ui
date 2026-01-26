@@ -1,5 +1,10 @@
 import { Button } from "@/ui/components/Button"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/ui/components/Accordion"
+import { Alert, AlertTitle, AlertDescription } from "@/ui/components/Alert"
+import Info from "@/ui/icons/Info"
+import AlertCircle from "@/ui/icons/AlertCircle"
+import CheckCircle from "@/ui/icons/CheckCircle"
+import AlertTriangle from "@/ui/icons/AlertTriangle"
 
 // Previews pour chaque composant (preview principal)
 export const componentPreviews: Record<string, React.ReactNode> = {
@@ -28,6 +33,13 @@ export const componentPreviews: Record<string, React.ReactNode> = {
     <div className="text-muted-foreground text-sm">
       Avatar preview - À ajouter
     </div>
+  ),
+
+  alert: (
+    <Alert className="w-full max-w-md">
+      <AlertTitle>Heads up!</AlertTitle>
+      <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
+    </Alert>
   ),
 }
 
@@ -105,6 +117,49 @@ export const componentExamples: Record<string, Record<string, React.ReactNode>> 
           <AccordionContent>Content for section 2</AccordionContent>
         </AccordionItem>
       </Accordion>
+    ),
+  },
+  alert: {
+    "Default": (
+      <Alert className="w-full max-w-md">
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
+      </Alert>
+    ),
+    "With Icon": (
+      <Alert className="w-full max-w-md">
+        <Info />
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
+      </Alert>
+    ),
+    "Destructive": (
+      <Alert variant="destructive" className="w-full max-w-md">
+        <AlertCircle />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>Your session has expired. Please log in again.</AlertDescription>
+      </Alert>
+    ),
+    "Success": (
+      <Alert variant="success" className="w-full max-w-md">
+        <CheckCircle />
+        <AlertTitle>Success</AlertTitle>
+        <AlertDescription>Your changes have been saved successfully.</AlertDescription>
+      </Alert>
+    ),
+    "Warning": (
+      <Alert variant="warning" className="w-full max-w-md">
+        <AlertTriangle />
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>Your account is about to expire.</AlertDescription>
+      </Alert>
+    ),
+    "Info": (
+      <Alert variant="info" className="w-full max-w-md">
+        <Info />
+        <AlertTitle>Info</AlertTitle>
+        <AlertDescription>A new version is available.</AlertDescription>
+      </Alert>
     ),
   },
 }
