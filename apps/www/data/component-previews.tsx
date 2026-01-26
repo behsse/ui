@@ -1,6 +1,19 @@
 import { Button } from "@/ui/components/Button"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/ui/components/Accordion"
 import { Alert, AlertTitle, AlertDescription } from "@/ui/components/Alert"
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogAction,
+  AlertDialogCancel
+} from "@/ui/components/AlertDialog"
+import { Avatar, AvatarImage, AvatarFallback, AvatarBadge, AvatarGroup } from "@/ui/components/Avatar"
+import Check from "@/ui/icons/Check"
 import Info from "@/ui/icons/Info"
 import AlertCircle from "@/ui/icons/AlertCircle"
 import CheckCircle from "@/ui/icons/CheckCircle"
@@ -30,9 +43,10 @@ export const componentPreviews: Record<string, React.ReactNode> = {
   ),
 
   avatar: (
-    <div className="text-muted-foreground text-sm">
-      Avatar preview - À ajouter
-    </div>
+    <Avatar>
+      <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+      <AvatarFallback>B</AvatarFallback>
+    </Avatar>
   ),
 
   alert: (
@@ -40,6 +54,26 @@ export const componentPreviews: Record<string, React.ReactNode> = {
       <AlertTitle>Heads up!</AlertTitle>
       <AlertDescription>You can add components to your app using the CLI.</AlertDescription>
     </Alert>
+  ),
+
+  alertdialog: (
+    <AlertDialog>
+      <AlertDialogTrigger className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">
+        Open Dialog
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Continue</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   ),
 }
 
@@ -160,6 +194,145 @@ export const componentExamples: Record<string, Record<string, React.ReactNode>> 
         <AlertTitle>Info</AlertTitle>
         <AlertDescription>A new version is available.</AlertDescription>
       </Alert>
+    ),
+  },
+  avatar: {
+    "Default": (
+      <Avatar>
+        <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+        <AvatarFallback>BH</AvatarFallback>
+      </Avatar>
+    ),
+    "Fallback": (
+      <Avatar>
+        <AvatarImage src="" alt="@user" />
+        <AvatarFallback>BH</AvatarFallback>
+      </Avatar>
+    ),
+    "With Badge": (
+      <Avatar>
+        <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+        <AvatarFallback>BH</AvatarFallback>
+        <AvatarBadge status="online" />
+      </Avatar>
+    ),
+    "Badge with Icon": (
+      <Avatar>
+        <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+        <AvatarFallback>BH</AvatarFallback>
+        <AvatarBadge status="online" className="h-4 w-4 bg-accent-foreground">
+          <Check className="h-1.5 w-1.5 fill-accent" />
+        </AvatarBadge>
+      </Avatar>
+    ),
+    "Avatar Group": (
+      <AvatarGroup>
+        <Avatar>
+          <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+          <AvatarFallback>BH</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>AB</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>CD</AvatarFallback>
+        </Avatar>
+      </AvatarGroup>
+    ),
+    "Avatar Group Count": (
+      <AvatarGroup max={3}>
+        <Avatar>
+          <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+          <AvatarFallback>BH</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>AB</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>CD</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>EF</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>GH</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>IJ</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>KL</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>MN</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>OP</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>QR</AvatarFallback>
+        </Avatar>
+      </AvatarGroup>
+    ),
+    "Sizes": (
+      <div className="flex items-center gap-4">
+        <Avatar size="sm">
+          <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+          <AvatarFallback>BH</AvatarFallback>
+        </Avatar>
+        <Avatar size="default">
+          <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+          <AvatarFallback>BH</AvatarFallback>
+        </Avatar>
+        <Avatar size="lg">
+          <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+          <AvatarFallback>BH</AvatarFallback>
+        </Avatar>
+        <Avatar size="xl">
+          <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+          <AvatarFallback>BH</AvatarFallback>
+        </Avatar>
+      </div>
+    ),
+  },
+  alertdialog: {
+    "Default": (
+      <AlertDialog>
+        <AlertDialogTrigger className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2">
+          Open
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete your account.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    ),
+    "Controlled": (
+      <AlertDialog>
+        <AlertDialogTrigger className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors bg-destructive text-destructive-foreground shadow hover:bg-destructive/90 h-9 px-4 py-2">
+          Delete Account
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete Account</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to delete your account? All of your data will be permanently removed.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction>Delete</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     ),
   },
 }

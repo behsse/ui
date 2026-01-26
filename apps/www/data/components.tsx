@@ -51,6 +51,27 @@ const getAlertPreview = () => (
   </div>
 )
 
+const getAvatarPreview = () => (
+  <div className="flex items-center gap-2">
+    <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center text-muted-foreground text-sm font-medium">
+      AB
+    </div>
+  </div>
+)
+
+const getAlertDialogPreview = () => (
+  <div className="w-3/4 border border-border rounded-lg p-3 bg-background shadow-lg">
+    <div className="space-y-2">
+      <div className="h-2.5 w-20 bg-foreground/80 rounded"></div>
+      <div className="h-2 w-28 bg-muted-foreground/50 rounded"></div>
+    </div>
+    <div className="flex justify-end gap-2 mt-3">
+      <div className="h-5 w-12 bg-muted rounded"></div>
+      <div className="h-5 w-14 bg-primary rounded"></div>
+    </div>
+  </div>
+)
+
 const getAccordionPreview = () => (
   <div className="w-3/4 border border-border rounded-lg overflow-hidden">
     <div className="flex items-center justify-between py-2 px-3 border-b border-border">
@@ -388,6 +409,234 @@ export const components: Record<string, Component> = {
       { id: "success", text: "Success", level: 3 },
       { id: "warning", text: "Warning", level: 3 },
       { id: "info", text: "Info", level: 3 },
+    ]
+  },
+  alertdialog: {
+    name: "Alert Dialog",
+    desc: "A modal dialog that interrupts the user with important content and expects a response.",
+    minimalPreview: getAlertDialogPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add AlertDialog"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add AlertDialog"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add AlertDialog"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add AlertDialog"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "AlertDialog.tsx",
+        path: "ui/components/AlertDialog.tsx",
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A basic alert dialog with title, description and action buttons.",
+        code: `<AlertDialog>
+  <AlertDialogTrigger>Open</AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+      <AlertDialogDescription>
+        This action cannot be undone. This will permanently delete your account.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`
+      },
+      {
+        name: "Controlled",
+        description: "An alert dialog with controlled open state.",
+        code: `const [open, setOpen] = useState(false)
+
+<AlertDialog open={open} onOpenChange={setOpen}>
+  <AlertDialogTrigger>Delete Account</AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Delete Account</AlertDialogTitle>
+      <AlertDialogDescription>
+        Are you sure you want to delete your account? All of your data will be permanently removed.
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction onClick={() => console.log("Deleted")}>
+        Delete
+      </AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "controlled", text: "Controlled", level: 3 },
+    ]
+  },
+  avatar: {
+    name: "Avatar",
+    desc: "An image element with a fallback for representing the user.",
+    minimalPreview: getAvatarPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Avatar"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Avatar"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Avatar"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Avatar"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Avatar.tsx",
+        path: "ui/components/Avatar.tsx",
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "An avatar with an image and fallback.",
+        code: `<Avatar>
+  <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+  <AvatarFallback>BH</AvatarFallback>
+</Avatar>`
+      },
+      {
+        name: "Fallback",
+        description: "An avatar showing only the fallback (when image fails or is not provided).",
+        code: `<Avatar>
+  <AvatarImage src="" alt="@user" />
+  <AvatarFallback>BH</AvatarFallback>
+</Avatar>`
+      },
+      {
+        name: "With Badge",
+        description: "An avatar with a status badge indicator.",
+        code: `<Avatar>
+  <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+  <AvatarFallback>BH</AvatarFallback>
+  <AvatarBadge status="online" />
+</Avatar>`
+      },
+      {
+        name: "Badge with Icon",
+        description: "An avatar with a badge containing an icon.",
+        code: `import Check from "@/ui/icons/Check"
+
+<Avatar>
+  <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+  <AvatarFallback>BH</AvatarFallback>
+  <AvatarBadge status="online" className="h-4 w-4 bg-accent-foreground">
+    <Check className="h-1.5 w-1.5 fill-accent" />
+  </AvatarBadge>
+</Avatar>`
+      },
+      {
+        name: "Avatar Group",
+        description: "Multiple avatars stacked together.",
+        code: `<AvatarGroup>
+  <Avatar>
+    <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+    <AvatarFallback>BH</AvatarFallback>
+  </Avatar>
+  <Avatar>
+    <AvatarFallback>AB</AvatarFallback>
+  </Avatar>
+  <Avatar>
+    <AvatarFallback>CD</AvatarFallback>
+  </Avatar>
+</AvatarGroup>`
+      },
+      {
+        name: "Avatar Group Count",
+        description: "An avatar group with a maximum count, showing remaining avatars as a number.",
+        code: `<AvatarGroup max={3}>
+  <Avatar>
+    <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+    <AvatarFallback>BH</AvatarFallback>
+  </Avatar>
+  <Avatar>
+    <AvatarFallback>AB</AvatarFallback>
+  </Avatar>
+  <Avatar>
+    <AvatarFallback>CD</AvatarFallback>
+  </Avatar>
+  <Avatar>
+    <AvatarFallback>EF</AvatarFallback>
+  </Avatar>
+  <Avatar>
+    <AvatarFallback>GH</AvatarFallback>
+  </Avatar>
+  {/* ... more avatars */}
+</AvatarGroup>`
+      },
+      {
+        name: "Sizes",
+        description: "Avatars come in different sizes: sm, default, lg, and xl.",
+        code: `<div className="flex items-center gap-4">
+  <Avatar size="sm">
+    <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+    <AvatarFallback>BH</AvatarFallback>
+  </Avatar>
+  <Avatar size="default">
+    <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+    <AvatarFallback>BH</AvatarFallback>
+  </Avatar>
+  <Avatar size="lg">
+    <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+    <AvatarFallback>BH</AvatarFallback>
+  </Avatar>
+  <Avatar size="xl">
+    <AvatarImage src="/behsse-logo.jpg" alt="@behsse" />
+    <AvatarFallback>BH</AvatarFallback>
+  </Avatar>
+</div>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "fallback", text: "Fallback", level: 3 },
+      { id: "with badge", text: "With Badge", level: 3 },
+      { id: "badge with icon", text: "Badge with Icon", level: 3 },
+      { id: "avatar group", text: "Avatar Group", level: 3 },
+      { id: "avatar group count", text: "Avatar Group Count", level: 3 },
+      { id: "sizes", text: "Sizes", level: 3 },
     ]
   }
 };
