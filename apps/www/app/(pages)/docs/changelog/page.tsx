@@ -132,6 +132,12 @@ function getSectionColors(sectionName: string): { text: string, border: string }
   if (name.includes('cli')) {
     return { text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-600 dark:border-amber-400' }
   }
+  if (name.includes('icon') || name.includes('asset')) {
+    return { text: 'text-violet-600 dark:text-violet-400', border: 'border-violet-600 dark:border-violet-400' }
+  }
+  if (name.includes('website') || name.includes('site')) {
+    return { text: 'text-teal-600 dark:text-teal-400', border: 'border-teal-600 dark:border-teal-400' }
+  }
 
   // Couleur par défaut
   return { text: 'text-foreground', border: 'border-border' }
