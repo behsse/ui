@@ -10,7 +10,7 @@ export default function ComponentsPage() {
   const componentsList = Object.entries(components).sort(([a], [b]) => a.localeCompare(b))
 
   return (
-    <main className="relative lg:gap-10">
+    <main className="relative lg:gap-10 pb-10">
       <div className="mx-auto w-full min-w-0">
         {/* Header */}
         <div className="space-y-4 pb-8">

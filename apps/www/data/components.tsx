@@ -136,6 +136,65 @@ const getCalendarPreview = () => (
   </div>
 )
 
+const getCardPreview = () => (
+  <div className="w-3/4 border border-border rounded-lg p-3 bg-card grid gap-5">
+    <div className="space-y-1 grid gap-1">
+      <div className="h-2 w-16 bg-foreground/80 rounded"></div>
+      <div className="h-2 w-24 bg-muted-foreground/50 rounded"></div>
+    </div>
+    <div className="h-2 w-20 bg-muted-foreground/30 rounded"></div>
+  </div>
+)
+
+const getCarouselPreview = () => (
+  <div className="w-3/4">
+    <div className="relative">
+      <div className="flex gap-2 overflow-hidden">
+        <div className="h-16 w-full bg-primary/20 rounded-lg shrink-0"></div>
+      </div>
+      <div className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full bg-background border border-border flex items-center justify-center">
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-muted-foreground">
+          <path d="m15 18-6-6 6-6" />
+        </svg>
+      </div>
+      <div className="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 rounded-full bg-background border border-border flex items-center justify-center">
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-muted-foreground">
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      </div>
+    </div>
+    <div className="flex justify-center gap-1 mt-2">
+      <div className="h-1.5 w-3 bg-primary rounded-full"></div>
+      <div className="h-1.5 w-1.5 bg-muted-foreground/30 rounded-full"></div>
+      <div className="h-1.5 w-1.5 bg-muted-foreground/30 rounded-full"></div>
+    </div>
+  </div>
+)
+
+const getCheckboxPreview = () => (
+  <div className="flex items-center gap-2">
+    <div className="h-4 w-4 rounded-[3px] border border-primary bg-primary flex items-center justify-center">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3 text-primary-foreground">
+        <path d="M20 6 9 17l-5-5" />
+      </svg>
+    </div>
+    <span className="text-sm">Label</span>
+  </div>
+)
+
+const getDialogPreview = () => (
+  <div className="w-3/4 rounded-lg border bg-card p-4 shadow-sm">
+    <div className="space-y-1">
+      <div className="h-2 w-20 bg-foreground/80 rounded"></div>
+      <div className="h-2 w-32 bg-muted-foreground/50 rounded"></div>
+    </div>
+    <div className="flex justify-end gap-2 mt-4">
+      <div className="h-6 w-14 bg-muted rounded"></div>
+      <div className="h-6 w-14 bg-primary rounded"></div>
+    </div>
+  </div>
+)
+
 export const components: Record<string, Component> = {
   button: {
     name : "Button",
@@ -1019,6 +1078,468 @@ const month = now.getMonth()
       { id: "with default selected", text: "With Default Selected", level: 3 },
       { id: "range with default", text: "Range with Default", level: 3 },
       { id: "controlled mode", text: "Controlled Mode", level: 3 },
+    ]
+  },
+  card: {
+    name: "Card",
+    desc: "A container component for grouping related content and actions.",
+    minimalPreview: getCardPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Card"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Card"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Card"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Card"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Card.tsx",
+        path: "ui/components/Card.tsx",
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A basic card with header, title, description and content.",
+        code: `<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card description goes here.</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Card content</p>
+  </CardContent>
+</Card>`
+      },
+      {
+        name: "With Footer",
+        description: "A card with a footer section for actions.",
+        code: `<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card with a footer section.</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Card content</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>`
+      },
+      {
+        name: "Simple",
+        description: "A simple card with only content.",
+        code: `<Card>
+  <CardContent className="pt-6">
+    <p>A simple card with only content.</p>
+  </CardContent>
+</Card>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "with footer", text: "With Footer", level: 3 },
+      { id: "simple", text: "Simple", level: 3 },
+    ]
+  },
+  carousel: {
+    name: "Carousel",
+    desc: "A slideshow component for cycling through elements with navigation controls and touch/drag support.",
+    minimalPreview: getCarouselPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Carousel"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Carousel"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Carousel"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Carousel"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Carousel.tsx",
+        path: "ui/components/Carousel.tsx",
+      },
+      {
+        file: "ChevronLeft.tsx",
+        path: "ui/icons/ChevronLeft.tsx",
+        description: "Navigation icon for previous slide."
+      },
+      {
+        file: "ChevronRight.tsx",
+        path: "ui/icons/ChevronRight.tsx",
+        description: "Navigation icon for next slide."
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A basic carousel showing one slide at a time with arrow navigation and drag support.",
+        code: `<Carousel className="w-full max-w-md">
+  <CarouselContent>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 1</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 2</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 3</div>
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`
+      },
+      {
+        name: "Two Per View",
+        description: "Show two slides at a time.",
+        code: `<Carousel slidesPerView={2} spaceBetween={16} className="w-full max-w-lg">
+  <CarouselContent>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 1</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 2</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 3</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 4</div>
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`
+      },
+      {
+        name: "Three Per View",
+        description: "Show three slides at a time.",
+        code: `<Carousel slidesPerView={3} spaceBetween={12} className="w-full max-w-2xl">
+  <CarouselContent>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 1</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 2</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 3</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 4</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 5</div>
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`
+      },
+      {
+        name: "Autoplay",
+        description: "Automatically cycle through slides. Combine with loop for infinite scrolling.",
+        code: `<Carousel autoplay autoplayDelay={3000} loop className="w-full max-w-md">
+  <CarouselContent>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 1</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 2</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 3</div>
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`
+      },
+      {
+        name: "Loop",
+        description: "Enable infinite looping through slides.",
+        code: `<Carousel loop className="w-full max-w-md">
+  <CarouselContent>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 1</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 2</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 3</div>
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`
+      },
+      {
+        name: "With Dots",
+        description: "Add dot indicators for navigation.",
+        code: `<Carousel className="w-full max-w-md">
+  <CarouselContent>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 1</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 2</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg">Slide 3</div>
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+  <CarouselDots />
+</Carousel>`
+      },
+      {
+        name: "Vertical",
+        description: "A vertical carousel that scrolls up and down. Set a fixed height on the container.",
+        code: `<Carousel direction="vertical" className="w-full max-w-md h-[300px]">
+  <CarouselContent>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg h-full flex items-center justify-center">Slide 1</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg h-full flex items-center justify-center">Slide 2</div>
+    </CarouselItem>
+    <CarouselItem>
+      <div className="p-6 bg-muted rounded-lg h-full flex items-center justify-center">Slide 3</div>
+    </CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "two per view", text: "Two Per View", level: 3 },
+      { id: "three per view", text: "Three Per View", level: 3 },
+      { id: "autoplay", text: "Autoplay", level: 3 },
+      { id: "loop", text: "Loop", level: 3 },
+      { id: "with dots", text: "With Dots", level: 3 },
+      { id: "vertical", text: "Vertical", level: 3 },
+    ]
+  },
+  checkbox: {
+    name: "Checkbox",
+    desc: "A control that allows the user to toggle between checked and unchecked states.",
+    minimalPreview: getCheckboxPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Checkbox"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Checkbox"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Checkbox"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Checkbox"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Checkbox.tsx",
+        path: "ui/components/Checkbox.tsx",
+      },
+      {
+        file: "Check.tsx",
+        path: "ui/icons/Check.tsx",
+        description: "Check icon displayed when checkbox is checked."
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A basic checkbox without a label.",
+        code: `<Checkbox />`
+      },
+      {
+        name: "With Label",
+        description: "A checkbox with an associated label.",
+        code: `<Checkbox label="Accept terms and conditions" />`
+      },
+      {
+        name: "Checked",
+        description: "A checkbox that starts in a checked state.",
+        code: `<Checkbox defaultChecked label="I agree" />`
+      },
+      {
+        name: "Disabled",
+        description: "A disabled checkbox that cannot be interacted with.",
+        code: `<Checkbox disabled label="Disabled" />`
+      },
+      {
+        name: "Disabled Checked",
+        description: "A disabled checkbox in a checked state.",
+        code: `<Checkbox disabled defaultChecked label="Disabled checked" />`
+      },
+      {
+        name: "Group",
+        description: "Multiple checkboxes grouped together allowing users to select multiple options.",
+        code: `<div className="flex flex-col gap-3">
+  <Checkbox label="Option 1" />
+  <Checkbox label="Option 2" />
+  <Checkbox label="Option 3" />
+</div>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "with label", text: "With Label", level: 3 },
+      { id: "checked", text: "Checked", level: 3 },
+      { id: "disabled", text: "Disabled", level: 3 },
+      { id: "disabled checked", text: "Disabled Checked", level: 3 },
+      { id: "group", text: "Group", level: 3 },
+    ]
+  },
+  dialog: {
+    name: "Dialog",
+    desc: "A modal dialog that opens in the center of the screen, used to display content that requires user attention.",
+    minimalPreview: getDialogPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Dialog"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Dialog"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Dialog"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Dialog"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Dialog.tsx",
+        path: "ui/components/Dialog.tsx",
+      },
+      {
+        file: "Close.tsx",
+        path: "ui/icons/Close.tsx",
+        description: "Close icon for the dialog."
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A basic dialog with a title, description, and action buttons.",
+        code: `<Dialog>
+  <DialogTrigger asChild>
+    <Button variant="outline">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Dialog Title</DialogTitle>
+      <DialogDescription>
+        This is a dialog description that explains what this dialog is about.
+      </DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogClose asChild>
+        <Button variant="outline">Cancel</Button>
+      </DialogClose>
+      <Button>Continue</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`
+      },
+      {
+        name: "With Form",
+        description: "A dialog containing a form for user input.",
+        code: `<Dialog>
+  <DialogTrigger asChild>
+    <Button>Edit Profile</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Edit Profile</DialogTitle>
+      <DialogDescription>
+        Make changes to your profile here. Click save when you're done.
+      </DialogDescription>
+    </DialogHeader>
+    <div className="grid gap-4 py-4">
+      <div className="grid grid-cols-4 items-center gap-4">
+        <label htmlFor="name" className="text-right text-sm">Name</label>
+        <input id="name" defaultValue="John Doe" className="col-span-3 h-9 rounded-md border border-input bg-background px-3 text-sm" />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <label htmlFor="email" className="text-right text-sm">Email</label>
+        <input id="email" defaultValue="john@example.com" className="col-span-3 h-9 rounded-md border border-input bg-background px-3 text-sm" />
+      </div>
+    </div>
+    <DialogFooter>
+      <Button>Save changes</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "with form", text: "With Form", level: 3 },
     ]
   }
 };

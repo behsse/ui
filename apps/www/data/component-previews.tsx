@@ -16,6 +16,19 @@ import { Avatar, AvatarImage, AvatarFallback, AvatarBadge, AvatarGroup } from "@
 import { Badge } from "@/ui/components/Badge"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis } from "@/ui/components/Breadcrumb"
 import { CalendarDemo } from "@/app/components/CalendarDemo"
+import { CarouselDemo } from "@/app/components/CarouselDemo"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/ui/components/Card"
+import { Checkbox } from "@/ui/components/Checkbox"
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+  DialogClose
+} from "@/ui/components/Dialog"
 import Check from "@/ui/icons/Check"
 import ArrowUpRight from "@/ui/icons/ArrowUpRight"
 import Info from "@/ui/icons/Info"
@@ -106,6 +119,48 @@ export const componentPreviews: Record<string, React.ReactNode> = {
 
   calendar: (
     <CalendarDemo />
+  ),
+
+  card: (
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>Card description goes here.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Card content</p>
+      </CardContent>
+    </Card>
+  ),
+
+  carousel: (
+    <CarouselDemo />
+  ),
+
+  checkbox: (
+    <Checkbox label="Accept terms" />
+  ),
+
+  dialog: (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Open Dialog</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Dialog Title</DialogTitle>
+          <DialogDescription>
+            This is a dialog description.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Continue</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   ),
 }
 
@@ -459,5 +514,113 @@ export const componentExamples: Record<string, Record<string, React.ReactNode>> 
     "With Default Selected": <CalendarDemo variant="defaultSelected" />,
     "Range with Default": <CalendarDemo variant="rangeDefault" />,
     "Controlled Mode": <CalendarDemo />,
+  },
+  card: {
+    "Default": (
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Card Title</CardTitle>
+          <CardDescription>Card description goes here.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p>Card content</p>
+        </CardContent>
+      </Card>
+    ),
+    "With Footer": (
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Card Title</CardTitle>
+          <CardDescription>Card with a footer section.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p>Card content</p>
+        </CardContent>
+        <CardFooter>
+          <Button>Action</Button>
+        </CardFooter>
+      </Card>
+    ),
+    "Simple": (
+      <Card className="w-full max-w-sm">
+        <CardContent className="pt-6">
+          <p>A simple card with only content.</p>
+        </CardContent>
+      </Card>
+    ),
+  },
+  carousel: {
+    "Default": <CarouselDemo />,
+    "Two Per View": <CarouselDemo variant="two" />,
+    "Three Per View": <CarouselDemo variant="three" />,
+    "Autoplay": <CarouselDemo variant="autoplay" />,
+    "Loop": <CarouselDemo variant="loop" />,
+    "With Dots": <CarouselDemo variant="dots" />,
+    "Vertical": <CarouselDemo variant="vertical" />,
+  },
+  checkbox: {
+    "Default": <Checkbox />,
+    "With Label": <Checkbox label="Accept terms and conditions" />,
+    "Checked": <Checkbox defaultChecked label="I agree" />,
+    "Disabled": <Checkbox disabled label="Disabled" />,
+    "Disabled Checked": <Checkbox disabled defaultChecked label="Disabled checked" />,
+    "Group": (
+      <div className="flex flex-col gap-3">
+        <Checkbox label="Option 1" />
+        <Checkbox label="Option 2" />
+        <Checkbox label="Option 3" />
+      </div>
+    ),
+  },
+  dialog: {
+    "Default": (
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Open Dialog</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Dialog Title</DialogTitle>
+            <DialogDescription>
+              This is a dialog description that explains what this dialog is about.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button>Continue</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    ),
+    "With Form": (
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button>Edit Profile</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Edit Profile</DialogTitle>
+            <DialogDescription>
+              Make changes to your profile here. Click save when you're done.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <label htmlFor="name" className="text-right text-sm">Name</label>
+              <input id="name" defaultValue="John Doe" className="col-span-3 h-9 rounded-md border border-input bg-background px-3 text-sm" />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <label htmlFor="email" className="text-right text-sm">Email</label>
+              <input id="email" defaultValue="john@example.com" className="col-span-3 h-9 rounded-md border border-input bg-background px-3 text-sm" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button>Save changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    ),
   },
 }
