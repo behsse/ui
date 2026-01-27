@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "generate:changelog": "node scripts/generate-changelog.mjs",
+    "dev": "npm run generate:changelog && next dev",
+    "build": "npm run generate:changelog && next build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -25,6 +26,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "postcss": "^8.5.6",
+    "raw-loader": "^4.0.2",
     "sass": "^1.94.1",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.16",

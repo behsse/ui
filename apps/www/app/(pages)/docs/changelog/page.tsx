@@ -1,41 +1,4 @@
-import { Suspense } from 'react'
-
-export async function getChangelog() {
-  try {
-    const response = await fetch(
-      'https://raw.githubusercontent.com/behsse/ui/main/CHANGELOG.md',
-      { next: { revalidate: 3600 } } // Revalider toutes les heures
-    )
-    if (!response.ok) throw new Error('Failed to fetch changelog')
-    return await response.text()
-  } catch (error) {
-    console.error('Error fetching changelog:', error)
-    return null
-  }
-}
-
-export function generateChangelogTOC(content: string) {
-  const lines = content.split('\n')
-  const toc: { id: string; text: string; level: number }[] = [
-    { id: 'changelog', text: 'Changelog', level: 2 }
-  ]
-
-  for (const line of lines) {
-    if (line.trim().startsWith('## v')) {
-      const versionMatch = line.match(/## v(.*)/)
-      if (versionMatch) {
-        const version = versionMatch[1].trim()
-        toc.push({
-          id: `v${version}`,
-          text: `Version ${version}`,
-          level: 2
-        })
-      }
-    }
-  }
-
-  return toc
-}
+import { changelogContent } from '@/data/changelog-content'
 
 function parseChangelog(content: string) {
   const lines = content.split('\n')
@@ -151,18 +114,8 @@ function formatContent(content: string) {
   return formatted
 }
 
-async function ChangelogContent() {
-  const changelogText = await getChangelog()
-
-  if (!changelogText) {
-    return (
-      <div className="text-center py-10">
-        <p className="text-muted-foreground">Unable to load changelog. Please try again later.</p>
-      </div>
-    )
-  }
-
-  const versions = parseChangelog(changelogText)
+function ChangelogContent() {
+  const versions = parseChangelog(changelogContent)
 
   return (
     <>
@@ -211,7 +164,7 @@ async function ChangelogContent() {
   )
 }
 
-export default async function ChangelogPage() {
+export default function ChangelogPage() {
   return (
     <main className='grid gap-16 pb-20'>
       <div className="grid gap-4" id="changelog">
@@ -219,13 +172,7 @@ export default async function ChangelogPage() {
         <p className="text-muted-foreground">All notable changes to behsseui will be documented on this page.</p>
       </div>
 
-      <Suspense fallback={
-        <div className="flex items-center justify-center py-10">
-          <div className="animate-pulse text-muted-foreground">Loading changelog...</div>
-        </div>
-      }>
-        <ChangelogContent />
-      </Suspense>
+      <ChangelogContent />
     </main>
   )
 }

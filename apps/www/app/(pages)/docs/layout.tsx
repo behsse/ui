@@ -8,9 +8,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 import { TableOfContents } from "@/app/components/TableOfContents"
 import { components } from "@/data/components"
 import { docPages } from "@/data/docs"
-import { useEffect, useState } from "react"
-import { getChangelog, generateChangelogTOC } from "./changelog/page"
+import { getChangelog, generateChangelogTOC } from "@/lib/changelog"
 import LeftNavbar from "@/app/components/LeftNavbar"
+
+// Générer la TOC du changelog une seule fois
+const changelogTOC = generateChangelogTOC(getChangelog())
 
 export default function DocsLayout({
   children,
@@ -18,19 +20,6 @@ export default function DocsLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
-  const [changelogTOC, setChangelogTOC] = useState<any[]>([])
-
-  // Charger les TOC du changelog dynamiquement
-  useEffect(() => {
-    if (pathname === '/docs/changelog') {
-      getChangelog().then(content => {
-        if (content) {
-          const toc = generateChangelogTOC(content)
-          setChangelogTOC(toc)
-        }
-      })
-    }
-  }, [pathname])
 
   // Extraire le slug de la route pour trouver le bon TOC
   const getTocItems = () => {
