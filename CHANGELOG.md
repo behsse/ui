@@ -4,6 +4,62 @@ Latest updates and announcements from the project.
 
 ---
 
+## v0.3.0
+**January 27, 2026**
+
+A massive update focused on expanding the component library! This release introduces **10 new components** and several new icons, making BehsseUI a more complete design system.
+
+### 🧩 Components
+
+**New Components Added:**
+- **Accordion:** Collapsible content sections with smooth animations
+- **Alert:** Contextual feedback messages with multiple variants (default, destructive, success, warning)
+- **AlertDialog:** Modal dialogs for important confirmations with action and cancel buttons
+- **Avatar:** User profile images with fallback support
+- **Badge:** Small status indicators with multiple variants
+- **Breadcrumb:** Navigation trail for hierarchical page structures
+- **Calendar:** Date picker supporting single, range, and multiple selection modes
+- **Card:** Flexible container component with header, content, and footer sections
+- **Carousel:** Image/content slider with autoplay, loop, dots navigation, and vertical mode support
+- **Checkbox:** Form input with disabled state, labels, and group support
+- **Dialog:** Modal overlay system with customizable header, footer, and close functionality
+
+**Component Enhancements:**
+- **Button:** Added `size` and `iconSize` variants for more flexibility
+
+### 🎨 Icons & Assets
+
+**New Icons Added:**
+- AlertCircle
+- AlertTriangle
+- ArrowUpRight
+- CheckCircle
+- ChevronLeft
+- ChevronRight
+- Info
+
+**Icon Updates:**
+- **Check:** Redesigned to match Lucide icon style
+
+### 📚 Documentation
+
+- Complete documentation for all new components with interactive previews
+- Usage examples including controlled/uncontrolled modes
+- Group examples for Checkbox component
+
+### 🌐 Website
+
+- New landing page with improved design
+- Enhanced responsive design across all pages
+- Copy-paste functionality for init command
+- Animated hover effects on Get Started button
+
+### 🔜 Coming Soon
+- **More Components:** Input, Select, Tabs, Toast, and more
+- **Slices:** Pre-built sections (Hero, Navbar, Footer) to build pages faster
+
+---
+
 ## v0.2.0
 **December 19, 2025**
 
