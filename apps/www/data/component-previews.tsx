@@ -13,7 +13,11 @@ import {
   AlertDialogCancel
 } from "@/ui/components/AlertDialog"
 import { Avatar, AvatarImage, AvatarFallback, AvatarBadge, AvatarGroup } from "@/ui/components/Avatar"
+import { Badge } from "@/ui/components/Badge"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis } from "@/ui/components/Breadcrumb"
+import { CalendarDemo } from "@/app/components/CalendarDemo"
 import Check from "@/ui/icons/Check"
+import ArrowUpRight from "@/ui/icons/ArrowUpRight"
 import Info from "@/ui/icons/Info"
 import AlertCircle from "@/ui/icons/AlertCircle"
 import CheckCircle from "@/ui/icons/CheckCircle"
@@ -23,6 +27,14 @@ import AlertTriangle from "@/ui/icons/AlertTriangle"
 export const componentPreviews: Record<string, React.ReactNode> = {
   button: (
     <Button>Button</Button>
+  ),
+
+  badge: (
+    <div className="flex items-center gap-2">
+      <Badge>Default</Badge>
+      <Badge variant="secondary">Secondary</Badge>
+      <Badge variant="destructive">Destructive</Badge>
+    </div>
   ),
 
   accordion: (
@@ -75,6 +87,26 @@ export const componentPreviews: Record<string, React.ReactNode> = {
       </AlertDialogContent>
     </AlertDialog>
   ),
+
+  breadcrumb: (
+    <Breadcrumb>
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+      </BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem>
+        <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+      </BreadcrumbItem>
+    </Breadcrumb>
+  ),
+
+  calendar: (
+    <CalendarDemo />
+  ),
 }
 
 // Exemples individuels pour les variants (utilisé dans la section Examples)
@@ -113,6 +145,37 @@ export const componentExamples: Record<string, Record<string, React.ReactNode>> 
       <Button asChild>
         <a href="https://ui.behsse.com">Link</a>
       </Button>
+    ),
+  },
+  badge: {
+    "Variants": (
+      <div className="flex items-center gap-2">
+        <Badge>Default</Badge>
+        <Badge variant="secondary">Secondary</Badge>
+        <Badge variant="destructive">Destructive</Badge>
+        <Badge variant="outline">Outline</Badge>
+        <Badge variant="ghost">Ghost</Badge>
+      </div>
+    ),
+    "With Icons": (
+      <div className="flex items-center gap-2">
+        <Badge>
+          <Check className="h-3 w-3 fill-primary-foreground" />
+          Success
+        </Badge>
+        <Badge variant="destructive">
+          Error
+          <AlertCircle className="h-3 w-3" />
+        </Badge>
+      </div>
+    ),
+    "AsChild": (
+      <Badge asChild>
+        <a href="https://ui.behsse.com/docs/components/badge">
+          Link Badge
+          <ArrowUpRight className="h-3 w-3" />
+        </a>
+      </Badge>
     ),
   },
   accordion: {
@@ -334,5 +397,67 @@ export const componentExamples: Record<string, Record<string, React.ReactNode>> 
         </AlertDialogContent>
       </AlertDialog>
     ),
+  },
+  breadcrumb: {
+    "Default": (
+      <Breadcrumb>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </Breadcrumb>
+    ),
+    "With Custom Separator": (
+      <Breadcrumb>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>/</BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs">Docs</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>/</BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </Breadcrumb>
+    ),
+    "With Ellipsis": (
+      <Breadcrumb>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbEllipsis />
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </Breadcrumb>
+    ),
+  },
+  calendar: {
+    "Default": <CalendarDemo />,
+    "Date Range": <CalendarDemo mode="range" />,
+    "Multiple Dates": <CalendarDemo mode="multiple" />,
+    "With Disabled Dates": <CalendarDemo variant="disabled" />,
+    "With Booked Dates": <CalendarDemo variant="booked" />,
+    "With Min and Max": <CalendarDemo variant="minmax" />,
+    "With Default Selected": <CalendarDemo variant="defaultSelected" />,
+    "Range with Default": <CalendarDemo variant="rangeDefault" />,
+    "Controlled Mode": <CalendarDemo />,
   },
 }
