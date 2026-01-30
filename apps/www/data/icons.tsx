@@ -15,6 +15,7 @@ import AlertTriangle from "@/ui/icons/AlertTriangle"
 import ArrowUpRight from "@/ui/icons/ArrowUpRight"
 import ChevronRight from "@/ui/icons/ChevronRight"
 import ChevronLeft from "@/ui/icons/ChevronLeft"
+import ChevronDown from "@/ui/icons/ChevronDown"
 
 // Import des versions
 import { iconVersion as CloseVersion } from "@/ui/icons/Close"
@@ -31,6 +32,7 @@ import { iconVersion as AlertTriangleVersion } from "@/ui/icons/AlertTriangle"
 import { iconVersion as ArrowUpRightVersion } from "@/ui/icons/ArrowUpRight"
 import { iconVersion as ChevronRightVersion } from "@/ui/icons/ChevronRight"
 import { iconVersion as ChevronLeftVersion } from "@/ui/icons/ChevronLeft"
+import { iconVersion as ChevronDownVersion } from "@/ui/icons/ChevronDown"
 
 export interface Icon {
   name: string
@@ -123,5 +125,11 @@ export const icons: Icon[] = [
     component: ChevronLeft,
     version: ChevronLeftVersion,
     preview: <ChevronLeft className="w-5 h-5" />
+  },
+  {
+    name: "ChevronDown",
+    component: ChevronDown,
+    version: ChevronDownVersion,
+    preview: <ChevronDown className="w-5 h-5" />
   }
 ].sort((a, b) => a.name.localeCompare(b.name))

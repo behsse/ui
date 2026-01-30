@@ -195,6 +195,113 @@ const getDialogPreview = () => (
   </div>
 )
 
+const getDropdownMenuPreview = () => (
+  <div className="w-3/4 border border-border rounded-md bg-popover p-1 shadow-sm">
+    <div className="flex items-center rounded-sm px-2 py-1 bg-accent/50">
+      <div className="h-2 w-14 bg-foreground/80 rounded"></div>
+    </div>
+    <div className="flex items-center rounded-sm px-2 py-1">
+      <div className="h-2 w-12 bg-muted-foreground/50 rounded"></div>
+    </div>
+    <div className="my-0.5 h-px bg-border"></div>
+    <div className="flex items-center justify-between rounded-sm px-2 py-1">
+      <div className="h-2 w-10 bg-muted-foreground/50 rounded"></div>
+      <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-muted-foreground">
+        <path d="m9 18 6-6-6-6" />
+      </svg>
+    </div>
+  </div>
+)
+
+const getDrawerPreview = () => (
+  <div className="w-3/4 relative">
+    <div className="border border-border rounded-lg bg-background p-3 shadow-sm">
+      <div className="mx-auto mb-2 h-1 w-8 rounded-full bg-muted-foreground/30"></div>
+      <div className="space-y-1">
+        <div className="h-2 w-16 bg-foreground/80 rounded"></div>
+        <div className="h-2 w-24 bg-muted-foreground/50 rounded"></div>
+      </div>
+      <div className="mt-3 h-6 w-full bg-muted rounded"></div>
+    </div>
+  </div>
+)
+
+const getInputOTPPreview = () => (
+  <div className="flex items-center gap-1">
+    <div className="flex">
+      <div className="h-7 w-7 rounded-l-md border border-input flex items-center justify-center text-xs font-medium">1</div>
+      <div className="h-7 w-7 border-y border-r border-input flex items-center justify-center text-xs font-medium">2</div>
+      <div className="h-7 w-7 rounded-r-md border-y border-r border-input flex items-center justify-center text-xs font-medium">3</div>
+    </div>
+    <div className="w-2 flex justify-center">
+      <div className="h-0.5 w-2 bg-muted-foreground/50 rounded"></div>
+    </div>
+    <div className="flex">
+      <div className="h-7 w-7 rounded-l-md border border-input flex items-center justify-center text-xs font-medium ring-2 ring-ring"></div>
+      <div className="h-7 w-7 border-y border-r border-input"></div>
+      <div className="h-7 w-7 rounded-r-md border-y border-r border-input"></div>
+    </div>
+  </div>
+)
+
+const getInputPreview = () => (
+  <div className="w-3/4 h-7 rounded-md border border-input bg-transparent flex items-center px-2">
+    <div className="h-1.5 w-14 bg-muted-foreground/30 rounded"></div>
+  </div>
+)
+
+const getSelectPreview = () => (
+  <div className="w-3/4 h-7 rounded-md border border-input bg-transparent flex items-center justify-between px-2">
+    <div className="h-1.5 w-14 bg-muted-foreground/30 rounded"></div>
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-muted-foreground">
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  </div>
+)
+
+const getHoverCardPreview = () => (
+  <div className="w-3/4 relative">
+    <div className="h-3 w-16 bg-primary/60 rounded mx-auto"></div>
+    <div className="mt-1 border border-border rounded-md bg-popover p-2 shadow-sm">
+      <div className="flex items-center gap-2 mb-1.5">
+        <div className="h-6 w-6 rounded-full bg-muted"></div>
+        <div className="space-y-0.5">
+          <div className="h-1.5 w-12 bg-foreground/80 rounded"></div>
+          <div className="h-1.5 w-16 bg-muted-foreground/50 rounded"></div>
+        </div>
+      </div>
+      <div className="h-1.5 w-full bg-muted-foreground/30 rounded"></div>
+    </div>
+  </div>
+)
+
+const getPaginationPreview = () => (
+  <div className="flex items-center gap-1">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-muted-foreground">
+      <path d="m15 18-6-6 6-6" />
+    </svg>
+    <div className="h-5 w-5 rounded bg-primary/20 border border-border"></div>
+    <div className="h-5 w-5 rounded bg-primary text-[8px] text-primary-foreground flex items-center justify-center font-medium">2</div>
+    <div className="h-5 w-5 rounded bg-primary/20 border border-border"></div>
+    <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" className="text-muted-foreground">
+      <circle cx="5" cy="12" r="1.5" />
+      <circle cx="12" cy="12" r="1.5" />
+      <circle cx="19" cy="12" r="1.5" />
+    </svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-muted-foreground">
+      <path d="m9 18 6-6-6-6" />
+    </svg>
+  </div>
+)
+
+const getProgressPreview = () => (
+  <div className="w-3/4 space-y-2">
+    <div className="h-2 w-full rounded-full bg-primary/20 overflow-hidden">
+      <div className="h-full w-3/5 rounded-full bg-primary"></div>
+    </div>
+  </div>
+)
+
 export const components: Record<string, Component> = {
   button: {
     name : "Button",
@@ -1540,6 +1647,1150 @@ const month = now.getMonth()
       { id: "usage", text: "Usages", level: 2 },
       { id: "default", text: "Default", level: 3 },
       { id: "with form", text: "With Form", level: 3 },
+    ]
+  },
+  drawer: {
+    name: "Drawer",
+    desc: "A panel that slides in from the edge of the screen, with drag-to-dismiss support on the entire surface.",
+    minimalPreview: getDrawerPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Drawer"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Drawer"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Drawer"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Drawer"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Drawer.tsx",
+        path: "ui/components/Drawer.tsx",
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A basic drawer opening from the right side. Drag anywhere on the panel to dismiss.",
+        code: `<Drawer>
+  <DrawerTrigger asChild>
+    <Button variant="outline">Open Drawer</Button>
+  </DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Drawer Title</DrawerTitle>
+      <DrawerDescription>
+        This is a drawer description.
+      </DrawerDescription>
+    </DrawerHeader>
+    <DrawerBody>
+      <p>Drawer body content goes here.</p>
+    </DrawerBody>
+    <DrawerFooter>
+      <DrawerClose asChild>
+        <Button variant="outline">Cancel</Button>
+      </DrawerClose>
+      <Button>Save</Button>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>`
+      },
+      {
+        name: "Bottom with Handle",
+        description: "A bottom drawer with an optional visual handle bar. Drag anywhere on the panel to dismiss.",
+        code: `<Drawer>
+  <DrawerTrigger asChild>
+    <Button variant="outline">Open Bottom Drawer</Button>
+  </DrawerTrigger>
+  <DrawerContent side="bottom" overlay>
+    <DrawerHandle />
+    <DrawerHeader>
+      <DrawerTitle>Bottom Drawer</DrawerTitle>
+      <DrawerDescription>
+        Drag anywhere on the panel to close.
+      </DrawerDescription>
+    </DrawerHeader>
+    <DrawerBody>
+      <p>This drawer slides up from the bottom. Drag down anywhere to dismiss.</p>
+    </DrawerBody>
+    <DrawerFooter>
+      <DrawerClose asChild>
+        <Button variant="outline">Close</Button>
+      </DrawerClose>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>`
+      },
+      {
+        name: "Left Side",
+        description: "A drawer opening from the left side. Drag left anywhere to dismiss.",
+        code: `<Drawer>
+  <DrawerTrigger asChild>
+    <Button variant="outline">Open Left Drawer</Button>
+  </DrawerTrigger>
+  <DrawerContent side="left">
+    <DrawerHeader>
+      <DrawerTitle>Navigation</DrawerTitle>
+      <DrawerDescription>
+        Browse through the menu.
+      </DrawerDescription>
+    </DrawerHeader>
+    <DrawerBody>
+      <nav className="flex flex-col gap-2">
+        <a href="#" className="text-sm hover:underline">Home</a>
+        <a href="#" className="text-sm hover:underline">About</a>
+        <a href="#" className="text-sm hover:underline">Contact</a>
+      </nav>
+    </DrawerBody>
+  </DrawerContent>
+</Drawer>`
+      },
+      {
+        name: "With Overlay",
+        description: "A drawer with a dark overlay backdrop. Drag or click overlay to dismiss.",
+        code: `<Drawer>
+  <DrawerTrigger asChild>
+    <Button>Open with Overlay</Button>
+  </DrawerTrigger>
+  <DrawerContent overlay>
+    <DrawerHeader>
+      <DrawerTitle>Overlay Drawer</DrawerTitle>
+      <DrawerDescription>
+        Click the overlay or drag to close.
+      </DrawerDescription>
+    </DrawerHeader>
+    <DrawerBody>
+      <p>This drawer has a dark backdrop overlay behind it.</p>
+    </DrawerBody>
+    <DrawerFooter>
+      <DrawerClose asChild>
+        <Button variant="outline">Cancel</Button>
+      </DrawerClose>
+      <Button>Confirm</Button>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "bottom with handle", text: "Bottom with Handle", level: 3 },
+      { id: "left side", text: "Left Side", level: 3 },
+      { id: "with overlay", text: "With Overlay", level: 3 },
+    ]
+  },
+  dropdownmenu: {
+    name: "Dropdown Menu",
+    desc: "A menu that appears on click, with support for submenus, labels, separators and keyboard shortcuts.",
+    minimalPreview: getDropdownMenuPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add DropdownMenu"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add DropdownMenu"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add DropdownMenu"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add DropdownMenu"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "DropdownMenu.tsx",
+        path: "ui/components/DropdownMenu.tsx",
+      },
+      {
+        file: "ChevronRight.tsx",
+        path: "ui/icons/ChevronRight.tsx",
+        description: "Used for the submenu trigger indicator."
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A basic dropdown menu with items.",
+        code: `<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline">Open Menu</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownMenuItem>Billing</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Log out</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`
+      },
+      {
+        name: "With Shortcuts",
+        description: "Menu items with keyboard shortcut hints.",
+        code: `<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline">Actions</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>
+      New Tab
+      <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
+    </DropdownMenuItem>
+    <DropdownMenuItem>
+      New Window
+      <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
+    </DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem disabled>
+      New Private Window
+      <DropdownMenuShortcut>⇧⌘N</DropdownMenuShortcut>
+    </DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`
+      },
+      {
+        name: "With Submenu",
+        description: "A dropdown with a submenu that opens on hover.",
+        code: `<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button variant="outline">Options</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Back</DropdownMenuItem>
+    <DropdownMenuItem>Forward</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuSub>
+      <DropdownMenuSubTrigger>More Tools</DropdownMenuSubTrigger>
+      <DropdownMenuSubContent>
+        <DropdownMenuItem>Save Page As...</DropdownMenuItem>
+        <DropdownMenuItem>Create Shortcut...</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>Developer</DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            <DropdownMenuItem>Inspect Element</DropdownMenuItem>
+            <DropdownMenuItem>Console</DropdownMenuItem>
+            <DropdownMenuItem>Network</DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
+      </DropdownMenuSubContent>
+    </DropdownMenuSub>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>`
+      },
+      {
+        name: "With Groups",
+        description: "Organize items into labeled groups with separators.",
+        code: `<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button>Settings</Button>
+  </DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+    <DropdownMenuGroup>
+      <DropdownMenuItem>Theme</DropdownMenuItem>
+      <DropdownMenuItem>Font Size</DropdownMenuItem>
+    </DropdownMenuGroup>
+    <DropdownMenuSeparator />
+    <DropdownMenuLabel>Account</DropdownMenuLabel>
+    <DropdownMenuGroup>
+      <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuItem>Security</DropdownMenuItem>
+    </DropdownMenuGroup>
+  </DropdownMenuContent>
+</DropdownMenu>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "with shortcuts", text: "With Shortcuts", level: 3 },
+      { id: "with submenu", text: "With Submenu", level: 3 },
+      { id: "with groups", text: "With Groups", level: 3 },
+    ]
+  },
+  select: {
+    name: "Select",
+    desc: "A dropdown control that allows users to pick a value from a list of options.",
+    minimalPreview: getSelectPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Select"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Select"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Select"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Select"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Select.tsx",
+        path: "ui/components/Select.tsx",
+      },
+      {
+        file: "ChevronDown.tsx",
+        path: "ui/icons/ChevronDown.tsx",
+        description: "Chevron icon for the select trigger."
+      },
+      {
+        file: "Check.tsx",
+        path: "ui/icons/Check.tsx",
+        description: "Check icon displayed next to the selected item."
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A basic select with a list of options.",
+        code: `<Select>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Select a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="apple">Apple</SelectItem>
+    <SelectItem value="banana">Banana</SelectItem>
+    <SelectItem value="orange">Orange</SelectItem>
+    <SelectItem value="grape">Grape</SelectItem>
+    <SelectItem value="pineapple">Pineapple</SelectItem>
+  </SelectContent>
+</Select>`
+      },
+      {
+        name: "With Groups",
+        description: "Items organized into labeled groups with separators.",
+        code: `<Select>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Select food" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>Fruits</SelectLabel>
+      <SelectItem value="apple">Apple</SelectItem>
+      <SelectItem value="banana">Banana</SelectItem>
+      <SelectItem value="orange">Orange</SelectItem>
+    </SelectGroup>
+    <SelectSeparator />
+    <SelectGroup>
+      <SelectLabel>Vegetables</SelectLabel>
+      <SelectItem value="carrot">Carrot</SelectItem>
+      <SelectItem value="broccoli">Broccoli</SelectItem>
+      <SelectItem value="spinach">Spinach</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>`
+      },
+      {
+        name: "Disabled",
+        description: "A disabled select that cannot be interacted with.",
+        code: `<Select disabled>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Select a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="apple">Apple</SelectItem>
+    <SelectItem value="banana">Banana</SelectItem>
+  </SelectContent>
+</Select>`
+      },
+      {
+        name: "Disabled Items",
+        description: "A select with some items disabled.",
+        code: `<Select>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Select a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="apple">Apple</SelectItem>
+    <SelectItem value="banana" disabled>Banana</SelectItem>
+    <SelectItem value="orange">Orange</SelectItem>
+    <SelectItem value="grape" disabled>Grape</SelectItem>
+    <SelectItem value="pineapple">Pineapple</SelectItem>
+  </SelectContent>
+</Select>`
+      },
+      {
+        name: "With Label",
+        description: "A select with an external label.",
+        code: `<div className="grid w-full max-w-sm gap-1.5">
+  <label htmlFor="framework" className="text-sm font-medium">Framework</label>
+  <Select>
+    <SelectTrigger>
+      <SelectValue placeholder="Select a framework" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="next">Next.js</SelectItem>
+      <SelectItem value="remix">Remix</SelectItem>
+      <SelectItem value="astro">Astro</SelectItem>
+      <SelectItem value="nuxt">Nuxt</SelectItem>
+    </SelectContent>
+  </Select>
+</div>`
+      },
+      {
+        name: "Controlled",
+        description: "A fully controlled select with external state.",
+        code: `const [value, setValue] = useState("")
+
+<Select value={value} onValueChange={setValue}>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Select a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="apple">Apple</SelectItem>
+    <SelectItem value="banana">Banana</SelectItem>
+    <SelectItem value="orange">Orange</SelectItem>
+  </SelectContent>
+</Select>
+<p className="text-sm text-muted-foreground">Selected: {value || "(none)"}</p>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "with groups", text: "With Groups", level: 3 },
+      { id: "disabled", text: "Disabled", level: 3 },
+      { id: "disabled items", text: "Disabled Items", level: 3 },
+      { id: "with label", text: "With Label", level: 3 },
+      { id: "controlled", text: "Controlled", level: 3 },
+    ]
+  },
+  inputotp: {
+    name: "Input OTP",
+    desc: "A one-time password input component for verification codes with support for grouping, separators, and pattern validation.",
+    minimalPreview: getInputOTPPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add InputOTP"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add InputOTP"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add InputOTP"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add InputOTP"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "InputOTP.tsx",
+        path: "ui/components/InputOTP.tsx",
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A 6-digit OTP input in a single group.",
+        code: `<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>`
+      },
+      {
+        name: "With Separator",
+        description: "Two groups of 3 digits separated by a dash.",
+        code: `<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>`
+      },
+      {
+        name: "Pattern",
+        description: "Accept alphanumeric characters instead of digits only.",
+        code: `<InputOTP maxLength={6} pattern="[0-9a-zA-Z]">
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>`
+      },
+      {
+        name: "Disabled",
+        description: "A disabled OTP input that cannot be interacted with.",
+        code: `<InputOTP maxLength={6} disabled>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>`
+      },
+      {
+        name: "With Placeholder",
+        description: "Show dots as placeholder in empty slots.",
+        code: `<InputOTP maxLength={6} placeholder="\u25CF">
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>`
+      },
+      {
+        name: "Controlled",
+        description: "Fully controlled OTP input with external state management.",
+        code: `const [value, setValue] = useState("")
+
+<InputOTP maxLength={6} value={value} onChange={setValue}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>
+<p className="text-sm text-muted-foreground">Value: {value || "(empty)"}</p>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "with separator", text: "With Separator", level: 3 },
+      { id: "pattern", text: "Pattern", level: 3 },
+      { id: "disabled", text: "Disabled", level: 3 },
+      { id: "with placeholder", text: "With Placeholder", level: 3 },
+      { id: "controlled", text: "Controlled", level: 3 },
+    ]
+  },
+  input: {
+    name: "Input",
+    desc: "A form input field for collecting user text data.",
+    minimalPreview: getInputPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Input"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Input"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Input"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Input"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Input.tsx",
+        path: "ui/components/Input.tsx",
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A simple input with a placeholder.",
+        code: `<Input placeholder="Enter your email" />`
+      },
+      {
+        name: "With Label",
+        description: "An input with an associated label element.",
+        code: `<div className="grid w-full max-w-sm gap-1.5">
+  <label htmlFor="email" className="text-sm font-medium">Email</label>
+  <Input id="email" type="email" placeholder="Email" />
+</div>`
+      },
+      {
+        name: "Types",
+        description: "Inputs support all native HTML input types.",
+        code: `<div className="grid w-full max-w-sm gap-4">
+  <Input type="email" placeholder="Email" />
+  <Input type="password" placeholder="Password" />
+  <Input type="number" placeholder="Number" />
+  <Input type="tel" placeholder="Phone" />
+  <Input type="url" placeholder="URL" />
+</div>`
+      },
+      {
+        name: "Disabled",
+        description: "A disabled input that cannot be interacted with.",
+        code: `<Input disabled placeholder="Disabled" />`
+      },
+      {
+        name: "With Error",
+        description: "An input styled to indicate a validation error.",
+        code: `<div className="grid w-full max-w-sm gap-1.5">
+  <label htmlFor="email-error" className="text-sm font-medium">Email</label>
+  <Input id="email-error" type="email" placeholder="Email" className="border-destructive focus-visible:ring-destructive" />
+  <p className="text-sm text-destructive">Please enter a valid email address.</p>
+</div>`
+      },
+      {
+        name: "With Icon",
+        description: "An input with a search icon positioned inside.",
+        code: `import Search from "@/ui/icons/Search"
+
+<div className="relative w-full max-w-sm">
+  <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+  <Input className="pl-8" placeholder="Search..." />
+</div>`
+      },
+      {
+        name: "File",
+        description: "A file input for uploading files.",
+        code: `<div className="grid w-full max-w-sm gap-1.5">
+  <label htmlFor="picture" className="text-sm font-medium">Picture</label>
+  <Input id="picture" type="file" />
+</div>`
+      },
+      {
+        name: "Inline with Button",
+        description: "An input inline with a button for subscribe-style forms.",
+        code: `<div className="flex w-full max-w-sm gap-2">
+  <Input type="email" placeholder="Email" />
+  <Button>Subscribe</Button>
+</div>`
+      },
+      {
+        name: "Grid",
+        description: "Two inputs side by side in a grid layout.",
+        code: `<div className="grid grid-cols-2 w-full max-w-sm gap-4">
+  <div className="grid gap-1.5">
+    <label htmlFor="first" className="text-sm font-medium">First name</label>
+    <Input id="first" placeholder="First name" />
+  </div>
+  <div className="grid gap-1.5">
+    <label htmlFor="last" className="text-sm font-medium">Last name</label>
+    <Input id="last" placeholder="Last name" />
+  </div>
+</div>`
+      },
+      {
+        name: "Required",
+        description: "A required input with a visual indicator.",
+        code: `<div className="grid w-full max-w-sm gap-1.5">
+  <label htmlFor="username" className="text-sm font-medium">
+    Username <span className="text-destructive">*</span>
+  </label>
+  <Input id="username" placeholder="Username" required />
+</div>`
+      },
+      {
+        name: "With Prefix",
+        description: "An input with a static prefix text.",
+        code: `<div className="flex w-full max-w-sm">
+  <span className="inline-flex items-center rounded-l-md border border-r-0 border-input bg-muted px-3 text-sm text-muted-foreground">
+    https://
+  </span>
+  <Input className="rounded-l-none" placeholder="example.com" />
+</div>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "with label", text: "With Label", level: 3 },
+      { id: "types", text: "Types", level: 3 },
+      { id: "disabled", text: "Disabled", level: 3 },
+      { id: "with error", text: "With Error", level: 3 },
+      { id: "with icon", text: "With Icon", level: 3 },
+      { id: "file", text: "File", level: 3 },
+      { id: "inline with button", text: "Inline with Button", level: 3 },
+      { id: "grid", text: "Grid", level: 3 },
+      { id: "required", text: "Required", level: 3 },
+      { id: "with prefix", text: "With Prefix", level: 3 },
+    ]
+  },
+  hovercard: {
+    name: "Hover Card",
+    desc: "A card that appears on hover over a trigger element, with configurable positioning.",
+    minimalPreview: getHoverCardPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add HoverCard"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add HoverCard"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add HoverCard"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add HoverCard"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "HoverCard.tsx",
+        path: "ui/components/HoverCard.tsx",
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A hover card that appears below the trigger on hover.",
+        code: `<HoverCard>
+  <HoverCardTrigger asChild>
+    <a href="#" className="text-sm font-medium underline underline-offset-4">
+      @behsse
+    </a>
+  </HoverCardTrigger>
+  <HoverCardContent>
+    <div className="flex gap-4">
+      <div className="h-10 w-10 rounded-full bg-muted" />
+      <div className="space-y-1">
+        <h4 className="text-sm font-semibold">Behsse UI</h4>
+        <p className="text-sm text-muted-foreground">
+          A modern React component library.
+        </p>
+      </div>
+    </div>
+  </HoverCardContent>
+</HoverCard>`
+      },
+      {
+        name: "Top",
+        description: "Content appears above the trigger.",
+        code: `<HoverCard>
+  <HoverCardTrigger asChild>
+    <a href="#" className="text-sm font-medium underline underline-offset-4">
+      Hover me (top)
+    </a>
+  </HoverCardTrigger>
+  <HoverCardContent side="top">
+    <p className="text-sm">This card appears above the trigger.</p>
+  </HoverCardContent>
+</HoverCard>`
+      },
+      {
+        name: "Left",
+        description: "Content appears to the left of the trigger.",
+        code: `<HoverCard>
+  <HoverCardTrigger asChild>
+    <a href="#" className="text-sm font-medium underline underline-offset-4">
+      Hover me (left)
+    </a>
+  </HoverCardTrigger>
+  <HoverCardContent side="left">
+    <p className="text-sm">This card appears to the left.</p>
+  </HoverCardContent>
+</HoverCard>`
+      },
+      {
+        name: "Right",
+        description: "Content appears to the right of the trigger.",
+        code: `<HoverCard>
+  <HoverCardTrigger asChild>
+    <a href="#" className="text-sm font-medium underline underline-offset-4">
+      Hover me (right)
+    </a>
+  </HoverCardTrigger>
+  <HoverCardContent side="right">
+    <p className="text-sm">This card appears to the right.</p>
+  </HoverCardContent>
+</HoverCard>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "top", text: "Top", level: 3 },
+      { id: "left", text: "Left", level: 3 },
+      { id: "right", text: "Right", level: 3 },
+    ]
+  },
+  pagination: {
+    name: "Pagination",
+    desc: "Pagination with page navigation, previous and next controls.",
+    minimalPreview: getPaginationPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Pagination"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Pagination"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Pagination"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Pagination"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Pagination.tsx",
+        path: "ui/components/Pagination.tsx",
+      },
+      {
+        file: "ChevronLeft.tsx",
+        path: "ui/icons/ChevronLeft.tsx",
+        description: "The Pagination component uses ChevronLeft for the previous button."
+      },
+      {
+        file: "ChevronRight.tsx",
+        path: "ui/icons/ChevronRight.tsx",
+        description: "The Pagination component uses ChevronRight for the next button."
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "Basic pagination with previous, page numbers, ellipsis, and next.",
+        code: `<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#" isActive>2</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">3</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>`
+      },
+      {
+        name: "With More Pages",
+        description: "Pagination with ellipsis on both sides for large page sets.",
+        code: `<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">4</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#" isActive>5</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">6</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationEllipsis />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">10</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>`
+      },
+      {
+        name: "First & Last",
+        description: "Include dedicated first and last page buttons.",
+        code: `<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationLink href="#">« First</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">3</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#" isActive>4</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">5</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">Last »</PaginationLink>
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>`
+      },
+      {
+        name: "Simple",
+        description: "Only previous and next buttons without page numbers.",
+        code: `<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>`
+      },
+      {
+        name: "With Icons Only",
+        description: "Previous and next as icon-only buttons.",
+        code: `<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationLink href="#" size="icon" aria-label="Previous page">
+        <ChevronLeft className="h-4 w-4" />
+      </PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#" isActive>2</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">3</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#" size="icon" aria-label="Next page">
+        <ChevronRight className="h-4 w-4" />
+      </PaginationLink>
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>`
+      },
+      {
+        name: "Active States",
+        description: "Different active page positions.",
+        code: `<Pagination>
+  <PaginationContent>
+    <PaginationItem>
+      <PaginationPrevious href="#" />
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#" isActive>1</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">2</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">3</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">4</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationLink href="#">5</PaginationLink>
+    </PaginationItem>
+    <PaginationItem>
+      <PaginationNext href="#" />
+    </PaginationItem>
+  </PaginationContent>
+</Pagination>`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "with more pages", text: "With More Pages", level: 3 },
+      { id: "first & last", text: "First & Last", level: 3 },
+      { id: "simple", text: "Simple", level: 3 },
+      { id: "with icons only", text: "With Icons Only", level: 3 },
+      { id: "active states", text: "Active States", level: 3 },
+    ]
+  },
+  progress: {
+    name: "Progress",
+    desc: "Displays an indicator showing the completion progress of a task.",
+    minimalPreview: getProgressPreview(),
+    commands: [
+      {
+        id: 1,
+        name: "pnpm",
+        command: "pnpm dlx behsseui@latest add Progress"
+      },
+      {
+        id: 2,
+        name: "npm",
+        command: "npx behsseui@latest add Progress"
+      },
+      {
+        id: 3,
+        name: "yarn",
+        command: "yarn behsseui@latest add Progress"
+      },
+      {
+        id: 4,
+        name: "bun",
+        command: "bunx --bun behsseui@latest add Progress"
+      }
+    ],
+    sourceFiles: [
+      {
+        file: "Progress.tsx",
+        path: "ui/components/Progress.tsx",
+      }
+    ],
+    examples: [
+      {
+        name: "Default",
+        description: "A basic progress bar at 60%.",
+        code: `<Progress value={60} />`
+      },
+      {
+        name: "With Label",
+        description: "Progress bar with a percentage label.",
+        code: `<div className="space-y-2">
+  <div className="flex justify-between text-sm">
+    <span>Progress</span>
+    <span>45%</span>
+  </div>
+  <Progress value={45} />
+</div>`
+      },
+      {
+        name: "Sizes",
+        description: "Different progress bar heights.",
+        code: `<div className="space-y-4 w-full">
+  <Progress value={30} className="h-1" />
+  <Progress value={50} className="h-2" />
+  <Progress value={70} className="h-3" />
+  <Progress value={90} className="h-4" />
+</div>`
+      },
+      {
+        name: "Colors",
+        description: "Custom colors using className.",
+        code: `<div className="space-y-4 w-full">
+  <Progress value={60} />
+  <Progress value={45} className="[&>div]:bg-green-500 bg-green-500/20" />
+  <Progress value={75} className="[&>div]:bg-orange-500 bg-orange-500/20" />
+  <Progress value={30} className="[&>div]:bg-destructive bg-destructive/20" />
+</div>`
+      },
+      {
+        name: "Empty",
+        description: "Progress bar at 0%.",
+        code: `<Progress value={0} />`
+      },
+      {
+        name: "Complete",
+        description: "Progress bar at 100%.",
+        code: `<Progress value={100} />`
+      }
+    ],
+    toc: [
+      { id: "installation", text: "Installation", level: 2 },
+      { id: "usage", text: "Usages", level: 2 },
+      { id: "default", text: "Default", level: 3 },
+      { id: "with label", text: "With Label", level: 3 },
+      { id: "sizes", text: "Sizes", level: 3 },
+      { id: "colors", text: "Colors", level: 3 },
+      { id: "empty", text: "Empty", level: 3 },
+      { id: "complete", text: "Complete", level: 3 },
     ]
   }
 };

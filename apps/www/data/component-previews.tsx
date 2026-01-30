@@ -29,6 +29,61 @@ import {
   DialogDescription,
   DialogClose
 } from "@/ui/components/Dialog"
+import {
+  Drawer,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerClose,
+  DrawerHandle
+} from "@/ui/components/Drawer"
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
+  DropdownMenuGroup
+} from "@/ui/components/DropdownMenu"
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent
+} from "@/ui/components/HoverCard"
+import { Input } from "@/ui/components/Input"
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+  SelectGroup,
+  SelectLabel,
+  SelectSeparator
+} from "@/ui/components/Select"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis
+} from "@/ui/components/Pagination"
+import { Progress } from "@/ui/components/Progress"
+import { InputOTPDemo } from "@/app/components/InputOTPDemo"
+import Search from "@/ui/icons/Search"
+import ChevronLeft from "@/ui/icons/ChevronLeft"
+import ChevronRight from "@/ui/icons/ChevronRight"
 import Check from "@/ui/icons/Check"
 import ArrowUpRight from "@/ui/icons/ArrowUpRight"
 import Info from "@/ui/icons/Info"
@@ -161,6 +216,117 @@ export const componentPreviews: Record<string, React.ReactNode> = {
         </DialogFooter>
       </DialogContent>
     </Dialog>
+  ),
+
+  dropdownmenu: (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">Open Menu</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Settings</DropdownMenuItem>
+        <DropdownMenuItem>Log out</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  ),
+
+  drawer: (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open Drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Drawer Title</DrawerTitle>
+          <DrawerDescription>
+            This is a drawer description.
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerBody>
+          <p>Drawer body content goes here.</p>
+        </DrawerBody>
+        <DrawerFooter>
+          <DrawerClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DrawerClose>
+          <Button>Save</Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  ),
+
+  select: (
+    <Select>
+      <SelectTrigger className="w-[180px]">
+        <SelectValue placeholder="Select a fruit" />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="apple">Apple</SelectItem>
+        <SelectItem value="banana">Banana</SelectItem>
+        <SelectItem value="orange">Orange</SelectItem>
+      </SelectContent>
+    </Select>
+  ),
+
+  input: (
+    <Input placeholder="Enter your email" className="max-w-sm" />
+  ),
+
+  inputotp: (
+    <InputOTPDemo />
+  ),
+
+  hovercard: (
+    <HoverCard>
+      <HoverCardTrigger asChild>
+        <a href="#" className="text-sm font-medium underline underline-offset-4">
+          @behsse
+        </a>
+      </HoverCardTrigger>
+      <HoverCardContent>
+        <div className="flex gap-4">
+          <div className="h-10 w-10 rounded-full bg-muted" />
+          <div className="space-y-1">
+            <h4 className="text-sm font-semibold">Behsse UI</h4>
+            <p className="text-sm text-muted-foreground">
+              A modern React component library.
+            </p>
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  ),
+
+  pagination: (
+    <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="#" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" isActive>2</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  ),
+
+  progress: (
+    <Progress value={60} className="w-3/4" />
   ),
 }
 
@@ -621,6 +787,611 @@ export const componentExamples: Record<string, Record<string, React.ReactNode>> 
           </DialogFooter>
         </DialogContent>
       </Dialog>
+    ),
+  },
+  dropdownmenu: {
+    "Default": (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">Open Menu</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuItem>Billing</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Log out</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    ),
+    "With Shortcuts": (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">Actions</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem>
+            New Tab
+            <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            New Window
+            <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem disabled>
+            New Private Window
+            <DropdownMenuShortcut>⇧⌘N</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    ),
+    "With Submenu": (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">Options</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem>Back</DropdownMenuItem>
+          <DropdownMenuItem>Forward</DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>More Tools</DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem>Save Page As...</DropdownMenuItem>
+              <DropdownMenuItem>Create Shortcut...</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>Developer</DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem>Inspect Element</DropdownMenuItem>
+                  <DropdownMenuItem>Console</DropdownMenuItem>
+                  <DropdownMenuItem>Network</DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>Settings</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    ),
+    "With Groups": (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button>Settings</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+          <DropdownMenuGroup>
+            <DropdownMenuItem>Theme</DropdownMenuItem>
+            <DropdownMenuItem>Font Size</DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuLabel>Account</DropdownMenuLabel>
+          <DropdownMenuGroup>
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Security</DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    ),
+  },
+  drawer: {
+    "Default": (
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button variant="outline">Open Drawer</Button>
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Drawer Title</DrawerTitle>
+            <DrawerDescription>
+              This is a drawer description.
+            </DrawerDescription>
+          </DrawerHeader>
+          <DrawerBody>
+            <p>Drawer body content goes here.</p>
+          </DrawerBody>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+            <Button>Save</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    ),
+    "Bottom with Handle": (
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button variant="outline">Open Bottom Drawer</Button>
+        </DrawerTrigger>
+        <DrawerContent side="bottom" overlay>
+          <DrawerHandle />
+          <DrawerHeader>
+            <DrawerTitle>Bottom Drawer</DrawerTitle>
+            <DrawerDescription>
+              Drag anywhere on the panel to close.
+            </DrawerDescription>
+          </DrawerHeader>
+          <DrawerBody>
+            <p>This drawer slides up from the bottom. Drag down anywhere to dismiss.</p>
+          </DrawerBody>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button variant="outline">Close</Button>
+            </DrawerClose>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    ),
+    "Left Side": (
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button variant="outline">Open Left Drawer</Button>
+        </DrawerTrigger>
+        <DrawerContent side="left">
+          <DrawerHeader>
+            <DrawerTitle>Navigation</DrawerTitle>
+            <DrawerDescription>
+              Browse through the menu.
+            </DrawerDescription>
+          </DrawerHeader>
+          <DrawerBody>
+            <nav className="flex flex-col gap-2">
+              <a href="#" className="text-sm hover:underline">Home</a>
+              <a href="#" className="text-sm hover:underline">About</a>
+              <a href="#" className="text-sm hover:underline">Contact</a>
+            </nav>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
+    ),
+    "With Overlay": (
+      <Drawer>
+        <DrawerTrigger asChild>
+          <Button>Open with Overlay</Button>
+        </DrawerTrigger>
+        <DrawerContent overlay>
+          <DrawerHeader>
+            <DrawerTitle>Overlay Drawer</DrawerTitle>
+            <DrawerDescription>
+              Click the overlay or drag to close.
+            </DrawerDescription>
+          </DrawerHeader>
+          <DrawerBody>
+            <p>This drawer has a dark backdrop overlay behind it.</p>
+          </DrawerBody>
+          <DrawerFooter>
+            <DrawerClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DrawerClose>
+            <Button>Confirm</Button>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
+    ),
+  },
+  select: {
+    "Default": (
+      <Select>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+          <SelectItem value="orange">Orange</SelectItem>
+          <SelectItem value="grape">Grape</SelectItem>
+          <SelectItem value="pineapple">Pineapple</SelectItem>
+        </SelectContent>
+      </Select>
+    ),
+    "With Groups": (
+      <Select>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Select food" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Fruits</SelectLabel>
+            <SelectItem value="apple">Apple</SelectItem>
+            <SelectItem value="banana">Banana</SelectItem>
+            <SelectItem value="orange">Orange</SelectItem>
+          </SelectGroup>
+          <SelectSeparator />
+          <SelectGroup>
+            <SelectLabel>Vegetables</SelectLabel>
+            <SelectItem value="carrot">Carrot</SelectItem>
+            <SelectItem value="broccoli">Broccoli</SelectItem>
+            <SelectItem value="spinach">Spinach</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    ),
+    "Disabled": (
+      <Select disabled>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+        </SelectContent>
+      </Select>
+    ),
+    "Disabled Items": (
+      <Select>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana" disabled>Banana</SelectItem>
+          <SelectItem value="orange">Orange</SelectItem>
+          <SelectItem value="grape" disabled>Grape</SelectItem>
+          <SelectItem value="pineapple">Pineapple</SelectItem>
+        </SelectContent>
+      </Select>
+    ),
+    "With Label": (
+      <div className="grid w-full max-w-sm gap-1.5">
+        <label className="text-sm font-medium">Framework</label>
+        <Select>
+          <SelectTrigger>
+            <SelectValue placeholder="Select a framework" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="next">Next.js</SelectItem>
+            <SelectItem value="remix">Remix</SelectItem>
+            <SelectItem value="astro">Astro</SelectItem>
+            <SelectItem value="nuxt">Nuxt</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+    ),
+    "Controlled": (
+      <Select defaultValue="apple">
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Select a fruit" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="apple">Apple</SelectItem>
+          <SelectItem value="banana">Banana</SelectItem>
+          <SelectItem value="orange">Orange</SelectItem>
+        </SelectContent>
+      </Select>
+    ),
+  },
+  inputotp: {
+    "Default": <InputOTPDemo />,
+    "With Separator": <InputOTPDemo variant="separator" />,
+    "Pattern": <InputOTPDemo variant="alphanumeric" />,
+    "Disabled": <InputOTPDemo variant="disabled" />,
+    "With Placeholder": <InputOTPDemo variant="placeholder" />,
+    "Controlled": <InputOTPDemo variant="controlled" />,
+  },
+  input: {
+    "Default": (
+      <Input placeholder="Enter your email" />
+    ),
+    "With Label": (
+      <div className="grid w-full max-w-sm gap-1.5">
+        <label htmlFor="email-label" className="text-sm font-medium">Email</label>
+        <Input id="email-label" type="email" placeholder="Email" />
+      </div>
+    ),
+    "Types": (
+      <div className="grid w-full max-w-sm gap-4">
+        <Input type="email" placeholder="Email" />
+        <Input type="password" placeholder="Password" />
+        <Input type="number" placeholder="Number" />
+        <Input type="tel" placeholder="Phone" />
+        <Input type="url" placeholder="URL" />
+      </div>
+    ),
+    "Disabled": (
+      <Input disabled placeholder="Disabled" />
+    ),
+    "With Error": (
+      <div className="grid w-full max-w-sm gap-1.5">
+        <label htmlFor="email-err" className="text-sm font-medium">Email</label>
+        <Input id="email-err" type="email" placeholder="Email" className="border-destructive focus-visible:ring-destructive" />
+        <p className="text-sm text-destructive">Please enter a valid email address.</p>
+      </div>
+    ),
+    "With Icon": (
+      <div className="relative w-full max-w-sm">
+        <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input className="pl-8" placeholder="Search..." />
+      </div>
+    ),
+    "File": (
+      <div className="grid w-full max-w-sm gap-1.5">
+        <label htmlFor="picture" className="text-sm font-medium">Picture</label>
+        <Input id="picture" type="file" />
+      </div>
+    ),
+    "Inline with Button": (
+      <div className="flex w-full max-w-sm gap-2">
+        <Input type="email" placeholder="Email" />
+        <Button>Subscribe</Button>
+      </div>
+    ),
+    "Grid": (
+      <div className="grid grid-cols-2 w-full max-w-sm gap-4">
+        <div className="grid gap-1.5">
+          <label htmlFor="first" className="text-sm font-medium">First name</label>
+          <Input id="first" placeholder="First name" />
+        </div>
+        <div className="grid gap-1.5">
+          <label htmlFor="last" className="text-sm font-medium">Last name</label>
+          <Input id="last" placeholder="Last name" />
+        </div>
+      </div>
+    ),
+    "Required": (
+      <div className="grid w-full max-w-sm gap-1.5">
+        <label htmlFor="username-req" className="text-sm font-medium">
+          Username <span className="text-destructive">*</span>
+        </label>
+        <Input id="username-req" placeholder="Username" required />
+      </div>
+    ),
+    "With Prefix": (
+      <div className="flex w-full max-w-sm">
+        <span className="inline-flex items-center rounded-l-md border border-r-0 border-input bg-muted px-3 text-sm text-muted-foreground">
+          https://
+        </span>
+        <Input className="rounded-l-none" placeholder="example.com" />
+      </div>
+    ),
+  },
+  hovercard: {
+    "Default": (
+      <HoverCard>
+        <HoverCardTrigger asChild>
+          <a href="#" className="text-sm font-medium underline underline-offset-4">
+            @behsse
+          </a>
+        </HoverCardTrigger>
+        <HoverCardContent>
+          <div className="flex gap-4">
+            <div className="h-10 w-10 rounded-full bg-muted" />
+            <div className="space-y-1">
+              <h4 className="text-sm font-semibold">Behsse UI</h4>
+              <p className="text-sm text-muted-foreground">
+                A modern React component library.
+              </p>
+            </div>
+          </div>
+        </HoverCardContent>
+      </HoverCard>
+    ),
+    "Top": (
+      <HoverCard>
+        <HoverCardTrigger asChild>
+          <a href="#" className="text-sm font-medium underline underline-offset-4">
+            Hover me (top)
+          </a>
+        </HoverCardTrigger>
+        <HoverCardContent side="top">
+          <p className="text-sm">This card appears above the trigger.</p>
+        </HoverCardContent>
+      </HoverCard>
+    ),
+    "Left": (
+      <HoverCard>
+        <HoverCardTrigger asChild>
+          <a href="#" className="text-sm font-medium underline underline-offset-4">
+            Hover me (left)
+          </a>
+        </HoverCardTrigger>
+        <HoverCardContent side="left">
+          <p className="text-sm">This card appears to the left.</p>
+        </HoverCardContent>
+      </HoverCard>
+    ),
+    "Right": (
+      <HoverCard>
+        <HoverCardTrigger asChild>
+          <a href="#" className="text-sm font-medium underline underline-offset-4">
+            Hover me (right)
+          </a>
+        </HoverCardTrigger>
+        <HoverCardContent side="right">
+          <p className="text-sm">This card appears to the right.</p>
+        </HoverCardContent>
+      </HoverCard>
+    ),
+  },
+  pagination: {
+    "Default": (
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>2</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    ),
+    "With More Pages": (
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">4</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>5</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">6</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationEllipsis />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">10</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    ),
+    "First & Last": (
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationLink href="#">« First</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>4</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">5</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">Last »</PaginationLink>
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    ),
+    "Simple": (
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    ),
+    "With Icons Only": (
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationLink href="#" size="icon" aria-label="Previous page">
+              <ChevronLeft className="h-4 w-4" />
+            </PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>2</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" size="icon" aria-label="Next page">
+              <ChevronRight className="h-4 w-4" />
+            </PaginationLink>
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    ),
+    "Active States": (
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious href="#" />
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#" isActive>1</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">2</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">3</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">4</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationLink href="#">5</PaginationLink>
+          </PaginationItem>
+          <PaginationItem>
+            <PaginationNext href="#" />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    ),
+  },
+  progress: {
+    "Default": (
+      <Progress value={60} className="w-full max-w-sm" />
+    ),
+    "With Label": (
+      <div className="space-y-2 w-full max-w-sm">
+        <div className="flex justify-between text-sm">
+          <span>Progress</span>
+          <span>45%</span>
+        </div>
+        <Progress value={45} />
+      </div>
+    ),
+    "Sizes": (
+      <div className="space-y-4 w-full max-w-sm">
+        <Progress value={30} className="h-1" />
+        <Progress value={50} className="h-2" />
+        <Progress value={70} className="h-3" />
+        <Progress value={90} className="h-4" />
+      </div>
+    ),
+    "Colors": (
+      <div className="space-y-4 w-full max-w-sm">
+        <Progress value={60} />
+        <Progress value={45} className="[&>div]:bg-green-500 bg-green-500/20" />
+        <Progress value={75} className="[&>div]:bg-orange-500 bg-orange-500/20" />
+        <Progress value={30} className="[&>div]:bg-destructive bg-destructive/20" />
+      </div>
+    ),
+    "Empty": (
+      <Progress value={0} className="w-full max-w-sm" />
+    ),
+    "Complete": (
+      <Progress value={100} className="w-full max-w-sm" />
     ),
   },
 }
