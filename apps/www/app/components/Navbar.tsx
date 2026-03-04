@@ -62,7 +62,7 @@ export const Navbar = () => {
     const navLink = [
         {name: "Docs", href: "/docs/intro"},
         {name: "Components", href: "/docs/components"},
-        {name: "Slices", href: ""},
+        {name: "Slices", href: "/slices"},
         {name: "Icons", href: "/icons"},
         {name: "Theme", href: ""},
         {name: "Colors", href: ""},
@@ -109,7 +109,7 @@ export const Navbar = () => {
             {/* Mobile/Tablet menu - full width drawer */}
             {mobileMenuOpen && (
             <div
-                className={`lg:hidden fixed inset-x-0 top-[57px] h-[calc(100vh-57px)] bg-background border-t border-border z-50 overflow-y-auto ${isClosing ? 'animate-slide-out-right' : 'animate-slide-in-right'}`}
+                className={`lg:hidden fixed inset-x-0 top-[62px] h-[calc(100vh-62px)] bg-background border-t border-border z-50 overflow-y-auto ${isClosing ? 'animate-slide-out-right' : 'animate-slide-in-right'}`}
             >
                     <nav className="flex flex-col p-4 gap-1">
                         {/* Liens principaux */}

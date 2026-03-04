@@ -43,9 +43,11 @@ interface CommandCodeProps {
     sourceFileCode?: string // Le code du fichier source
     rawCode?: string // Code brut à afficher directement
     showLineNumbers?: boolean // Afficher les numéros de ligne
+    embedded?: boolean // Pas de bordure/arrondi (pour usage dans un conteneur parent)
+    maxHeight?: number // Hauteur max en px pour le code en mode collapse (remplace 30vh)
 }
 
-const CommandCode = ({fileName, components, sourceFileName, sourceFileCode, rawCode, showLineNumbers = false} : CommandCodeProps) => {
+const CommandCode = ({fileName, components, sourceFileName, sourceFileCode, rawCode, showLineNumbers = false, embedded = false, maxHeight} : CommandCodeProps) => {
     // Déterminer le type de contenu à afficher (par ordre de priorité)
     const isRawCode = !!rawCode
     const isSourceFile = !!(sourceFileName && sourceFileCode)
@@ -83,7 +85,7 @@ const CommandCode = ({fileName, components, sourceFileName, sourceFileCode, rawC
     const shouldShowExpand = lineCount > 20 // Environ 50vh de contenu
 
     return (
-        <div className='w-full min-w-0 rounded-lg border bg-muted/50'>
+        <div className={cn('w-full min-w-0 bg-muted/50', !embedded && 'rounded-lg border')}>
             <div className='flex items-center justify-between border-b p-2'>
                 <div className='flex items-center gap-2 px-3'>
                     <Terminal className='w-3'/>
@@ -116,11 +118,14 @@ const CommandCode = ({fileName, components, sourceFileName, sourceFileCode, rawC
                 </div>
             </div>
             <div className='relative min-w-0 group'>
-                <pre className={cn(
-                    'px-6 py-6 overflow-x-auto whitespace-pre w-full scrollbar-vertical-hide hover:scrollbar-default',
-                    !isExpanded && shouldShowExpand ? 'max-h-[30vh]' : '',
-                    'overflow-y-auto'
-                )}>
+                <pre
+                    className={cn(
+                        'px-6 py-6 overflow-x-auto whitespace-pre w-full scrollbar-vertical-hide hover:scrollbar-default',
+                        !isExpanded && shouldShowExpand && !maxHeight ? 'max-h-[30vh]' : '',
+                        'overflow-y-auto'
+                    )}
+                    style={!isExpanded && shouldShowExpand && maxHeight ? { maxHeight: `${maxHeight}px` } : undefined}
+                >
                     <code className={cn('text-sm block min-w-0', styles.code)}>
                         {active && (showLineNumbers ? (
                             active.command.split('\n').map((line, index) => (

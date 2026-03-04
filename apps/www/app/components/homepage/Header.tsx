@@ -9,7 +9,7 @@ import Check from '@/ui/icons/Check'
 import { Logo } from '../Logo'
 import Link from 'next/link'
 
-const Header = () => {
+const Header = ({ version }: { version: string }) => {
   const [copied, setCopied] = useState(false)
   const command = 'npx behsseui init'
 
@@ -34,7 +34,7 @@ const Header = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            <span className="text-sm text-muted-foreground">v0.2.0 available</span>
+            <span className="text-sm text-muted-foreground">v{version} available</span>
           </div>
         </div>
 

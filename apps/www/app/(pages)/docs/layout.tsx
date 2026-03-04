@@ -63,20 +63,20 @@ export default function DocsLayout({
 
   return (
     <div>
-      <div className="w-full 3xl:max-w-[1550px] 3xl:mx-auto h-full 3xl:px-20 px-4 sm:px-6 md:px-8">
-        <div className="flex items-start gap-4 md:gap-6 lg:gap-10">
+      <div className="w-full 3xl:max-w-[1550px] 3xl:mx-auto h-full">
+        <div className="flex items-start">
           {/* Sidebar gauche - Navigation */}
           <LeftNavbar/>
 
-          {/* Contenu principal - les pages doivent gérer leur propre structure avec TOC */}
-          <main className="flex-1 min-w-0">
+          {/* Contenu principal */}
+          <main className="flex-1 min-w-0 py-6 px-6 lg:px-10">
             {children}
           </main>
 
-          {/* Table des matières - Sidebar droite (masquée pour la page de liste des composants) */}
+          {/* Table des matières - Sidebar droite */}
           {!isComponentsListPage && (
-            <aside className="hidden lg:block lg:w-[200px] xl:w-[280px] shrink-0 sticky top-32 lg:top-28 overflow-y-auto">
-              <div className="h-full overflow-y-auto px-6">
+            <aside className="hidden xl:block w-[250px] shrink-0 sticky top-[62px] h-[calc(100vh-62px)] border-l border-border border-dashed group/sidebar">
+              <div className="h-full overflow-y-auto py-6 px-4 md:px-8 sidebar-scroll">
                 <TableOfContents items={tocItems} />
               </div>
             </aside>

@@ -8,17 +8,20 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./
 
 // Composant de navigation réutilisable - exporté pour être utilisé dans la Navbar
 export const DocsNavContent = ({ pathname, onLinkClick }: { pathname: string, onLinkClick?: () => void }) => (
-    <nav className="space-y-6">
-        {docsConfig.sidebarNav.map((section) => (
-            <Accordion type="single" key={section.title} defaultValue="item-1" className="border-none">
+    <nav>
+        {docsConfig.sidebarNav.map((section, index) => (
+            <Accordion type="single" key={section.title} defaultValue="item-1" variant="ghost">
                 <AccordionItem value="item-1" defaultOpen>
-                    <AccordionTrigger className="mb-2 rounded-md px-2 py-1 text-sm font-semibold">
+                    <AccordionTrigger className={cn(
+                        "text-sm font-semibold py-3 px-4 md:px-8 hover:no-underline border-b border-dashed border-border",
+                        index > 0 && "border-t"
+                    )}>
                         {section.title}
                     </AccordionTrigger>
                     <AccordionContent>
-                        <div className="relative">
+                        <div className="relative py-4 px-4 md:px-8">
                             {/* Barre verticale complète en arrière-plan */}
-                            <div className="absolute left-2 top-0 bottom-0 w-px bg-border" />
+                            <div className="absolute left-6 md:left-10 top-4 bottom-4 w-px bg-border" />
 
                             <div className="space-y-1 relative grid gap-1.5 ml-2">
                                 {section.items.map((item) => {
@@ -58,8 +61,8 @@ const LeftNavbar = () => {
     const pathname = usePathname()
 
     return (
-        <aside className="hidden lg:block lg:w-[200px] xl:w-[280px] shrink-0 sticky top-32 lg:top-28 overflow-y-auto">
-            <div className="h-full overflow-y-auto pr-6">
+        <aside className="hidden lg:block w-[280px] shrink-0 sticky top-[62px] h-[calc(100vh-62px)] border-r border-border border-dashed group/sidebar">
+            <div className="h-full overflow-y-auto sidebar-scroll">
                 <DocsNavContent pathname={pathname} />
             </div>
         </aside>

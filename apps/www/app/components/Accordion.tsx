@@ -6,11 +6,11 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const accordionVariants = cva(
-  "border rounded-lg overflow-hidden",
+  "border overflow-hidden",
   {
     variants: {
       variant: {
-        default: "border-border",
+        default: "border-border rounded-lg",
         ghost: "border-transparent",
       },
     },
@@ -36,11 +36,11 @@ const accordionItemVariants = cva(
 )
 
 const accordionTriggerVariants = cva(
-  "flex w-full items-center justify-between py-4 px-4 text-sm font-medium transition-all hover:underline cursor-pointer [&[data-state=open]>svg]:rotate-180",
+  "flex w-full items-center justify-between text-sm font-medium transition-all hover:underline cursor-pointer [&[data-state=open]>svg]:rotate-180",
   {
     variants: {
       variant: {
-        default: "",
+        default: "py-4 px-4",
         ghost: "",
       },
     },
@@ -237,7 +237,7 @@ export function AccordionContent({ children, className }: AccordionContentProps)
       data-state={isOpen ? "open" : "closed"}
     >
       {isOpen && (
-        <div className="px-4 pb-4 pt-0">
+        <div className={variant === "ghost" ? "" : "px-4 pb-4 pt-0"}>
           {children}
         </div>
       )}

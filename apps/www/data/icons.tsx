@@ -16,6 +16,10 @@ import ArrowUpRight from "@/ui/icons/ArrowUpRight"
 import ChevronRight from "@/ui/icons/ChevronRight"
 import ChevronLeft from "@/ui/icons/ChevronLeft"
 import ChevronDown from "@/ui/icons/ChevronDown"
+import Monitor from "@/ui/icons/Monitor"
+import Tablet from "@/ui/icons/Tablet"
+import Smartphone from "@/ui/icons/Smartphone"
+import Menu from "@/ui/icons/Menu"
 
 // Import des versions
 import { iconVersion as CloseVersion } from "@/ui/icons/Close"
@@ -33,6 +37,10 @@ import { iconVersion as ArrowUpRightVersion } from "@/ui/icons/ArrowUpRight"
 import { iconVersion as ChevronRightVersion } from "@/ui/icons/ChevronRight"
 import { iconVersion as ChevronLeftVersion } from "@/ui/icons/ChevronLeft"
 import { iconVersion as ChevronDownVersion } from "@/ui/icons/ChevronDown"
+import { iconVersion as MonitorVersion } from "@/ui/icons/Monitor"
+import { iconVersion as TabletVersion } from "@/ui/icons/Tablet"
+import { iconVersion as SmartphoneVersion } from "@/ui/icons/Smartphone"
+import { iconVersion as MenuVersion } from "@/ui/icons/Menu"
 
 export interface Icon {
   name: string
@@ -131,5 +139,29 @@ export const icons: Icon[] = [
     component: ChevronDown,
     version: ChevronDownVersion,
     preview: <ChevronDown className="w-5 h-5" />
+  },
+  {
+    name: "Monitor",
+    component: Monitor,
+    version: MonitorVersion,
+    preview: <Monitor className="w-5 h-5" />
+  },
+  {
+    name: "Tablet",
+    component: Tablet,
+    version: TabletVersion,
+    preview: <Tablet className="w-5 h-5" />
+  },
+  {
+    name: "Smartphone",
+    component: Smartphone,
+    version: SmartphoneVersion,
+    preview: <Smartphone className="w-5 h-5" />
+  },
+  {
+    name: "Menu",
+    component: Menu,
+    version: MenuVersion,
+    preview: <Menu className="w-5 h-5" />
   }
 ].sort((a, b) => a.name.localeCompare(b.name))

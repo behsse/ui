@@ -4,6 +4,70 @@ Latest updates and announcements from the project.
 
 ---
 
+## v0.4.0
+**March 4, 2026**
+
+A major release introducing **Slices** — pre-built, responsive page sections ready to drop into any project. This update also adds **8 new components**, **5 new icons**, and a brand new Slices showcase page.
+
+### 🧩 Components
+
+**New Components Added:**
+- **Drawer:** Slide-out panel from screen edges
+- **DropdownMenu:** Accessible dropdown menus with keyboard navigation
+- **HoverCard:** Rich content popups on hover
+- **Input:** Text input field with multiple variants
+- **InputOTP:** One-time password input with segmented fields
+- **Pagination:** Page navigation with previous/next and page numbers
+- **Progress:** Progress bar with customizable value
+- **Select:** Dropdown select input with search and groups
+
+### 🎨 Icons & Assets
+
+**New Icons Added:**
+- ChevronDown
+- Menu
+- Monitor
+- Smartphone
+- Tablet
+
+### 🧱 Slices
+
+The biggest addition of this release. **Slices** are complete, responsive page sections built with BehsseUI components that you can install with a single CLI command.
+
+**4 Categories, 9 Slices:**
+
+- **Navbars**
+  - Navbar 01 — Simple responsive navbar with logo, navigation links, and CTA buttons
+  - Navbar 02 — Navbar with centered search bar and navigation links
+- **Heroes**
+  - Hero 01 — Centered hero section with badge, headline, and action buttons
+  - Hero 02 — Split hero section with email signup form
+- **Pricing**
+  - Pricing 01 — Simple 3-tier pricing cards with highlighted popular plan
+  - Pricing 02 — Pricing cards with monthly/yearly toggle and savings badge
+  - Pricing 03 — Minimalist 2-card pricing comparison
+- **Footers**
+  - Footer 01 — Footer with logo, link columns, and social icons
+  - Footer 02 — Footer with newsletter signup and link columns
+
+**CLI Support:**
+- Install any slice with `pnpm dlx behsseui add slices/Pricing01`
+- Slices automatically install their component and icon dependencies
+
+### 🌐 Website
+
+- **Slices Showcase:** New dedicated `/slices` page with category browsing and interactive previews
+- **Responsive Preview:** Live iframe preview with desktop, tablet, and mobile viewport toggles
+- **Code Display:** View and copy the full source code of each slice
+
+### 🔜 Coming Soon
+- **More Components:** Tabs, Toast, Tooltip, and more
+- **More Slices:** FAQ, Testimonials, Features, CTA sections
+- **Themes:** Theme customization page with multiple presets
+- **Colors:** Color palette documentation and customization
+
+---
+
 ## v0.3.0
 **January 27, 2026**
 

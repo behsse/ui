@@ -1,9 +1,10 @@
 {
 	"name": "behsseui",
-	"version": "0.2.0",
+	"version": "0.4.0",
 	"description": "Add behsseui components to your projects",
 	"packageManager": "pnpm@9.13.0",
 	"scripts": {
+		"dev": "pnpm --filter ./apps/www dev",
 		"build": "turbo run build",
 		"cli:build": "cd packages/cli && pnpm build",
 		"cli:publish": "cd packages/cli && pnpm build && npm publish",
